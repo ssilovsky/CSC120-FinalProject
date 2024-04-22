@@ -13,7 +13,9 @@ public class Area {
 
     }
   
-
+    public leaveArea(){
+      
+    }
     
 
     public String toString() {
