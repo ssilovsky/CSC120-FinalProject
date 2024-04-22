@@ -10,34 +10,32 @@ public class Area {
       this.name = name;
       this.desc = desc;
       // this.enemyList = new ArrayList<Enemy>; // haven't merged in the Enemy class yet**
-
     }
   
-    public leaveArea(){
+    public void leaveArea(){
       
     }
     
-
     public String toString() {
       return name;
     }
     
 
     // MAP BUILDER
-  public static void buildMap() {
-    // Create the area objects for our map
-    Area bass = new Area("Kelp Forest", "DESC");
-    Area mcConnell = new Area("Thermal Vents", "DESC");
-    Area burton = new Area("Final Zone", "DESC");
-    Area sabinReed = new Area("Secret Area", "DESC");
+  // public static void buildMap() {
+  //   // Create the area objects for our map
+  //   Area bass = new Area("Kelp Forest", "DESC GOES HERE");
+  //   Area mcConnell = new Area("Thermal Vents", "DESC GOES HERE");
+  //   Area burton = new Area("Final Zone", "DESC GOES HERE");
+  //   Area sabinReed = new Area("Secret Area", "DESC GOES HERE");
 
-    ImmutableGraph<Area> map = GraphBuilder.undirected()
-        .<Area>immutable()
-        .putEdge(bass, mcConnell)
-        .putEdge(mcConnell, sabinReed)
-        .putEdge(sabinReed, burton)
-        .build();
+  //   ImmutableGraph<Area> map = GraphBuilder.undirected()
+  //       .<Area>immutable()
+  //       .putEdge(bass, mcConnell)
+  //       .putEdge(mcConnell, sabinReed)
+  //       .putEdge(sabinReed, burton)
+  //       .build();
 
-        System.out.println(map);
-  }
+  //       System.out.println(map);
+  // }
   }
