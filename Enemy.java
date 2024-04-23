@@ -16,7 +16,7 @@ public class Enemy {
         this.EXP = level * 2;
     }
 
-    private void takeDamage(int dmg){
+    public void takeDamage(int dmg){ // private or public?
         if (dmg/this.defense < 1) {
             this.HP -= 1;
         }
@@ -25,6 +25,10 @@ public class Enemy {
 
     private int getAttack(){
         return this.attack;
+    }
+
+    public String getType(){
+        return this.type;
     }
 
     private void examine(){

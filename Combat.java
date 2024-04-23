@@ -1,42 +1,46 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
-// basic turn-based Combat loop without Player and Enemy classes implemented
-// will include the actual classes later!
 public class Combat {
-    // placeholder variables until we have the classes
-    int playerHp = 20;
-    int enemyHp = 20;
-
-    // Will replace with class objects later once the class is made
-    // e.g once we have the enemy class it will be like: Enemy targetedEnemy instead
-    // of String. And then we could update their attributes directly
-    String targetedEnemy = "Enemy";
-    String targetedPlayer = "Player";
 
     // Scanner info
     Scanner combatScanner = new Scanner(System.in);
-    String userInput = ""; // to store user input
+    private String userInput = ""; // to store user input
+    // private ArrayList<Enemy> enemies;
+
+    public Combat() { 
+    //   this.enemies = new ArrayList<>();
+    }
 
     // Methods
 
+    public void printCombatMenu(){
+        System.out.println();
+        System.out.println("---Combat Options---");
+        System.out.println("1. Attack");
+        System.out.println("2. Examine");
+        System.out.println("3. Run");
+        System.out.println("-----------------");
+    }
+
     /**
-     * Player's attack; subtracts from enemy HP
+     * Player attacks; subtracts from enemy HP
      * 
-     * @param targetedEnemy
+     * @param foe
      */
-    public void playerAttack(String targetedEnemy) {
-        System.out.println("The Player Attacks " + targetedEnemy);
-        enemyHp -= 10;
+    public void playerAttack(Enemy foe, int dmg) {
+        System.out.println("The Player Attacks " + foe.getType());
+        foe.takeDamage(dmg);
     }
 
     /**
      * Enemy's attack; subtracts from player HP
      * 
-     * @param targetedPlayer
+     * @param player
      */
-    public void enemyAttack(String targetedPlayer) {
-        System.out.println("The Enemy Attacks " + targetedPlayer);
-        playerHp -= 10;
+    public void enemyAttack(PlayableChar player, int dmg) {
+        System.out.println("The Enemy Attacks " + player.getName());
+        player.takeDamage(dmg);
 
     }
 
@@ -44,37 +48,38 @@ public class Combat {
      * Simple combat loop that detects for specific user input and changes the
      * values for player or enemy HP accordingly
      */
-    public void combatLoop() {
-        while (playerHp > 0 && enemyHp > 0) {
+    public void combatLoop(PlayableChar player, Enemy foe) {
+        while (player.getHealth() > 0 && foe.HP > 0) {
             userInput = combatScanner.nextLine().toUpperCase();
             if (userInput.contains("ATTACK")) {
-                playerAttack(targetedEnemy);
-                System.out.println(enemyHp);
+                playerAttack(foe, 10);
+                System.out.println(foe.HP);
             }
-            if (userInput.contains("OUCH")) {
-                enemyAttack(targetedPlayer);
-                System.out.println(playerHp);
-            } else {
+            else if (userInput.contains("OUCH")) {
+                enemyAttack(player, 10);
+                System.out.println(player.getHealth());
+            }else {
                 System.out.println("Input a valid command!");
                 // if we have a print commands function we could call it here to remind the
                 // player of what they can do here
             }
-
+            printCombatMenu();
         }
-        if (enemyHp <= 0) {
+        if (foe.HP <= 0) {
             System.out.println("Battle Won!");
         }
-        if (playerHp <= 0) {
+        if (player.getHealth() <= 0) {
             System.out.println("Battle Lost!");
         }
     }
 
     public static void main(String[] args) {
+        PlayableChar Joe = new PlayableChar("Joe", 20, 20, 5);
+        Enemy Evil_Joe = new Enemy("Evil Joe", 2);
         Combat combatTest = new Combat();
-        combatTest.combatLoop();
+        combatTest.combatLoop(Joe, Evil_Joe);
     }
 }
-
 
 // ----------------------------------------------------------------------------
 // Notes:
