@@ -3,17 +3,18 @@ import java.util.Scanner;
 
 public class Combat {
 
-    // Scanner info
+    // Scanner info + Initalization
     Scanner combatScanner = new Scanner(System.in);
     private String userInput = ""; // to store user input
     // private ArrayList<Enemy> enemies;
 
+
+    // constructor for Combat class
     public Combat() { 
     //   this.enemies = new ArrayList<>();
     }
 
     // Methods
-
     public void printCombatMenu(){
         System.out.println();
         System.out.println("---Combat Options---");
@@ -21,12 +22,19 @@ public class Combat {
         System.out.println("2. Examine");
         System.out.println("3. Run");
         System.out.println("-----------------");
+        System.out.print("Input an option: ");
+    }
+
+    public void clearConsole(){
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
     }
 
     /**
      * Player attacks; subtracts from enemy HP
      * 
      * @param foe
+     * @param dmg
      */
     public void playerAttack(Enemy foe, int dmg) {
         System.out.println("The Player Attacks " + foe.getType());
@@ -49,21 +57,32 @@ public class Combat {
      * values for player or enemy HP accordingly
      */
     public void combatLoop(PlayableChar player, Enemy foe) {
+        clearConsole();
+        System.out.println();
+        System.out.println("COMBAT START!");
         while (player.getHealth() > 0 && foe.HP > 0) {
-            userInput = combatScanner.nextLine().toUpperCase();
-            if (userInput.contains("ATTACK")) {
+            printCombatMenu();
+            userInput = combatScanner.nextLine().toUpperCase(); // To uppercase just so that it's case insensitive for now
+            System.out.println();
+            if (userInput.equals("ATTACK") || userInput.equals("1")) {
+                clearConsole();
                 playerAttack(foe, 10);
-                System.out.println(foe.HP);
+                System.out.println("Enemy health: " + foe.HP);
+                
             }
             else if (userInput.contains("OUCH")) {
+                clearConsole();
                 enemyAttack(player, 10);
-                System.out.println(player.getHealth());
-            }else {
+                System.out.println("Player health: " + player.getHealth());
+            } else if(userInput.equals("3")){
+                System.out.println("Ran from battle!");
+                break;
+            }
+            else {
                 System.out.println("Input a valid command!");
                 // if we have a print commands function we could call it here to remind the
                 // player of what they can do here
             }
-            printCombatMenu();
         }
         if (foe.HP <= 0) {
             System.out.println("Battle Won!");
@@ -80,6 +99,9 @@ public class Combat {
         combatTest.combatLoop(Joe, Evil_Joe);
     }
 }
+
+
+
 
 // ----------------------------------------------------------------------------
 // Notes:
