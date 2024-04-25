@@ -23,7 +23,7 @@ public class Enemy {
         this.HP -= dmg/this.defense;
     }
 
-    private int getAttack(){
+    public int getAttack(){
         return this.attack;
     }
 
@@ -31,7 +31,7 @@ public class Enemy {
         return this.type;
     }
 
-    private void examine(){
+    public void examine(){
         if (this.HP <1) {
             System.out.println("The " + this.type + " is dead!");
         }
