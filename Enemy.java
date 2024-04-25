@@ -1,58 +1,78 @@
 public class Enemy {
-
     private String type;
-    public int HP;
-    private int defense;
+    private int hp;
     private int attack;
+    private int defense;
+    
     private int level;
-    private int EXP; 
+    private int exp; 
 
-    public Enemy(String type, int level){
+    public Enemy(String type, int hp, int attack, int defense, int level){
         this.type = type;
         this.level = level;
         this.defense = level * 2;
         this.attack = level * 3;
-        this.HP = level * 4;
-        this.EXP = level * 2;
+        this.hp = level * 4;
+        this.exp = level * 2;
     }
 
-    private void takeDamage(int dmg){
+    /**
+     * Getter methods
+     */
+    public String getType() {
+        return type;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getCurrentHealth() {
+        return hp;
+    }
+
+    public int getAttack(){
+        return attack;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+
+    public void takeDamage(int dmg){
         if (dmg/this.defense < 1) {
-            this.HP -= 1;
+            this.hp -= 1;
         }
-        this.HP -= dmg/this.defense;
-    }
-
-    private int getAttack(){
-        return this.attack;
+        this.hp -= dmg/this.defense;
     }
 
     private void examine(){
-        if (this.HP <1) {
+        if (this.hp <1) {
             System.out.println("The " + this.type + " is dead!");
         }
-        if (this.HP == 1) {
+        if (this.hp == 1) {
             System.out.println("The " + this.type + " is almost dead!");
         } 
-        if (this.HP > 1 && this.HP <= 5) {
+        if (this.hp > 1 && this.hp <= 5) {
             System.out.println("The " + this.type + " is looking rough.");
         } 
-        if (this.HP > 5 ) {
+        if (this.hp > 5 ) {
             System.out.println("The " + this.type + " is looking strong.");
         }
     }
     public static void main(String[] args) {
         Enemy e = new Enemy("Silly", 2);
-        System.out.println(e.HP);
+        System.out.println(e.hp);
         e.takeDamage(1);
         e.examine();
-        System.out.println(e.HP);
+        System.out.println(e.hp);
         e.takeDamage(2);
         e.examine();
-        System.out.println(e.HP);
+        System.out.println(e.hp);
         e.takeDamage(20);
         e.examine();
-        System.out.println(e.HP);
+        System.out.println(e.hp);
 
     }
 }
