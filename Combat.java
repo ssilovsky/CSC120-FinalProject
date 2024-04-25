@@ -1,6 +1,7 @@
 // import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import javax.swing.*;
 
 public class Combat {
     // Scanner info + Initalization
@@ -24,6 +25,9 @@ public class Combat {
         System.out.print("Input an option: ");
     }
 
+    /**
+     * Clears the console
+     */
     public void clearConsole() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -42,12 +46,11 @@ public class Combat {
 
     /**
      * Enemy's attack; subtracts from Player HP
-     * 
-     * @param player
+     * 3
      * @param dmg
      */
     public void enemyAttack(PlayableChar player, int dmg) {
-        System.out.println("The Enemy Attacks " + player.getName());
+        System.out.println("\nThe Enemy Attacks " + player.getName());
         player.takeDamage(dmg);
 
     }
@@ -62,7 +65,7 @@ public class Combat {
         System.out.println();
         System.out.println("COMBAT START!");
         while (player.getHealth() > 0 && foe.HP > 0) {
-            System.out.println("\nPlayer health: " + player.getHealth());
+            System.out.println("\n>> Player health: " + player.getHealth() + " <<");
             printCombatMenu();
             userInput = combatScanner.nextLine().toUpperCase(); // To uppercase just so that it's case insensitive for
                                                                 // now
@@ -78,7 +81,7 @@ public class Combat {
             } else if (userInput.equals("RUN") || userInput.equals("3")) {
                 clearConsole();
                 int ran = dice.nextInt(1, 6); // roll the diee!
-                // System.out.println("You rolled a " + ran + " with the Mystic Dice of Fate");
+                System.out.println("You rolled a " + ran + " with the Mystic Dice of Fate");
                 if (ran >= 5) {
                     System.out.println("Ran from battle!");
                     break;
