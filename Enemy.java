@@ -7,7 +7,7 @@ public class Enemy {
     private int level;
     private int exp; 
 
-    public Enemy(String type, int hp, int attack, int defense, int level){
+    public Enemy(String type, int level, int maxHp, int attack, int defense){
         this.type = type;
         this.level = level;
         this.defense = level * 2;
@@ -39,6 +39,11 @@ public class Enemy {
         return defense;
     }
 
+    public void attack(PlayableChar player) {
+        int damage = Math.max(attack - player.getDefense(), 0); // Calculate damage after considering defense
+        System.out.println(type + " attacks you for " + damage + " damage!");
+        player.takeDamage(damage);
+    }
 
     public void takeDamage(int dmg){
         if (dmg/this.defense < 1) {
@@ -46,33 +51,5 @@ public class Enemy {
         }
         this.hp -= dmg/this.defense;
     }
-
-    private void examine(){
-        if (this.hp <1) {
-            System.out.println("The " + this.type + " is dead!");
-        }
-        if (this.hp == 1) {
-            System.out.println("The " + this.type + " is almost dead!");
-        } 
-        if (this.hp > 1 && this.hp <= 5) {
-            System.out.println("The " + this.type + " is looking rough.");
-        } 
-        if (this.hp > 5 ) {
-            System.out.println("The " + this.type + " is looking strong.");
-        }
-    }
-    public static void main(String[] args) {
-        Enemy e = new Enemy("Silly", 2);
-        System.out.println(e.hp);
-        e.takeDamage(1);
-        e.examine();
-        System.out.println(e.hp);
-        e.takeDamage(2);
-        e.examine();
-        System.out.println(e.hp);
-        e.takeDamage(20);
-        e.examine();
-        System.out.println(e.hp);
-
-    }
+    
 }

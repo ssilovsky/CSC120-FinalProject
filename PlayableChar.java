@@ -108,20 +108,41 @@ public class PlayableChar {
     // ***COMBAT*** //
 
     /**
-     * Method for player to take damage
+     * Method for player to attack enemy
+     * @param enemy
      */
-
     public void attack(Enemy enemy) {
         int damage = Math.max(attack - enemy.getDefense(), 0); // Calculate damage after considering defense
         System.out.println(name + " attacks " + enemy.getType() + " for " + damage + " damage!");
         enemy.takeDamage(damage);
     }
 
+    /**
+     * Method for player to take damage
+     */
     public void takeDamage(int damage) {
         int actualDamage = Math.max(damage - defense, 0); // Calculate actual damage after considering defense
         hp -= actualDamage;
         if (hp <= 0) {
-            System.out.println(name + " has been defeated!");
+            System.out.println("You have been defeated!"); //revive or game over??
+        }
+    }
+
+    /**
+     * Method for player to check remaining health in Enemy
+     */
+    public void examineEnemy(Enemy enemy){
+        if (enemy.getCurrentHealth() < 1) {
+            System.out.println("The " + enemy.getType() + " is dead!");
+        }
+        if (enemy.getCurrentHealth() == 1) {
+            System.out.println("The " + enemy.getType() + " is almost dead!");
+        } 
+        if (enemy.getCurrentHealth() > 1 && this.hp <= 5) {
+            System.out.println("The " + enemy.getType() + " is looking rough.");
+        } 
+        if (enemy.getCurrentHealth() > 5 ) {
+            System.out.println("The " + enemy.getType() + " is looking strong.");
         }
     }
 }

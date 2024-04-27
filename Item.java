@@ -23,5 +23,6 @@ enum ItemType {
     ARMOR,
     CONSUMABLE,
     CROWN,
-    SEAWEED
+    SEAWEED,
+    ROCK
 }

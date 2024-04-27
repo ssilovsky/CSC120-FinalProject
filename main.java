@@ -1,16 +1,17 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        
+
         System.out.println("˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹");
         System.out.println("˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹");
         System.out.println("˚ִִ໋𓍢ִ✧˖𓍢ִִ໋Welcome to the kingdom of Aquamaris!˖𓍢ִִִ໋˚⊹");
         System.out.println("˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹");
         System.out.println("˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹");
 
-        System.out.println("Are you ready? (Please enter 1 or 2)");
+        System.out.println("Are you ready?");
             System.out.println("1. Start");
             System.out.println("2. Quit");
         String readyResponse = scanner.nextLine().toLowerCase();
@@ -25,6 +26,7 @@ public class main {
                 System.out.println("Invalid response. Please enter '1' or '2'");
             }
         }
+        }
 
         private static void startGame(Scanner scanner) {
             System.out.println("Enter your name:");
@@ -32,6 +34,7 @@ public class main {
             PlayableChar player = new PlayableChar(name, 1, 100, 10, 5);
 
             while (true) {
+                System.out.println("Hello " + name + "! The royal crown has been taken from the \nkingdom. It's up to you to retrieve the crown before \nit is used for evil!");
                 System.out.println("What do you want to do?");
                 System.out.println("1. Explore");
                 System.out.println("2. Check inventory");
@@ -41,7 +44,8 @@ public class main {
                 int choice = scanner.nextInt();
                 switch (choice) {
                     case 1:
-                        // Implement explore logic here
+                        // examine elements in current area that you are in
+                        // 
                         break;
                     case 2:
                         player.displayInventory();
@@ -60,3 +64,7 @@ public class main {
     }
 }
 //System.out.println("Hello " + name + "! The royal crown has been taken from the kingdom of Aquamaris. It's your job to retrieve the crown before it is used for evil! Explore ");
+//"You have died. Game Over!"
+//"Restart?"
+//Checkpoint system? 
+//""
