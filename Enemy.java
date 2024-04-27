@@ -16,18 +16,22 @@ public class Enemy {
         this.EXP = level * 2;
     }
 
-    private void takeDamage(int dmg){
+    public void takeDamage(int dmg){ // private or public?
         if (dmg/this.defense < 1) {
             this.HP -= 1;
         }
         this.HP -= dmg/this.defense;
     }
 
-    private int getAttack(){
+    public int getAttack(){
         return this.attack;
     }
 
-    private void examine(){
+    public String getType(){
+        return this.type;
+    }
+
+    public void examine(){
         if (this.HP <1) {
             System.out.println("The " + this.type + " is dead!");
         }
