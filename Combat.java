@@ -64,8 +64,8 @@ public class Combat {
         clearConsole();
         System.out.println();
         System.out.println("COMBAT START!");
-        while (player.getHealth() > 0 && foe.HP > 0) {
-            System.out.println("\n>> Player health: " + player.getHealth() + " <<");
+        while (player.getCurrentHealth() > 0 && foe.hp > 0) {
+            System.out.println("\n>> Player health: " + player.getCurrentHealth() + " <<");
             printCombatMenu();
             userInput = combatScanner.nextLine().toUpperCase(); // To uppercase just so that it's case insensitive for
                                                                 // now
@@ -80,7 +80,7 @@ public class Combat {
                 foe.examine();
             } else if (userInput.equals("RUN") || userInput.equals("3")) {
                 clearConsole();
-                int ran = dice.nextInt(1, 6); // roll the diee!
+                int ran = dice.nextInt(6) + 1; // roll the diee!
                 System.out.println("You rolled a " + ran + " with the Mystic Dice of Fate");
                 if (ran >= 5) {
                     System.out.println("Ran from battle!");
@@ -96,10 +96,10 @@ public class Combat {
                 // player of what they can do here
             }
         }
-        if (foe.HP <= 0) {
+        if (foe.hp <= 0) {
             System.out.println("Battle Won!");
         }
-        if (player.getHealth() <= 0) {
+        if (player.getCurrentHealth() <= 0) {
             System.out.println("Battle Lost!");
         }
     }

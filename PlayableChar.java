@@ -9,7 +9,7 @@ public class PlayableChar {
     private int level;
     private int attack;
     private int defense;
-    private List<Item> inventory;
+    private ArrayList<Item> inventory;
     private int locationX;
     private int locationY;
     
@@ -30,7 +30,7 @@ public class PlayableChar {
         this.defense = defense;
         this.level = 1;
         this.exp = 0;
-        this.inventory = new List<>();
+        this.inventory = new ArrayList<Item>();
         this.locationX = 0;
         this.locationY = 0;
         

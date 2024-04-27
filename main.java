@@ -26,12 +26,12 @@ public class main {
                 System.out.println("Invalid response. Please enter '1' or '2'");
             }
         }
-        }
+        
 
         private static void startGame(Scanner scanner) {
             System.out.println("Enter your name:");
             String name = scanner.nextLine();
-            PlayableChar player = new PlayableChar(name, 1, 100, 10, 5);
+            PlayableChar player = new PlayableChar(name, 100, 10, 5);
 
             while (true) {
                 System.out.println("Hello " + name + "! The royal crown has been taken from the \nkingdom. It's up to you to retrieve the crown before \nit is used for evil!");

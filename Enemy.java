@@ -1,14 +1,13 @@
 public class Enemy {
     private String type;
     public int hp;
-    private int defense;
     private int attack;
     private int defense;
     
     private int level;
     private int exp; 
 
-    public Enemy(String type, int level, int maxHp, int attack, int defense){
+    public Enemy(String type, int level){
         this.type = type;
         this.level = level;
         this.defense = level * 2;
@@ -55,7 +54,7 @@ public class Enemy {
         this.hp -= dmg/this.defense;
     }
     public void examine(){
-        if (this.HP <1) {
+        if (this.hp <1) {
             System.out.println("The " + this.type + " is dead!");
         }
         if (this.hp == 1) {
