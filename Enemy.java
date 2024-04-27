@@ -33,16 +33,16 @@ public class Enemy {
 
     public void examine(){
         if (this.HP <1) {
-            System.out.println("The " + this.type + " is dead!");
+            System.out.println("\nThe " + this.type + " is dead!");
         }
         if (this.HP == 1) {
-            System.out.println("The " + this.type + " is almost dead!");
+            System.out.println("\nThe " + this.type + " is almost dead!");
         } 
         if (this.HP > 1 && this.HP <= 5) {
-            System.out.println("The " + this.type + " is looking rough.");
+            System.out.println("\nThe " + this.type + " is looking rough.");
         } 
         if (this.HP > 5 ) {
-            System.out.println("The " + this.type + " is looking strong.");
+            System.out.println("\nThe " + this.type + " is looking strong.");
         }
     }
     public static void main(String[] args) {

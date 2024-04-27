@@ -1,4 +1,6 @@
+
 // import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import javax.swing.*;
@@ -7,11 +9,13 @@ public class Combat {
     // Scanner info + Initalization
     Scanner combatScanner = new Scanner(System.in);
     private String userInput = ""; // to store user input
-    // private ArrayList<Enemy> enemies;
+    private ArrayList<Enemy> enemies;
+    private ArrayList<PlayableChar> party;
 
     // constructor for Combat class
-    public Combat() {
-        // this.enemies = new ArrayList<>();
+    public Combat(ArrayList<Enemy> enemies, ArrayList<PlayableChar> party) {
+        this.enemies = new ArrayList<>();
+        this.party = new ArrayList<>();
     }
 
     // Methods
@@ -21,7 +25,7 @@ public class Combat {
         System.out.println("1. Attack");
         System.out.println("2. Examine");
         System.out.println("3. Run");
-        System.out.println("-----------------");
+        System.out.println("--------------------");
         System.out.print("Input an option: ");
     }
 
@@ -47,6 +51,7 @@ public class Combat {
     /**
      * Enemy's attack; subtracts from Player HP
      * 3
+     * 
      * @param dmg
      */
     public void enemyAttack(PlayableChar player, int dmg) {
@@ -56,19 +61,23 @@ public class Combat {
     }
 
     /**
-     * Combat loop that detects for specific user input and changes the values for
-     * player or enemy HP accordingly
+     * Combat loop
      */
     public void combatLoop(PlayableChar player, Enemy foe) {
+        // CombatDisplay img = new CombatDisplay();
+        // JFrame f = new JFrame();
+        // f.add(img);
+        // f.setSize(384, 480);
+        // f.setVisible(true);
         Random dice = new Random();
         clearConsole();
         System.out.println();
         System.out.println("COMBAT START!");
         while (player.getHealth() > 0 && foe.HP > 0) {
+            System.out.println("--------------------");
             System.out.println("\n>> Player health: " + player.getHealth() + " <<");
             printCombatMenu();
-            userInput = combatScanner.nextLine().toUpperCase(); // To uppercase just so that it's case insensitive for
-                                                                // now
+            userInput = combatScanner.nextLine().toUpperCase(); 
             System.out.println();
             if (userInput.equals("ATTACK") || userInput.equals("1")) {
                 clearConsole();
@@ -92,8 +101,6 @@ public class Combat {
 
             } else {
                 System.out.println("Input a valid command!");
-                // if we have a print commands function we could call it here to remind the
-                // player of what they can do here
             }
         }
         if (foe.HP <= 0) {
@@ -105,10 +112,18 @@ public class Combat {
     }
 
     public static void main(String[] args) {
-        PlayableChar Joe = new PlayableChar("Joe", 20, 20, 5);
-        Enemy Evil_Joe = new Enemy("Evil Joe", 2);
-        Combat combatTest = new Combat();
-        combatTest.combatLoop(Joe, Evil_Joe);
+        PlayableChar joe = new PlayableChar("Joe", 20, 20, 5);
+        PlayableChar dylan = new PlayableChar("Dylan", 20, 20, 5);
+        Enemy eviljoe = new Enemy("Evil Joe", 2);
+        Enemy evildylan = new Enemy("Evil Dylan", 2);
+        ArrayList<PlayableChar> party = new ArrayList<PlayableChar>();
+        party.add(joe);
+        party.add(dylan);
+        ArrayList<Enemy> evilsquad = new ArrayList<Enemy>();
+        evilsquad.add(eviljoe);
+        evilsquad.add(evildylan);
+        Combat combatTest = new Combat(evilsquad, party);
+        combatTest.combatLoop(joe, eviljoe);
     }
 }
 
