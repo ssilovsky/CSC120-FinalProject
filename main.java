@@ -26,7 +26,7 @@ public class main {
                 System.out.println("Invalid response. Please enter '1' or '2'");
             }
         }
-        }
+        
 
         private static void startGame(Scanner scanner) {
             System.out.println("Enter your name:");

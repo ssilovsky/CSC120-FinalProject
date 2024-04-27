@@ -22,7 +22,7 @@ public class PlayableChar {
      * @param attack
      * @param defense
      */
-    public PlayableChar(String name, int maxHP, int attack, int defense){
+    public PlayableChar(String name, int level, int maxHP, int attack, int defense){
         this.name = name;
         this.maxHp = 100;
         this.hp = maxHp;
