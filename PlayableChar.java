@@ -10,16 +10,47 @@ public class PlayableChar {
     private int attack;
     private int defense;
     private List<Item> inventory;
+    private int locationX;
+    private int locationY;
+    
+   //Combat battleAction;
 
-    public PlayableChar(String name, int level, int maxHp, int attack, int defense) {
+    /**
+     * 
+     * @param name
+     * @param maxHP
+     * @param attack
+     * @param defense
+     */
+    public PlayableChar(String name, int maxHP, int attack, int defense){
         this.name = name;
         this.maxHp = 100;
         this.hp = maxHp;
         this.attack = attack;
         this.defense = defense;
-        this.level = level;
+        this.level = 1;
         this.exp = 0;
-        this.inventory = new ArrayList<>();
+        this.inventory = new List<>();
+        this.locationX = 0;
+        this.locationY = 0;
+        
+    }
+
+  // *** NAVIGATION *** //
+    public void goNorth(){
+        this.locationY += 1;
+    }
+
+    public void goSouth(){
+        this.locationY -= 1;
+    }
+
+    public void goEast(){
+        this.locationX += 1;
+    }
+
+    public void goWest(){
+        this.locationX -= 1;
     }
 
     /**
@@ -94,6 +125,10 @@ public class PlayableChar {
         this.inventory.remove(item);
     }
 
+    public List<Item> getInventory(){
+        return this.inventory;
+    }
+  
     public void displayInventory() {
         System.out.println("Inventory of " + name + ":");
         if (inventory.isEmpty()) {
