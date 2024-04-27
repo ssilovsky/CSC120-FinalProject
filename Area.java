@@ -11,7 +11,7 @@ public class Area {
       this.desc = desc;
       this.enemyList = new ArrayList<Enemy>(); // haven't merged in the Enemy class yet**
     }
-  
+   
     public void leaveArea(){
       
     }
@@ -37,9 +37,5 @@ public class Area {
         .build();
 
         System.out.println(map);
-  }
-
-  public static void main(String[] args) {
-    buildMap();
   }
   }

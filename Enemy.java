@@ -16,7 +16,9 @@ public class Enemy {
         this.exp = level * 2;
     }
 
+
     public void takeDamage(int dmg){
+
         if (dmg/this.defense < 1) {
             this.hp -= 1;
         }
@@ -27,8 +29,13 @@ public class Enemy {
         return this.attack;
     }
 
+
+    public String getType(){
+        return this.type;
+    }
+
     public void examine(){
-        if (this.hp < 1) {
+        if (this.HP <1) {
             System.out.println("The " + this.type + " is dead!");
         }
         if (this.hp == 1) {

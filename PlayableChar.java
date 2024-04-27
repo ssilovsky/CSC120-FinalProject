@@ -63,7 +63,7 @@ public class PlayableChar {
      * 
      * @param dmg
      */
-    private void decreaseHealth(int dmg){
+    public void takeDamage(int dmg){ // visible? <<-- Note to self. should it be public or private
         if(this.HP - dmg/this.defense < 0){
             this.HP = 0;
         }
