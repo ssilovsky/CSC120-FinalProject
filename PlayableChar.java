@@ -12,6 +12,8 @@ public class PlayableChar {
     private int defense;
 
     private ArrayList<String> inventory;
+    private int locationX;
+    private int locationY;
     
    //Combat battleAction;
 
@@ -31,6 +33,30 @@ public class PlayableChar {
         this.level = 1;
         this.EXP = 0;
         this.inventory = new ArrayList<String>();
+        this.locationX = 0;
+        this.locationY = 0;
+        
+    }
+
+    public void goNorth(){
+        this.locationY += 1;
+    }
+
+    public void goSouth(){
+        this.locationY -= 1;
+    }
+
+    public void goEast(){
+        this.locationX += 1;
+    }
+
+    public void goWest(){
+        this.locationX -= 1;
+    }
+
+
+    public ArrayList<String> getInventory(){
+        return this.inventory;
     }
 
     /**
