@@ -22,7 +22,7 @@ public class PlayableChar {
      * @param attack
      * @param defense
      */
-    public PlayableChar(String name, int maxHP, int attack, int defense){
+    public PlayableChar(String name, int attack, int defense){
         this.name = name;
         this.maxHp = 100;
         this.hp = maxHp;
@@ -57,27 +57,32 @@ public class PlayableChar {
      * Getter methods
      */
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public int getLevel() {
-        return level;
+        return this.level;
     }
 
     public int getMaxHealth() {
-        return maxHp;
+        return this.maxHp;
     }
 
     public int getCurrentHealth() {
-        return hp;
+        return this.hp;
     }
 
     public int getAttack() {
-        return attack;
+        return this.attack;
     }
 
     public int getDefense() {
-        return defense;
+        return this.defense;
+    }
+
+    public int getExp(){
+        return this.exp;
+
     }
 
     // ***EXPERIENCE POINTS + LEVELING UP*** //
@@ -155,12 +160,31 @@ public class PlayableChar {
     /**
      * Method for player to take damage
      */
-    public void takeDamage(int damage) {
-        int actualDamage = Math.max(damage - defense, 0); // Calculate actual damage after considering defense
-        hp -= actualDamage;
-        if (hp <= 0) {
-            System.out.println("You have been defeated!"); //revive or game over??
+    // public void takeDamage(int damage) {
+    //     int actualDamage = Math.max(damage - defense, 0); // Calculate actual damage after considering defense
+    //     hp -= actualDamage;
+    //     if (hp <= 0) {
+    //         System.out.println("You have been defeated!"); //revive or game over??
+    //     }
+    // }
+
+
+     /**
+     * Method for player to take damage
+     */
+    public void takeDamage(int dmg) {
+        if (dmg/this.defense < 1) {
+            this.hp -= 1;
         }
+        this.hp -= dmg/this.defense;
+    }
+
+    /**
+     * Setter to reset player health to max health
+     */
+    public void healPlayer(){
+        this.hp = this.maxHp;
+        System.out.println(this.name + " rests and heals up!");
     }
 
     /**

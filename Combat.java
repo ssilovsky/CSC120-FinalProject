@@ -1,3 +1,4 @@
+
 // import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -47,6 +48,7 @@ public class Combat {
     /**
      * Enemy's attack; subtracts from Player HP
      * 3
+     * 
      * @param dmg
      */
     public void enemyAttack(PlayableChar player, int dmg) {
@@ -64,16 +66,17 @@ public class Combat {
         clearConsole();
         System.out.println();
         System.out.println("COMBAT START!");
-        while (player.getCurrentHealth() > 0 && foe.hp > 0) {
+        while (player.getCurrentHealth() > 0 && foe.getCurrentHealth() > 0) {
             System.out.println("\n>> Player health: " + player.getCurrentHealth() + " <<");
+            System.out.println("\n>> Enemy health: " + foe.getCurrentHealth() + " <<");
             printCombatMenu();
             userInput = combatScanner.nextLine().toUpperCase(); // To uppercase just so that it's case insensitive for
                                                                 // now
             System.out.println();
             if (userInput.equals("ATTACK") || userInput.equals("1")) {
                 clearConsole();
-                playerAttack(foe, 10);
-                enemyAttack(player, 10);
+                playerAttack(foe, player.getAttack());
+                enemyAttack(player, foe.getAttack());
 
             } else if (userInput.equals("EXAMINE") || userInput.equals("2")) {
                 clearConsole();
@@ -87,7 +90,7 @@ public class Combat {
                     break;
                 } else {
                     System.out.println("You weren't able to escape!");
-                    enemyAttack(player, 10);
+                    enemyAttack(player, player.getAttack());
                 }
 
             } else {
@@ -96,8 +99,12 @@ public class Combat {
                 // player of what they can do here
             }
         }
-        if (foe.hp <= 0) {
+        if (foe.getCurrentHealth() <= 0) {
             System.out.println("Battle Won!");
+            System.out.println("You Earned " + foe.getExp() + " EXP!");
+            player.addExp(foe.getExp());
+            System.out.println("Current EXP: " + player.getExp());
+            player.healPlayer();
         }
         if (player.getCurrentHealth() <= 0) {
             System.out.println("Battle Lost!");
@@ -105,11 +112,12 @@ public class Combat {
     }
 
     public static void main(String[] args) {
-        PlayableChar Joe = new PlayableChar("Joe", 20, 20, 5);
-        Enemy Evil_Joe = new Enemy("Evil Joe", 2);
+        PlayableChar joe = new PlayableChar("Joe", 10, 10);
+        Enemy eviljoe = new Enemy("Evil Joe", 1);
         Combat combatTest = new Combat();
-        combatTest.combatLoop(Joe, Evil_Joe);
+        combatTest.combatLoop(joe, eviljoe);
     }
+
 }
 
 
