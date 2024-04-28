@@ -12,6 +12,7 @@ public class PlayableChar {
     private ArrayList<Item> inventory;
     private int locationX;
     private int locationY;
+    private Location currentArea;
     
    //Combat battleAction;
 
@@ -33,16 +34,17 @@ public class PlayableChar {
         this.inventory = new ArrayList<Item>();
         this.locationX = 0;
         this.locationY = 0;
+        this.currentArea = Location.START;
         
     }
 
   // *** NAVIGATION *** //
     public void goNorth(){
-        this.locationY += 1;
+        this.locationY -= 1;
     }
 
     public void goSouth(){
-        this.locationY -= 1;
+        this.locationY += 1;
     }
 
     public void goEast(){
@@ -56,6 +58,16 @@ public class PlayableChar {
     /**
      * Getter methods
      */
+
+    public int getLocationX(){
+        return this.locationX;
+    }
+
+    public int getLocationY(){
+        return this.locationY;
+    }
+
+
     public String getName() {
         return name;
     }
