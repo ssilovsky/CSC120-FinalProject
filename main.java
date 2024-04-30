@@ -57,22 +57,22 @@ public class main {
         start.getGrid()[7][3] = Tile.ENEMY;
         start.getGrid()[7][4] = Tile.ENEMY;
         start.getGrid()[7][5] = Tile.ENEMY;
-        start.getGrid()[0][1] = Tile.ENTRANCE;
+        start.getGrid()[0][0] = Tile.ENTRANCE;
         start.getGrid()[8][4] = Tile.EXIT;
 
-        Coordinate kelp = new Coordinate(12, 12);
+        Coordinate kelp = new Coordinate(9, 9);
         kelp.build();
         kelp.getGrid()[0][2] = Tile.ENEMY;
-        kelp.getGrid()[0][1] = Tile.ENTRANCE;
+        kelp.getGrid()[0][0] = Tile.ENTRANCE;
         kelp.getGrid()[8][4] = Tile.EXIT;
 
-        Coordinate thermal = new Coordinate(15, 15);
+        Coordinate thermal = new Coordinate(9, 9);
         thermal.build();
         thermal.getGrid()[0][2] = Tile.ENEMY;
-        thermal.getGrid()[0][1] = Tile.ENTRANCE;
+        thermal.getGrid()[0][0] = Tile.ENTRANCE;
         thermal.getGrid()[8][4] = Tile.EXIT;
 
-        Coordinate last = new Coordinate(9, 1);
+        Coordinate last = new Coordinate(9, 9);
         last.build();
 
         Coordinate secret = new Coordinate(9, 9);
@@ -155,11 +155,11 @@ public class main {
                             Combat combatTest = new Combat();
                             Enemy Evil_Joe = new Enemy("Evil Joe", 2);
                             combatTest.combatLoop(player, Evil_Joe);
-                            // if (combatTest.getBattleResult) {
-                            // area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EMPTY;
-                            // } else{
-                            // area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
-                            // }
+                            if (combatTest.getBattleResult()) {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EMPTY;
+                            } else{
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                            }
 
                         }
 
@@ -172,11 +172,12 @@ public class main {
                             Combat combatBoss = new Combat();
                             Enemy boss = new Enemy("Evil Joe", 10);
                             combatBoss.combatLoop(player, boss);
-                            // if (combatBoss.getBattleResult) {
-                            // area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENTRANCE;
-                            // } else{
-                            // area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
-                            // }
+                            if (combatBoss.getBattleResult()) {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENTRANCE;
+                            } else{
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                            }
+                            System.out.println("Well done you've defeated the boss! You may now move to another area.");
                         }
 
                         if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.WALL) {
@@ -198,6 +199,8 @@ public class main {
                         currentLocation = locations[+1];
                         area = areas[+1];
                         areaDescription = descriptions[+1];
+                        player.setLocationX(0);
+                        player.setLocationY(0);
                         System.out.println(areaDescription);
                     } else {
                         System.out.println("You are not at an exit yet. Please explore more!");
