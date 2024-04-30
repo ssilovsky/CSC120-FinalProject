@@ -33,16 +33,15 @@ public class PlayableChar {
         this.inventory = new ArrayList<Item>();
         this.locationX = 0;
         this.locationY = 0;
-        
     }
 
   // *** NAVIGATION *** //
     public void goNorth(){
-        this.locationY += 1;
+        this.locationY -= 1;
     }
 
     public void goSouth(){
-        this.locationY -= 1;
+        this.locationY += 1;
     }
 
     public void goEast(){
@@ -56,6 +55,16 @@ public class PlayableChar {
     /**
      * Getter methods
      */
+
+    public int getLocationX(){
+        return this.locationX;
+    }
+
+    public int getLocationY(){
+        return this.locationY;
+    }
+
+
     public String getName() {
         return this.name;
     }

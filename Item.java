@@ -24,5 +24,6 @@ enum ItemType {
     CONSUMABLE,
     CROWN,
     SEAWEED,
-    ROCK
+    ROCK,
+    KEY
 }

@@ -39,3 +39,12 @@ public class Area {
         System.out.println(map);
   }
   }
+
+  enum Location {
+    START,
+    KELP,
+    THERMAL,
+    FINAL,
+    SECRET
+}
+
