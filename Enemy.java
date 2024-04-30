@@ -1,6 +1,6 @@
 public class Enemy {
     private String type;
-    public int hp;
+    private int hp;
     private int attack;
     private int defense;
     
@@ -11,7 +11,7 @@ public class Enemy {
         this.type = type;
         this.level = level;
         this.defense = level * 2;
-        this.attack = level * 3;
+        this.attack = level * 5;
         this.hp = level * 4;
         this.exp = level * 2;
     }
@@ -20,15 +20,15 @@ public class Enemy {
      * Getter methods
      */
     public String getType() {
-        return type;
+        return this.type;
     }
 
     public int getLevel() {
-        return level;
+        return this.level;
     }
 
     public int getCurrentHealth() {
-        return hp;
+        return this.hp;
     }
   
     public int getAttack(){
@@ -36,23 +36,22 @@ public class Enemy {
     }
 
     public int getDefense() {
-        return defense;
+        return this.defense;
+    }
+
+    public int getExp(){
+        return this.exp;
     }
 
   
     // *** COMBAT *** //
-    public void attack(PlayableChar player) {
-        int damage = Math.max(attack - player.getDefense(), 0); // Calculate damage after considering defense
-        System.out.println(type + " attacks you for " + damage + " damage!");
-        player.takeDamage(damage);
-    }
-
     public void takeDamage(int dmg){
         if (dmg/this.defense < 1) {
             this.hp -= 1;
         }
-        this.hp -= dmg/this.defense;
+        this.hp -= Math.round(dmg/this.defense + Math.random()*this.level);
     }
+
     public void examine(){
         if (this.hp <1) {
             System.out.println("The " + this.type + " is dead!");

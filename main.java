@@ -2,6 +2,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class main {
+
+    // enemy list instances for different areas
+    public static Enemy[] area_1_encounters = {};
+    public static Enemy[] area_2_encounters = {};
+    public static Enemy[] area_3_encounters = {};
+    public static Enemy[] area_4_encounters = {};
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -19,6 +26,7 @@ public class main {
         if (readyResponse.equals("1")) {
             startGame(scanner);
         } else if (readyResponse.equals("2")) {
+
             System.out.println("Okay, see you soon. Goodbye!");
             scanner.close();
             System.exit(0);
@@ -30,7 +38,7 @@ public class main {
     private static void startGame(Scanner scanner) {
         System.out.println("Enter your name:");
         String name = scanner.nextLine();
-        PlayableChar player = new PlayableChar(name, 100, 10, 5);
+        PlayableChar player = new PlayableChar(name, 10, 5);
 
         Location[] locations = { Location.START, Location.KELP, Location.THERMAL, Location.FINAL, Location.SECRET };
         Location currentLocation = locations[0];
@@ -101,6 +109,7 @@ public class main {
                 scanner.next();
                 continue;
             }
+
 
             switch (choice) {
                 case 1:
@@ -179,10 +188,12 @@ public class main {
                     }
                     break;
 
+
                 case 2:
                     player.displayInventory();
                     break;
                 case 3:
+
                     if (area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.ENTRANCE) {
                         currentLocation = locations[+1];
                         area = areas[+1];
@@ -191,6 +202,7 @@ public class main {
                     } else {
                         System.out.println("You are not at an exit yet. Please explore more!");
                     }
+
 
                     break;
                 case 4:
