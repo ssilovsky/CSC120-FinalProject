@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -35,10 +36,12 @@ public class main {
         }
     }
 
+
     private static void startGame(Scanner scanner) {
         System.out.println("Enter your name:");
         String name = scanner.nextLine();
         PlayableChar player = new PlayableChar(name, 10, 5);
+        
 
         Location[] locations = { Location.START, Location.KELP, Location.THERMAL, Location.FINAL, Location.SECRET };
         Location currentLocation = locations[0];
@@ -57,7 +60,7 @@ public class main {
         start.getGrid()[7][3] = Tile.ENEMY;
         start.getGrid()[7][4] = Tile.ENEMY;
         start.getGrid()[7][5] = Tile.ENEMY;
-        start.getGrid()[0][1] = Tile.ENTRANCE;
+        // start.getGrid()[0][0] = Tile.ENTRANCE;
         start.getGrid()[8][4] = Tile.EXIT;
 
         Coordinate kelp = new Coordinate(12, 12);
@@ -97,6 +100,7 @@ public class main {
 
         while (true) {
             // add edge case
+            System.out.println();
             System.out.println("1. Explore");
             System.out.println("2. Check inventory");
             System.out.println("3. Move to another area");
@@ -131,7 +135,7 @@ public class main {
                             scanner.next();
                             continue;
                         }
-
+                        try{
                         switch (direction) {
                             case 1:
                                 player.goNorth();
@@ -149,11 +153,17 @@ public class main {
                                 System.out.println("Input a valid command please.");
                                 break;
                         }
+                        } catch(RuntimeException e){
+                            System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                            System.out.println("You can't go any further in this direction! Try going another way!");
+                            System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                        }
+
 
                         if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.ENEMY) {
                             // combat loop
                             Combat combatTest = new Combat();
-                            Enemy Evil_Joe = new Enemy("Evil Joe", 2);
+                            Enemy Evil_Joe = new Enemy("Common Enemy", 2);
                             combatTest.combatLoop(player, Evil_Joe);
                             if (combatTest.getBattleResult()) {
                             area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EMPTY;
@@ -170,7 +180,7 @@ public class main {
 
                         if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.EXIT) {
                             Combat combatBoss = new Combat();
-                            Enemy boss = new Enemy("Evil Joe", 10);
+                            Enemy boss = new Enemy("Furious Orca (Boss)", 10);
                             combatBoss.combatLoop(player, boss);
                             if (combatBoss.getBattleResult()) {
                             area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENTRANCE;
@@ -194,7 +204,7 @@ public class main {
                     break;
                 case 3:
 
-                    if (area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.ENTRANCE) {
+                    if (area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.EXIT) {
                         currentLocation = locations[+1];
                         area = areas[+1];
                         areaDescription = descriptions[+1];
@@ -202,11 +212,10 @@ public class main {
                     } else {
                         System.out.println("You are not at an exit yet. Please explore more!");
                     }
-
-
                     break;
                 case 4:
                     System.out.println("Thanks for playing!");
+                    System.out.println("Player Final Level: " + player.getLevel());
                     scanner.close();
                     System.exit(0);
                 default:
