@@ -2,6 +2,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class main {
+
+    // enemy list instances for different areas
+    public static Enemy[] area_1_encounters = {};
+    public static Enemy[] area_2_encounters = {};
+    public static Enemy[] area_3_encounters = {};
+    public static Enemy[] area_4_encounters = {};
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -16,9 +23,9 @@ public class main {
         System.out.println("2. Quit");
         String readyResponse = scanner.nextLine().toLowerCase();
 
-        if (readyResponse.equals("1")) {
+        if (readyResponse.equals("1") || readyResponse.equals("start")) {
             startGame(scanner);
-        } else if (readyResponse.equals("2")) {
+        } else if (readyResponse.equals("2") || readyResponse.equals("quit")) {
             System.out.println("Okay, see you soon. Goodbye!");
             scanner.close();
             System.exit(0);
@@ -31,7 +38,8 @@ public class main {
         System.out.println("Enter your name:");
         String name = scanner.nextLine();
         PlayableChar player = new PlayableChar(name, 10, 5);
-        System.out.println("Hello " + name + "! The royal crown has been taken from the \nkingdom. It's up to you to retrieve the crown before \nit is used for evil!");
+        System.out.println("Hello " + name
+                + "! The royal crown has been taken from the \nkingdom. It's up to you to retrieve the crown before \nit is used for evil!");
 
         while (true) {
             System.out.println("What do you want to do?");

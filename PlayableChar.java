@@ -24,7 +24,7 @@ public class PlayableChar {
      */
     public PlayableChar(String name, int attack, int defense){
         this.name = name;
-        this.maxHp = 100;
+        this.maxHp = 12;
         this.hp = maxHp;
         this.attack = attack;
         this.defense = defense;
@@ -103,7 +103,7 @@ public class PlayableChar {
      */
     private void levelUp() {
         level++;
-        maxHp += 10; // Increase max health
+        maxHp += 7; // Increase max health
         hp = maxHp; // Heal the shark to full health
         attack += 5; // Increase attack power
         defense += 2; // Increase defense
@@ -157,17 +157,6 @@ public class PlayableChar {
         enemy.takeDamage(damage);
     }
 
-    /**
-     * Method for player to take damage
-     */
-    // public void takeDamage(int damage) {
-    //     int actualDamage = Math.max(damage - defense, 0); // Calculate actual damage after considering defense
-    //     hp -= actualDamage;
-    //     if (hp <= 0) {
-    //         System.out.println("You have been defeated!"); //revive or game over??
-    //     }
-    // }
-
 
      /**
      * Method for player to take damage
@@ -176,7 +165,7 @@ public class PlayableChar {
         if (dmg/this.defense < 1) {
             this.hp -= 1;
         }
-        this.hp -= dmg/this.defense;
+        this.hp -= Math.round(dmg/this.defense + Math.random()*this.level);
     }
 
     /**
@@ -197,10 +186,10 @@ public class PlayableChar {
         if (enemy.getCurrentHealth() == 1) {
             System.out.println("The " + enemy.getType() + " is almost dead!");
         } 
-        if (enemy.getCurrentHealth() > 1 && this.hp <= 5) {
+        if (enemy.getCurrentHealth() > 1 && this.hp <= this.hp/2) {
             System.out.println("The " + enemy.getType() + " is looking rough.");
         } 
-        if (enemy.getCurrentHealth() > 5 ) {
+        if (enemy.getCurrentHealth() > this.hp/2 ) {
             System.out.println("The " + enemy.getType() + " is looking strong.");
         }
     }

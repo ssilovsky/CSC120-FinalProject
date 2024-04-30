@@ -45,17 +45,11 @@ public class Enemy {
 
   
     // *** COMBAT *** //
-    public void attack(PlayableChar player) {
-        int damage = Math.max(attack - player.getDefense(), 0); // Calculate damage after considering defense
-        System.out.println(type + " attacks you for " + damage + " damage!");
-        player.takeDamage(damage);
-    }
-
     public void takeDamage(int dmg){
         if (dmg/this.defense < 1) {
             this.hp -= 1;
         }
-        this.hp -= dmg/this.defense;
+        this.hp -= Math.round(dmg/this.defense + Math.random()*this.level);
     }
 
     public void examine(){
