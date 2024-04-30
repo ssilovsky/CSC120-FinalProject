@@ -12,7 +12,6 @@ public class PlayableChar {
     private ArrayList<Item> inventory;
     private int locationX;
     private int locationY;
-    private Location currentArea;
     
    //Combat battleAction;
 
@@ -34,8 +33,6 @@ public class PlayableChar {
         this.inventory = new ArrayList<Item>();
         this.locationX = 0;
         this.locationY = 0;
-        this.currentArea = Location.START;
-        
     }
 
   // *** NAVIGATION *** //
