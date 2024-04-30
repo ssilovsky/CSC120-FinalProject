@@ -32,21 +32,37 @@ public class main {
         System.out.println("Enter your name:");
         String name = scanner.nextLine();
         PlayableChar player = new PlayableChar(name, 100, 10, 5);
-        ArrayList<Location> locations = new ArrayList<Location>();
-        locations.add(Location.START);
-        locations.add(Location.KELP);
-        locations.add(Location.THERMAL);
-        locations.add(Location.SECRET); // subject to change
-        locations.add(Location.FINAL);
-        // list location thingy
+        Location[] locations = {Location.START, Location.KELP, Location.THERMAL, Location.FINAL};
+        Location currentLocation = locations[0];
+        Coordinate area_1 = new Coordinate(9, 9);
+        area_1.build();
+        area_1.getGrid()[0][2] = Tile.ENEMY;
+        area_1.getGrid()[0][1] = Tile.ENTRANCE;
+        area_1.getGrid()[8][4] = Tile.EXIT;
+        
+        Coordinate area_2 = new Coordinate(12, 12);
+        area_2.build();
+        area_2.getGrid()[0][2] = Tile.ENEMY;
+        area_2.getGrid()[0][1] = Tile.ENTRANCE;
+        area_2.getGrid()[8][4] = Tile.EXIT;
 
-        Coordinate area = new Coordinate(9, 9);
-        area.build();
-        area.getGrid()[0][2] = Tile.ENEMY;
-        area.getGrid()[8][4] = Tile.EXIT;
+        Coordinate area_3 = new Coordinate(15, 15);
+        area_3.build();
+        area_3.getGrid()[0][2] = Tile.ENEMY;
+        area_3.getGrid()[0][1] = Tile.ENTRANCE;
+        area_3.getGrid()[8][4] = Tile.EXIT;
 
-        System.out.println("Hello " + name
-                + "! The royal crown has been taken from the \nkingdom. It's up to you to retrieve the crown before \nit is used for evil!");
+        Coordinate area_4 = new Coordinate(9, 9);
+        area_4.build();
+
+        Coordinate[] areas = {area_1, area_2, area_3, area_4};
+        Coordinate area = areas[0];
+        String[] descriptions = {"\nWelcome to the Kelp Forest, a tranquil yet perilous sanctuary \nnestled within the depths of the ocean. Here, \ntowering kelp forests sway gently with the ebb and flow of the currents, \ncreating a mesmerizing underwater landscape teeming with life. \nHowever, danger lurks in unexpected places, testing the courage \nof even the most seasoned adventurers.", "\nWelcome to the Hydrothermal Abyss, a realm of searing \nheat and primordial energy hidden beneath the \nocean's depths. Here, towering chimneys of mineral-rich \nwater erupt from the seafloor, creating otherworldly landscapes \nteeming with life adapted to the extremes. \nBut amidst the swirling currents and turbulent \ngeothermal activity, danger lurks for those who dare to \nventure into this fiery abyss.", };
+        String areaDescription = descriptions[0];
+
+
+        System.out.println("Hello " + name + "! The royal crown has been taken from the \nkingdom. It's up to you to retrieve the crown before \nit is used for evil!");
+        System.out.println("\n" + "Welcome to the Kingdom of Aquamaris, a realm veiled \nin mystery and danger, where the ocean's vast expanse meets \nthe ancient majesty of royal rule. Here, beneath \nthe shimmering waves, lies the seat of power \nfor the oceanic monarchy, now thrown into chaos \nafter the theft of the royal crown.");
         System.out.println("What do you want to do?");
 
         while (true) {
@@ -73,15 +89,22 @@ public class main {
                         switch (direction) {
                             case 1:
                                 player.goNorth();
+                                break;
                             case 2:
                                 player.goSouth();
+                                break;
                             case 3:
                                 player.goEast();
+                                break;
                             case 4:
                                 player.goWest();
+                                break;
                             default:
                                 System.out.println("Input a valid command please.");
-                                // place mismatch exception 
+                                break;
+                        }
+                        if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.EMPTY) {
+                            System.out.println("YEET");
                         }
 
                         if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.ENEMY) {
@@ -89,7 +112,12 @@ public class main {
                             Combat combatTest = new Combat();
                             Enemy Evil_Joe = new Enemy("Evil Joe", 2);
                             combatTest.combatLoop(player, Evil_Joe);
-                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EMPTY;
+                            // if (combatTest.getBattleResult) {
+                            //     area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EMPTY;
+                            // } else{
+                            //     area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                            // }
+                            
                         }
 
                         if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.ITEM) {
@@ -98,7 +126,14 @@ public class main {
                         }
 
                         if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.EXIT) {
-                            // boss time
+                            Combat combatBoss = new Combat();
+                            Enemy boss = new Enemy("Evil Joe", 10);
+                            combatBoss.combatLoop(player, boss);
+                            // if (combatBoss.getBattleResult) {
+                            //     area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENTRANCE;
+                            // } else{
+                            //     area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                            // }
                         }
 
                         if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.WALL) {
@@ -114,9 +149,14 @@ public class main {
                     player.displayInventory();
                     break;
                 case 3:
-                    // movePlayer(scanner, player);
-                    // change area stat enum
-                    // when change area, print Area description 
+                    if(area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.ENTRANCE){
+                        currentLocation = locations[+1];
+                        area = areas[+1];
+                        areaDescription = descriptions[+1];
+                        System.out.println(areaDescription);
+                    } else {
+                        System.out.println("You are not at an exit yet. Please explore more!");
+                    }
 
                     break;
                 case 4:

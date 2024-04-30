@@ -17,12 +17,6 @@ public class Coordinate {
         return this.grid[x][y];
     }
 
-    public void enterRoom(PlayableChar p, int exitX, int exitY){
-        if (p.getInventory().contains("Key")) {
-            this.grid[exitX][exitY] = Tile.ENTRANCE;
-        }
-    }
-
     public void build(){
         for (this.x = 0; this.x < this.grid.length; this.x++){
             for(this.y = 0; this.y < this.grid[x].length; this.y++){
