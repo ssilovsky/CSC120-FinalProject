@@ -151,7 +151,7 @@ public class Combat {
 
             } else if (userInput.equals("EXAMINE") || userInput.equals("3")) {
                 clearConsole();
-                foe.examine();
+                player.examineEnemy(foe);
                 if(player.getLevel() > foe.getLevel()){
                 System.out.println("Looks like they might be around " + foe.getCurrentHealth() + "HP");
                 }
@@ -185,7 +185,7 @@ public class Combat {
             player.healPlayer();
             this.battlewon = true;
         }
-        if (player.getCurrentHealth() <= 0) {
+        else if (player.getCurrentHealth() <= 0) {
             System.out.println("Battle Lost!");
         }
     }
