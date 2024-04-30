@@ -155,11 +155,11 @@ public class main {
                             Combat combatTest = new Combat();
                             Enemy Evil_Joe = new Enemy("Evil Joe", 2);
                             combatTest.combatLoop(player, Evil_Joe);
-                            // if (combatTest.getBattleResult) {
-                            // area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EMPTY;
-                            // } else{
-                            // area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
-                            // }
+                            if (combatTest.getBattleResult()) {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EMPTY;
+                            } else{
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                            }
 
                         }
 
@@ -172,11 +172,11 @@ public class main {
                             Combat combatBoss = new Combat();
                             Enemy boss = new Enemy("Evil Joe", 10);
                             combatBoss.combatLoop(player, boss);
-                            // if (combatBoss.getBattleResult) {
-                            // area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENTRANCE;
-                            // } else{
-                            // area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
-                            // }
+                            if (combatBoss.getBattleResult()) {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENTRANCE;
+                            } else{
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                            }
                         }
 
                         if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.WALL) {
