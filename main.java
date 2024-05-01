@@ -41,7 +41,7 @@ public class main {
         System.out.println("Enter your name:");
         String name = scanner.nextLine();
         PlayableChar player = new PlayableChar(name, 10, 5);
-        
+  
 
         Location[] locations = { Location.START, Location.KELP, Location.THERMAL, Location.FINAL, Location.SECRET };
         Location currentLocation = locations[0];
@@ -66,13 +66,13 @@ public class main {
         Coordinate kelp = new Coordinate(12, 12);
         kelp.build();
         kelp.getGrid()[0][2] = Tile.ENEMY;
-        kelp.getGrid()[0][1] = Tile.ENTRANCE;
+        kelp.getGrid()[0][0] = Tile.ENTRANCE;
         kelp.getGrid()[8][4] = Tile.EXIT;
 
         Coordinate thermal = new Coordinate(15, 15);
         thermal.build();
         thermal.getGrid()[0][2] = Tile.ENEMY;
-        thermal.getGrid()[0][1] = Tile.ENTRANCE;
+        thermal.getGrid()[0][0] = Tile.ENTRANCE;
         thermal.getGrid()[8][4] = Tile.EXIT;
 
         Coordinate last = new Coordinate(9, 1);
@@ -95,10 +95,25 @@ public class main {
                 + "! The royal crown has been taken from the \nkingdom. It's up to you to retrieve the crown before \nit is used for evil!");
         System.out.println(areaDescription);
         System.out.println("What do you want to do?");
+        player.addExp(10);
+        player.addExp(10);
+        player.addExp(10);
+        player.addExp(10);
+        player.addExp(10);
+        player.addExp(10);
+        player.addExp(10);
+        player.addExp(10);
+        player.addExp(10);
+        player.addExp(10);
+        player.addExp(10);
+        player.addExp(10);
+        player.addExp(10);
+        player.addExp(10);
 
         int choice;
 
         while (true) {
+            
             // add edge case
             System.out.println();
             System.out.println("1. Explore");
@@ -183,16 +198,16 @@ public class main {
                             Enemy boss = new Enemy("Furious Orca (Boss)", 10);
                             combatBoss.combatLoop(player, boss);
                             if (combatBoss.getBattleResult()) {
-                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENTRANCE;
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EXIT;
                             } else{
                             area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
                             }
                         }
 
-                        if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.WALL) {
-                            System.out.println("You cannot go any farther this way!");
-                            // add edge case for wall
-                        }
+                        // if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.WALL) {
+                        //     System.out.println("You cannot go any farther this way!");
+                        //     // add edge case for wall
+                        // }
 
                         break;
                     }
@@ -209,7 +224,14 @@ public class main {
                         area = areas[+1];
                         areaDescription = descriptions[+1];
                         System.out.println(areaDescription);
-                    } else {
+                    } 
+                    if(area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.ENTRANCE){
+                        currentLocation = locations[-1];
+                        area = areas[-1];
+                        areaDescription = descriptions[-1];
+                        System.out.println(areaDescription);
+                    }
+                    else {
                         System.out.println("You are not at an exit yet. Please explore more!");
                     }
                     break;
