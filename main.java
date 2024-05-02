@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -18,6 +19,7 @@ public class main {
         System.out.println("˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹");
         System.out.println("˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹");
 
+
         System.out.println("Are you ready?");
         System.out.println("1. Start");
         System.out.println("2. Quit");
@@ -35,10 +37,12 @@ public class main {
         }
     }
 
+
     private static void startGame(Scanner scanner) {
         System.out.println("Enter your name:");
         String name = scanner.nextLine();
         PlayableChar player = new PlayableChar(name, 10, 5);
+  
 
         Location[] locations = { Location.START, Location.KELP, Location.THERMAL, Location.FINAL, Location.SECRET };
         Location currentLocation = locations[0];
@@ -57,19 +61,19 @@ public class main {
         start.getGrid()[7][3] = Tile.ENEMY;
         start.getGrid()[7][4] = Tile.ENEMY;
         start.getGrid()[7][5] = Tile.ENEMY;
-        start.getGrid()[0][1] = Tile.ENTRANCE;
+        // start.getGrid()[0][0] = Tile.ENTRANCE;
         start.getGrid()[8][4] = Tile.EXIT;
 
         Coordinate kelp = new Coordinate(12, 12);
         kelp.build();
         kelp.getGrid()[0][2] = Tile.ENEMY;
-        kelp.getGrid()[0][1] = Tile.ENTRANCE;
+        kelp.getGrid()[0][0] = Tile.ENTRANCE;
         kelp.getGrid()[8][4] = Tile.EXIT;
 
         Coordinate thermal = new Coordinate(15, 15);
         thermal.build();
         thermal.getGrid()[0][2] = Tile.ENEMY;
-        thermal.getGrid()[0][1] = Tile.ENTRANCE;
+        thermal.getGrid()[0][0] = Tile.ENTRANCE;
         thermal.getGrid()[8][4] = Tile.EXIT;
 
         Coordinate last = new Coordinate(9, 1);
@@ -92,11 +96,15 @@ public class main {
                 + "! The royal crown has been taken from the \nkingdom. It's up to you to retrieve the crown before \nit is used for evil!");
         System.out.println(areaDescription);
         System.out.println("What do you want to do?");
+        player.addExp(100);
+
 
         int choice;
 
         while (true) {
+            
             // add edge case
+            System.out.println();
             System.out.println("1. Explore");
             System.out.println("2. Check inventory");
             System.out.println("3. Move to another area");
@@ -131,7 +139,7 @@ public class main {
                             scanner.next();
                             continue;
                         }
-
+                        try{
                         switch (direction) {
                             case 1:
                                 player.goNorth();
@@ -149,17 +157,23 @@ public class main {
                                 System.out.println("Input a valid command please.");
                                 break;
                         }
+                        } catch(RuntimeException e){
+                            System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                            System.out.println("You can't go any further in this direction! Try going another way!");
+                            System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                        }
+
 
                         if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.ENEMY) {
                             // combat loop
                             Combat combatTest = new Combat();
-                            Enemy Evil_Joe = new Enemy("Evil Joe", 2);
+                            Enemy Evil_Joe = new Enemy("Common Enemy", 2);
                             combatTest.combatLoop(player, Evil_Joe);
-                            // if (combatTest.getBattleResult) {
-                            // area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EMPTY;
-                            // } else{
-                            // area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
-                            // }
+                            if (combatTest.getBattleResult()) {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EMPTY;
+                            } else{
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                            }
 
                         }
 
@@ -170,19 +184,19 @@ public class main {
 
                         if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.EXIT) {
                             Combat combatBoss = new Combat();
-                            Enemy boss = new Enemy("Evil Joe", 10);
+                            Enemy boss = new Enemy("Furious Orca (Boss)", 10);
                             combatBoss.combatLoop(player, boss);
-                            // if (combatBoss.getBattleResult) {
-                            // area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENTRANCE;
-                            // } else{
-                            // area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
-                            // }
+                            if (combatBoss.getBattleResult()) {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EXIT;
+                            } else{
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                            }
                         }
 
-                        if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.WALL) {
-                            System.out.println("You cannot go any farther this way!");
-                            // add edge case for wall
-                        }
+                        // if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.WALL) {
+                        //     System.out.println("You cannot go any farther this way!");
+                        //     // add edge case for wall
+                        // }
 
                         break;
                     }
@@ -194,19 +208,35 @@ public class main {
                     break;
                 case 3:
 
-                    if (area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.ENTRANCE) {
+                    if (area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.EXIT) {
                         currentLocation = locations[+1];
                         area = areas[+1];
                         areaDescription = descriptions[+1];
                         System.out.println(areaDescription);
-                    } else {
+                    } 
+                    else if(area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.ENTRANCE){
+                        currentLocation = locations[-1];
+                        area = areas[-1];
+                        areaDescription = descriptions[-1];
+                        System.out.println(areaDescription);
+                    }
+                    else {
                         System.out.println("You are not at an exit yet. Please explore more!");
                     }
-
-
                     break;
                 case 4:
-                    System.out.println("Thanks for playing!");
+                    // System.out.println("Thanks for playing!"); // font: ivrit
+                    System.out.println("  _____ _                 _          _____            ____  _             _             \n" + //
+                                                " |_   _| |__   __ _ _ __ | | _____  |  ______  _ __  |  _ \\| | __ _ _   _(_)_ __   __ _ \n" + //
+                                                "   | | | '_ \\ / _` | '_ \\| |/ / __| | |_ / _ \\| '__| | |_) | |/ _` | | | | | '_ \\ / _` |\n" + //
+                                                "   | | | | | | (_| | | | |   <\\__ \\ |  _| (_) | |    |  __/| | (_| | |_| | | | | | (_| |\n" + //
+                                                "   |_| |_| |_|\\__,_|_| |_|_|\\_|___/ |_|  \\___/|_|    |_|   |_|\\__,_|\\__, |_|_| |_|\\__, |\n" + //
+                                                "                 ____  _   _    _    ____  ____   ____ _            |___/         |___/ \n" + //
+                                                "                / ___|| | | |  / \\  |  _ \\|  _ \\ / ___| |                               \n" + //
+                                                "                \\___ \\| |_| | / _ \\ | |_) | |_) | |  _| |                               \n" + //
+                                                "                 ___) |  _  |/ ___ \\|  _ <|  __/| |_| |_|                               \n" + //
+                                                "                |____/|_| |_/_/   \\_|_| \\_|_|    \\____(_)       ");
+                    System.out.println("Player Final Level: " + player.getLevel());
                     scanner.close();
                     System.exit(0);
                 default:

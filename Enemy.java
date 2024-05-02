@@ -49,7 +49,7 @@ public class Enemy {
         if (dmg/this.defense < 1) {
             this.hp -= 1;
         }
-        this.hp -= Math.round(dmg/this.defense + Math.random()*this.level);
+        this.hp -= Math.round(dmg/this.defense + this.level*Math.random()); 
     }
 
     public void examine(){
