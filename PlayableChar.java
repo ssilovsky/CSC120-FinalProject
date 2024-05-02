@@ -33,8 +33,8 @@ public class PlayableChar {
         this.level = 1;
         this.exp = 0;
         this.inventory = new ArrayList<Item>();
-        this.locationX = 8;
-        this.locationY = 2;
+        this.locationX = 0;
+        this.locationY = 0;
     }
 
     // *** NAVIGATION *** //
@@ -122,9 +122,14 @@ public class PlayableChar {
     public void addExp(int exp) {
         this.exp += exp;
         // Check if the shark should level up
+        while(true){
         if (this.exp >= 10 * this.level) {
             levelUp();
         }
+        else{
+            break;
+        }
+    }
     }
 
     /**

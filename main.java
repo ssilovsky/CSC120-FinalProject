@@ -95,20 +95,8 @@ public class main {
                 + "! The royal crown has been taken from the \nkingdom. It's up to you to retrieve the crown before \nit is used for evil!");
         System.out.println(areaDescription);
         System.out.println("What do you want to do?");
-        player.addExp(10);
-        player.addExp(10);
-        player.addExp(10);
-        player.addExp(10);
-        player.addExp(10);
-        player.addExp(10);
-        player.addExp(10);
-        player.addExp(10);
-        player.addExp(10);
-        player.addExp(10);
-        player.addExp(10);
-        player.addExp(10);
-        player.addExp(10);
-        player.addExp(10);
+        player.addExp(100);
+
 
         int choice;
 
@@ -225,7 +213,7 @@ public class main {
                         areaDescription = descriptions[+1];
                         System.out.println(areaDescription);
                     } 
-                    if(area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.ENTRANCE){
+                    else if(area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.ENTRANCE){
                         currentLocation = locations[-1];
                         area = areas[-1];
                         areaDescription = descriptions[-1];
