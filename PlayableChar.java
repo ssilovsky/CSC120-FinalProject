@@ -74,6 +74,19 @@ public class PlayableChar {
     }
 
     /**
+     * Setter for Location
+     * 
+     */
+
+    public void setLocationX(int i){
+        this.locationX = i;
+    }
+
+    public void setLocationY(int i){
+        this.locationY = i;
+    }
+
+    /**
      * Getter methods
      */
 
@@ -123,6 +136,7 @@ public class PlayableChar {
         this.exp += exp;
         // Check if the shark should level up
         while(true){
+
         if (this.exp >= 10 * this.level) {
             levelUp();
         }
@@ -136,12 +150,12 @@ public class PlayableChar {
      * Method to level up the player
      */
     private void levelUp() {
-        level++;
-        maxHp += 7; // Increase max health
-        hp = maxHp; // Heal the shark to full health
-        attack += 5; // Increase attack power
-        defense += 2; // Increase defense
-        System.out.println(name + " leveled up to level " + level + "!");
+        this.level++;
+        this.maxHp += 7; // Increase max health
+        this.hp = this.maxHp; // Heal the shark to full health
+        this.attack += 5; // Increase attack power
+        this.defense += 2; // Increase defense
+        System.out.println(this.name + " leveled up to level " + this.level + "!" + "\n HP = " + this.maxHp + "\n Attack = " + this.attack + "\n Defense = " + this.defense);
     }
 
     // ***INVENTORY*** //

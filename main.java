@@ -1,14 +1,39 @@
 import java.lang.reflect.Array;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.Random;
 
 public class main {
 
-    // enemy list instances for different areas
-    public static Enemy[] area_1_encounters = {};
-    public static Enemy[] area_2_encounters = {};
-    public static Enemy[] area_3_encounters = {};
-    public static Enemy[] area_4_encounters = {};
+ // enemy list instances for different areas
+    public static Enemy[] area_1_encounters = {new Enemy("Minnow", 1), new Enemy("Remora", 2), new Enemy("Cuttlefish", 1), new Enemy("Rock crab", 2), new Enemy("Catfish", 2)};
+    public static Enemy[] area_2_encounters = {new Enemy("Bubbler Seahorse", 11), new Enemy("Jellyfish", 12), new Enemy("Siren Snapper", 11), new Enemy("Kelp Golem", 12), new Enemy("Weed Wraiths", 12)};
+    public static Enemy[] area_3_encounters = {new Enemy("Vent Vipers", 21), new Enemy("Steam Spitters", 22), new Enemy("Lava Leeches", 22),  new Enemy("Yeti Crab", 22)};
+    public static Enemy[] area_4_encounters = {new Enemy("Sunfish", 31), new Enemy("Marlin", 32), new Enemy("Sailfish", 31), new Enemy("Dolphin", 32), new Enemy("Tuna", 32)};
+    public static Enemy[][] enemyGroupings = {area_1_encounters, area_2_encounters, area_3_encounters, area_4_encounters};
+    public static Enemy[] currentEnemy = enemyGroupings[0];
+
+    public static Enemy[] bossEnemies = {new Enemy("Big Bad 1", 10), new Enemy("Big Bad 2", 20), new Enemy("Big Bad 3", 30), new Enemy("Big Bad 4", 50)};
+    public static Enemy currentBoss = bossEnemies[0];
+
+    public static Location[] locations = { Location.START, Location.KELP, Location.THERMAL, Location.FINAL};
+    public static Location currentLocation = locations[0];
+
+    public static Coordinate start = new Coordinate(9, 9);
+    public static Coordinate kelp = new Coordinate(9, 9);
+    public static Coordinate thermal = new Coordinate(9, 9);
+    public static Coordinate last = new Coordinate(9, 9);
+
+
+    public static Coordinate[] areas = { start, kelp, thermal, last};
+    public static Coordinate area = areas[0];
+
+    public static String[] descriptions = {
+                "\nWelcome to the Kingdom of Aquamaris, a realm veiled \nin mystery and danger, where the ocean's vast expanse meets \nthe ancient majesty of royal rule. Here, beneath \nthe shimmering waves, lies the seat of power \nfor the oceanic monarchy, now thrown into chaos \nafter the theft of the royal crown.",
+                "\nWelcome to the Kelp Forest, a tranquil yet perilous sanctuary \nnestled within the depths of the ocean. Here, \ntowering kelp forests sway gently with the ebb and flow of the currents, \ncreating a mesmerizing underwater landscape teeming with life. \nHowever, danger lurks in unexpected places, testing the courage \nof even the most seasoned adventurers.",
+                "\nWelcome to the Hydrothermal Abyss, a realm of searing \nheat and primordial energy hidden beneath the \nocean's depths. Here, towering chimneys of mineral-rich \nwater erupt from the seafloor, creating otherworldly landscapes \nteeming with life adapted to the extremes. \nBut amidst the swirling currents and turbulent \ngeothermal activity, danger lurks for those who dare to \nventure into this fiery abyss.",
+                ""};
+    public static String areaDescription = descriptions[0];
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -44,53 +69,133 @@ public class main {
         PlayableChar player = new PlayableChar(name, 10, 5);
   
 
-        Location[] locations = { Location.START, Location.KELP, Location.THERMAL, Location.FINAL, Location.SECRET };
-        Location currentLocation = locations[0];
-
-        Coordinate start = new Coordinate(9, 9);
+        // build all the areas to have enemies
         start.build();
+        start.getGrid()[0][2] = Tile.ENEMY;
+        start.getGrid()[0][5] = Tile.ENEMY;
         start.getGrid()[1][3] = Tile.ENEMY;
         start.getGrid()[1][7] = Tile.ENEMY;
         start.getGrid()[2][1] = Tile.ENEMY;
         start.getGrid()[3][3] = Tile.ENEMY;
         start.getGrid()[3][5] = Tile.ENEMY;
+        start.getGrid()[4][0] = Tile.ENEMY;
         start.getGrid()[4][7] = Tile.ENEMY;
         start.getGrid()[5][2] = Tile.ENEMY;
         start.getGrid()[6][3] = Tile.ENEMY;
         start.getGrid()[6][6] = Tile.ENEMY;
+        start.getGrid()[7][1] = Tile.ENEMY;
         start.getGrid()[7][3] = Tile.ENEMY;
         start.getGrid()[7][4] = Tile.ENEMY;
         start.getGrid()[7][5] = Tile.ENEMY;
-        // start.getGrid()[0][0] = Tile.ENTRANCE;
+        start.getGrid()[8][3] = Tile.ENEMY;
+        start.getGrid()[8][5] = Tile.ENEMY;
         start.getGrid()[8][4] = Tile.EXIT;
 
-        Coordinate kelp = new Coordinate(12, 12);
         kelp.build();
-        kelp.getGrid()[0][2] = Tile.ENEMY;
         kelp.getGrid()[0][0] = Tile.ENTRANCE;
+        kelp.getGrid()[0][2] = Tile.ENEMY;
+        kelp.getGrid()[0][5] = Tile.ENEMY;
+        kelp.getGrid()[0][7] = Tile.ENEMY;
+        kelp.getGrid()[1][3] = Tile.ENEMY;
+        kelp.getGrid()[2][0] = Tile.ENEMY;
+        kelp.getGrid()[2][2] = Tile.ENEMY;
+        kelp.getGrid()[2][6] = Tile.ENEMY;
+        kelp.getGrid()[3][5] = Tile.ENEMY;
+        kelp.getGrid()[4][1] = Tile.ENEMY;
+        kelp.getGrid()[4][3] = Tile.ENEMY;
+        kelp.getGrid()[5][0] = Tile.ENEMY;
+        kelp.getGrid()[5][5] = Tile.ENEMY;
+        kelp.getGrid()[6][2] = Tile.ENEMY;
+        kelp.getGrid()[6][7] = Tile.ENEMY;
+        kelp.getGrid()[7][3] = Tile.ENEMY;
+        kelp.getGrid()[7][6] = Tile.ENEMY;
+        kelp.getGrid()[7][7] = Tile.ENEMY;
+        kelp.getGrid()[7][8] = Tile.ENEMY;
+        kelp.getGrid()[8][1] = Tile.ENEMY;
+        kelp.getGrid()[8][4] = Tile.ENEMY;
+        kelp.getGrid()[8][6] = Tile.ENEMY;
+        kelp.getGrid()[8][8] = Tile.ENEMY;
         kelp.getGrid()[8][4] = Tile.EXIT;
 
-        Coordinate thermal = new Coordinate(15, 15);
         thermal.build();
-        thermal.getGrid()[0][2] = Tile.ENEMY;
         thermal.getGrid()[0][0] = Tile.ENTRANCE;
+        thermal.getGrid()[0][2] = Tile.ENEMY;
+        thermal.getGrid()[0][5] = Tile.ENEMY;
+        thermal.getGrid()[0][3] = Tile.ENEMY;
+        thermal.getGrid()[0][8] = Tile.ENEMY;
+        thermal.getGrid()[1][1] = Tile.ENEMY;
+        thermal.getGrid()[1][3] = Tile.ENEMY;
+        thermal.getGrid()[1][5] = Tile.ENEMY;
+        thermal.getGrid()[1][7] = Tile.ENEMY;
+        thermal.getGrid()[2][1] = Tile.ENEMY;
+        thermal.getGrid()[2][5] = Tile.ENEMY;
+        thermal.getGrid()[3][0] = Tile.ENEMY;
+        thermal.getGrid()[3][3] = Tile.ENEMY;
+        thermal.getGrid()[3][7] = Tile.ENEMY;
+        thermal.getGrid()[4][1] = Tile.ENEMY;
+        thermal.getGrid()[4][3] = Tile.ENEMY;
+        thermal.getGrid()[4][5] = Tile.ENEMY;
+        thermal.getGrid()[4][7] = Tile.ENEMY;
+        thermal.getGrid()[5][2] = Tile.ENEMY;
+        thermal.getGrid()[5][6] = Tile.ENEMY;
+        thermal.getGrid()[6][1] = Tile.ENEMY;
+        thermal.getGrid()[6][4] = Tile.ENEMY;
+        thermal.getGrid()[6][8] = Tile.ENEMY;
+        thermal.getGrid()[7][1] = Tile.ENEMY;
+        thermal.getGrid()[7][2] = Tile.ENEMY;
+        thermal.getGrid()[7][3] = Tile.ENEMY;
+        thermal.getGrid()[7][6] = Tile.ENEMY;
+        thermal.getGrid()[8][1] = Tile.ENEMY;
+        thermal.getGrid()[8][3] = Tile.ENEMY;
+        thermal.getGrid()[8][5] = Tile.ENEMY;
+        thermal.getGrid()[8][8] = Tile.ENEMY;
         thermal.getGrid()[8][4] = Tile.EXIT;
 
-        Coordinate last = new Coordinate(9, 1);
         last.build();
+        last.getGrid()[0][0] = Tile.ENTRANCE;
+        last.getGrid()[0][2] = Tile.ENEMY;
+        last.getGrid()[0][4] = Tile.ENEMY;
+        last.getGrid()[0][6] = Tile.ENEMY;
+        last.getGrid()[0][8] = Tile.ENEMY;
+        last.getGrid()[1][1] = Tile.ENEMY;
+        last.getGrid()[1][3] = Tile.ENEMY;
+        last.getGrid()[1][5] = Tile.ENEMY;
+        last.getGrid()[1][7] = Tile.ENEMY;
+        last.getGrid()[2][0] = Tile.ENEMY;
+        last.getGrid()[2][2] = Tile.ENEMY;
+        last.getGrid()[2][4] = Tile.ENEMY;
+        last.getGrid()[2][6] = Tile.ENEMY;
+        last.getGrid()[2][8] = Tile.ENEMY;
+        last.getGrid()[3][1] = Tile.ENEMY;
+        last.getGrid()[3][3] = Tile.ENEMY;
+        last.getGrid()[3][5] = Tile.ENEMY;
+        last.getGrid()[3][7] = Tile.ENEMY;
+        last.getGrid()[4][0] = Tile.ENEMY;
+        last.getGrid()[4][2] = Tile.ENEMY;
+        last.getGrid()[4][4] = Tile.ENEMY;
+        last.getGrid()[4][6] = Tile.ENEMY;
+        last.getGrid()[4][8] = Tile.ENEMY;
+        last.getGrid()[5][1] = Tile.ENEMY;
+        last.getGrid()[5][3] = Tile.ENEMY;
+        last.getGrid()[5][5] = Tile.ENEMY;
+        last.getGrid()[5][7] = Tile.ENEMY;
+        last.getGrid()[6][0] = Tile.ENEMY;
+        last.getGrid()[6][2] = Tile.ENEMY;
+        last.getGrid()[6][4] = Tile.ENEMY;
+        last.getGrid()[6][6] = Tile.ENEMY;
+        last.getGrid()[6][8] = Tile.ENEMY;
+        last.getGrid()[7][1] = Tile.ENEMY;
+        last.getGrid()[7][3] = Tile.ENEMY;
+        last.getGrid()[7][5] = Tile.ENEMY;
+        last.getGrid()[7][7] = Tile.ENEMY;
+        last.getGrid()[7][8] = Tile.ENEMY;
+        last.getGrid()[8][0] = Tile.ENEMY;
+        last.getGrid()[8][2] = Tile.ENEMY;
+        last.getGrid()[8][4] = Tile.ENEMY;
+        last.getGrid()[8][6] = Tile.ENEMY;
+        last.getGrid()[8][7] = Tile.ENEMY;
+        last.getGrid()[8][8] = Tile.EXIT;
 
-        Coordinate secret = new Coordinate(9, 9);
-        secret.build();
-
-        Coordinate[] areas = { start, kelp, thermal, last, secret };
-        Coordinate area = areas[0];
-        String[] descriptions = {
-                "\nWelcome to the Kingdom of Aquamaris, a realm veiled \nin mystery and danger, where the ocean's vast expanse meets \nthe ancient majesty of royal rule. Here, beneath \nthe shimmering waves, lies the seat of power \nfor the oceanic monarchy, now thrown into chaos \nafter the theft of the royal crown.",
-                "\nWelcome to the Kelp Forest, a tranquil yet perilous sanctuary \nnestled within the depths of the ocean. Here, \ntowering kelp forests sway gently with the ebb and flow of the currents, \ncreating a mesmerizing underwater landscape teeming with life. \nHowever, danger lurks in unexpected places, testing the courage \nof even the most seasoned adventurers.",
-                "\nWelcome to the Hydrothermal Abyss, a realm of searing \nheat and primordial energy hidden beneath the \nocean's depths. Here, towering chimneys of mineral-rich \nwater erupt from the seafloor, creating otherworldly landscapes \nteeming with life adapted to the extremes. \nBut amidst the swirling currents and turbulent \ngeothermal activity, danger lurks for those who dare to \nventure into this fiery abyss.",
-                "",
-                "\nWelcome to the Leviathan’s Haven, a clandestine sanctuary \nhidden within the darkest depths of the ocean. \nHere, amidst the eerie glow of bioluminescent flora \nand the hushed whispers of forbidden rituals, \nlies the stronghold of a secretive cult whose intentions \nthreaten to upend the foundations of Aquamaris. \nAs you tread cautiously through the murky waters, \nthe heart of darkness draws you closer where \nthe cult's enigmatic leader awaits, ready to ensnare your \nheart and mind with promises of power and enlightenment. \nWhat will you choose, the darkness or the light?" };
-        String areaDescription = descriptions[0];
 
         System.out.println("Hello " + name
                 + "! The royal crown has been taken from the \nkingdom. It's up to you to retrieve the crown before \nit is used for evil!");
@@ -167,8 +272,8 @@ public class main {
                         if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.ENEMY) {
                             // combat loop
                             Combat combatTest = new Combat();
-                            Enemy Evil_Joe = new Enemy("Common Enemy", 2);
-                            combatTest.combatLoop(player, Evil_Joe);
+                            Enemy enemy = currentEnemy[(new Random()).nextInt(currentEnemy.length)];
+                            combatTest.combatLoop(player, enemy);
                             if (combatTest.getBattleResult()) {
                             area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EMPTY;
                             } else{
@@ -191,6 +296,7 @@ public class main {
                             } else{
                             area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
                             }
+                          System.out.println("Well done you've defeated the boss! You may now move to another area.");
                         }
 
                         // if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.WALL) {
@@ -212,6 +318,10 @@ public class main {
                         currentLocation = locations[+1];
                         area = areas[+1];
                         areaDescription = descriptions[+1];
+                        currentEnemy = enemyGroupings[+1];
+                        currentBoss = bossEnemies[+1];
+                        player.setLocationX(0);
+                        player.setLocationY(0);
                         System.out.println(areaDescription);
                     } 
                     else if(area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.ENTRANCE){
