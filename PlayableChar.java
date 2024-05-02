@@ -1,19 +1,21 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
+
 public class PlayableChar {
     private final String name;
     private int maxHp;
     private int hp;
     private int exp;
-    private int level;
+    public int level;
     private int attack;
     private int defense;
     private ArrayList<Item> inventory;
     private int locationX;
     private int locationY;
-    
-   //Combat battleAction;
+
+    // Combat battleAction;
 
     /**
      * 
@@ -22,7 +24,7 @@ public class PlayableChar {
      * @param attack
      * @param defense
      */
-    public PlayableChar(String name, int attack, int defense){
+    public PlayableChar(String name, int attack, int defense) {
         this.name = name;
         this.maxHp = 12;
         this.hp = maxHp;
@@ -35,21 +37,40 @@ public class PlayableChar {
         this.locationY = 0;
     }
 
-  // *** NAVIGATION *** //
-    public void goNorth(){
-        this.locationY -= 1;
+    // *** NAVIGATION *** //
+    public void goNorth() {
+        if (this.locationY == 0) {
+            throw new RuntimeException("You can't go further this way!");
+        } else {
+            this.locationY -= 1;
+        }
+
     }
 
-    public void goSouth(){
-        this.locationY += 1;
+    public void goSouth() {
+        if (this.locationY == 8) {
+            throw new RuntimeException("You can't go further this way!");
+        } else {
+            this.locationY += 1;
+        }
+
     }
 
-    public void goEast(){
-        this.locationX += 1;
+    public void goEast() {
+        if (this.locationX == 8) {
+            throw new RuntimeException("You can't go further this way!");
+        } else {
+            this.locationX += 1;
+        }
+
     }
 
-    public void goWest(){
-        this.locationX -= 1;
+    public void goWest() {
+        if (this.locationX == 0) {
+            throw new RuntimeException("You can't go further this way!");
+        } else {
+            this.locationX -= 1;
+        }
     }
 
     /**
@@ -69,14 +90,13 @@ public class PlayableChar {
      * Getter methods
      */
 
-    public int getLocationX(){
+    public int getLocationX() {
         return this.locationX;
     }
 
-    public int getLocationY(){
+    public int getLocationY() {
         return this.locationY;
     }
-
 
     public String getName() {
         return this.name;
@@ -102,7 +122,7 @@ public class PlayableChar {
         return this.defense;
     }
 
-    public int getExp(){
+    public int getExp() {
         return this.exp;
 
     }
@@ -115,9 +135,15 @@ public class PlayableChar {
     public void addExp(int exp) {
         this.exp += exp;
         // Check if the shark should level up
+        while(true){
+
         if (this.exp >= 10 * this.level) {
             levelUp();
         }
+        else{
+            break;
+        }
+    }
     }
 
     /**
@@ -152,10 +178,10 @@ public class PlayableChar {
         this.inventory.remove(item);
     }
 
-    public List<Item> getInventory(){
+    public List<Item> getInventory() {
         return this.inventory;
     }
-  
+
     public void displayInventory() {
         System.out.println("Inventory of " + name + ":");
         if (inventory.isEmpty()) {
@@ -171,6 +197,7 @@ public class PlayableChar {
 
     /**
      * Method for player to attack enemy
+     * 
      * @param enemy
      */
     public void attack(Enemy enemy) {
@@ -179,21 +206,20 @@ public class PlayableChar {
         enemy.takeDamage(damage);
     }
 
-
-     /**
+    /**
      * Method for player to take damage
      */
     public void takeDamage(int dmg) {
-        if (dmg/this.defense < 1) {
+        if (dmg / this.defense < 1) {
             this.hp -= 1;
         }
-        this.hp -= Math.round(dmg/this.defense + Math.random()*this.level);
+        this.hp -= Math.round(dmg / this.defense + this.level*Math.random());  
     }
 
     /**
      * Setter to reset player health to max health
      */
-    public void healPlayer(){
+    public void healPlayer() {
         this.hp = this.maxHp;
         System.out.println(this.name + " rests and heals up!");
     }
@@ -201,17 +227,17 @@ public class PlayableChar {
     /**
      * Method for player to check remaining health in Enemy
      */
-    public void examineEnemy(Enemy enemy){
+    public void examineEnemy(Enemy enemy) {
         if (enemy.getCurrentHealth() < 1) {
             System.out.println("The " + enemy.getType() + " is dead!");
         }
         if (enemy.getCurrentHealth() == 1) {
             System.out.println("The " + enemy.getType() + " is almost dead!");
-        } 
-        if (enemy.getCurrentHealth() > 1 && this.hp <= this.hp/2) {
+        }
+        if (enemy.getCurrentHealth() > 1 && this.hp <= this.hp / 2) {
             System.out.println("The " + enemy.getType() + " is looking rough.");
-        } 
-        if (enemy.getCurrentHealth() > this.hp/2 ) {
+        }
+        if (enemy.getCurrentHealth() > this.hp / 2) {
             System.out.println("The " + enemy.getType() + " is looking strong.");
         }
     }
