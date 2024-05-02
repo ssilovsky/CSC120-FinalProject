@@ -211,10 +211,13 @@ public class main {
 
             // add edge case
             System.out.println();
-            System.out.println("1. Explore");
-            System.out.println("2. Check inventory");
-            System.out.println("3. Move to another area");
-            System.out.println("4. Quit");
+            System.out.println("1. Go North");
+            System.out.println("2. Go South");
+            System.out.println("3. Go East");
+            System.out.println("4. Go West");
+            System.out.println("5. Check inventory");
+            System.out.println("6. Move to another area");
+            System.out.println("7. Quit");
 
             try {
                 choice = scanner.nextInt();
@@ -226,111 +229,263 @@ public class main {
 
             switch (choice) {
                 case 1:
-                    // examine elements in current area that you are in
-                    //
-                    while (choice == 1) {
-                        int direction = 0;
-                        System.out.println("Where do you want to go?");
-                        System.out.println("1. North");
-                        System.out.println("2. South");
-                        System.out.println("3. East");
-                        System.out.println("4. West");
-
-                        try {
-                            direction = scanner.nextInt();
-                        } catch (InputMismatchException e) {
-                            System.out.println("Please input an integer.");
-                            scanner.next();
-                            continue;
-                        }
-                        try {
-                            switch (direction) {
-                                case 1:
-                                    player.goNorth();
-                                    break;
-                                case 2:
-                                    player.goSouth();
-                                    break;
-                                case 3:
-                                    player.goEast();
-                                    break;
-                                case 4:
-                                    player.goWest();
-                                    break;
-                                default:
-                                    System.out.println("Input a valid command please.");
-                                    break;
-                            }
-                        } catch (RuntimeException e) {
-                            System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
-                            System.out.println("You can't go any further in this direction! Try going another way!");
-                            System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
-                        }
-
-                        if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.ENEMY) {
-                            // combat loop
-                            Combat combatTest = new Combat();
-                            Enemy enemy = currentEnemy[(new Random()).nextInt(currentEnemy.length)];
-                            combatTest.combatLoop(player, enemy);
-                            if (combatTest.getBattleResult()) {
-                                area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EMPTY;
-                            } else {
-                                area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
-                            }
-
-                        }
-
-                        if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.ITEM) {
-                            System.out.println("Do you want to pick this item up?");
-                            // figure out scanner
-                        }
-
-                        if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.EXIT) {
-                            Combat combatBoss = new Combat();
-                            combatBoss.combatLoop(player, currentBoss);
-                            if (currentBoss == bossEnemies[3]) {
-                                System.out.println(
-                                        "\nYou have defeated the kraken and have found the crown!\nYou give the crown back to the kingdom! Well done adventurer.");
-                                System.out.println("Player Final Level: " + player.getLevel());
-                                System.out.println(
-                                        "  _____ _                 _          _____            ____  _             _             \n"
-                                                + //
-                                                " |_   _| |__   __ _ _ __ | | _____  |  ______  _ __  |  _ \\| | __ _ _   _(_)_ __   __ _ \n"
-                                                + //
-                                                "   | | | '_ \\ / _` | '_ \\| |/ / __| | |_ / _ \\| '__| | |_) | |/ _` | | | | | '_ \\ / _` |\n"
-                                                + //
-                                                "   | | | | | | (_| | | | |   <\\__ \\ |  _| (_) | |    |  __/| | (_| | |_| | | | | | (_| |\n"
-                                                + //
-                                                "   |_| |_| |_|\\__,_|_| |_|_|\\_|___/ |_|  \\___/|_|    |_|   |_|\\__,_|\\__, |_|_| |_|\\__, |\n"
-                                                + //
-                                                "                 ____  _   _    _    ____  ____   ____ _            |___/         |___/ \n"
-                                                + //
-                                                "                / ___|| | | |  / \\  |  _ \\|  _ \\ / ___| |                               \n"
-                                                + //
-                                                "                \\___ \\| |_| | / _ \\ | |_) | |_) | |  _| |                               \n"
-                                                + //
-                                                "                 ___) |  _  |/ ___ \\|  _ <|  __/| |_| |_|                               \n"
-                                                + //
-                                                "                |____/|_| |_/_/   \\_|_| \\_|_|    \\____(_)       ");
-                                scanner.close();
-                                System.exit(0);
-                            } else if (combatBoss.getBattleResult()) {
-                                area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EXIT;
-                            } else {
-                                area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
-                            }
-                            System.out.println("\nWell done you've defeated the boss! You may now move to another area.");
-                        }
-
+                    try {
+                        player.goNorth();
                         break;
+                    } catch (RuntimeException e) {
+                        System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                        System.out.println("You can't go any further in this direction! Try going another way!");
+                        System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
                     }
-                    break;
+                    if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.ENEMY) {
+                        // combat loop
+                        Combat combatTest = new Combat();
+                        Enemy enemy = currentEnemy[(new Random()).nextInt(currentEnemy.length)];
+                        combatTest.combatLoop(player, enemy);
+                        if (combatTest.getBattleResult()) {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EMPTY;
+                        } else {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                        }
+
+                    }
+
+                    if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.ITEM) {
+                        System.out.println("Do you want to pick this item up?");
+                        // figure out scanner
+                    }
+
+                    if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.EXIT) {
+                        Combat combatBoss = new Combat();
+                        combatBoss.combatLoop(player, currentBoss);
+                        if (currentBoss == bossEnemies[3]) {
+                            System.out.println(
+                                    "\nYou have defeated the kraken and have found the crown!\nYou give the crown back to the kingdom! Well done adventurer.");
+                            System.out.println("Player Final Level: " + player.getLevel());
+                            System.out.println(
+                                    "  _____ _                 _          _____            ____  _             _             \n"
+                                            + //
+                                            " |_   _| |__   __ _ _ __ | | _____  |  ______  _ __  |  _ \\| | __ _ _   _(_)_ __   __ _ \n"
+                                            + //
+                                            "   | | | '_ \\ / _` | '_ \\| |/ / __| | |_ / _ \\| '__| | |_) | |/ _` | | | | | '_ \\ / _` |\n"
+                                            + //
+                                            "   | | | | | | (_| | | | |   <\\__ \\ |  _| (_) | |    |  __/| | (_| | |_| | | | | | (_| |\n"
+                                            + //
+                                            "   |_| |_| |_|\\__,_|_| |_|_|\\_|___/ |_|  \\___/|_|    |_|   |_|\\__,_|\\__, |_|_| |_|\\__, |\n"
+                                            + //
+                                            "                 ____  _   _    _    ____  ____   ____ _            |___/         |___/ \n"
+                                            + //
+                                            "                / ___|| | | |  / \\  |  _ \\|  _ \\ / ___| |                               \n"
+                                            + //
+                                            "                \\___ \\| |_| | / _ \\ | |_) | |_) | |  _| |                               \n"
+                                            + //
+                                            "                 ___) |  _  |/ ___ \\|  _ <|  __/| |_| |_|                               \n"
+                                            + //
+                                            "                |____/|_| |_/_/   \\_|_| \\_|_|    \\____(_)       ");
+                            scanner.close();
+                            System.exit(0);
+                        } else if (combatBoss.getBattleResult()) {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EXIT;
+                        } else {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                        }
+                        System.out.println("\nWell done you've defeated the boss! You may now move to another area.");
+                    }
 
                 case 2:
+                    try {
+                        player.goSouth();
+                        break;
+                    } catch (RuntimeException e) {
+                        System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                        System.out.println("You can't go any further in this direction! Try going another way!");
+                        System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                    }
+                    if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.ENEMY) {
+                        // combat loop
+                        Combat combatTest = new Combat();
+                        Enemy enemy = currentEnemy[(new Random()).nextInt(currentEnemy.length)];
+                        combatTest.combatLoop(player, enemy);
+                        if (combatTest.getBattleResult()) {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EMPTY;
+                        } else {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                        }
+
+                    }
+
+                    if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.ITEM) {
+                        System.out.println("Do you want to pick this item up?");
+                        // figure out scanner
+                    }
+
+                    if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.EXIT) {
+                        Combat combatBoss = new Combat();
+                        combatBoss.combatLoop(player, currentBoss);
+                        if (currentBoss == bossEnemies[3]) {
+                            System.out.println(
+                                    "\nYou have defeated the kraken and have found the crown!\nYou give the crown back to the kingdom! Well done adventurer.");
+                            System.out.println("Player Final Level: " + player.getLevel());
+                            System.out.println(
+                                    "  _____ _                 _          _____            ____  _             _             \n"
+                                            + //
+                                            " |_   _| |__   __ _ _ __ | | _____  |  ______  _ __  |  _ \\| | __ _ _   _(_)_ __   __ _ \n"
+                                            + //
+                                            "   | | | '_ \\ / _` | '_ \\| |/ / __| | |_ / _ \\| '__| | |_) | |/ _` | | | | | '_ \\ / _` |\n"
+                                            + //
+                                            "   | | | | | | (_| | | | |   <\\__ \\ |  _| (_) | |    |  __/| | (_| | |_| | | | | | (_| |\n"
+                                            + //
+                                            "   |_| |_| |_|\\__,_|_| |_|_|\\_|___/ |_|  \\___/|_|    |_|   |_|\\__,_|\\__, |_|_| |_|\\__, |\n"
+                                            + //
+                                            "                 ____  _   _    _    ____  ____   ____ _            |___/         |___/ \n"
+                                            + //
+                                            "                / ___|| | | |  / \\  |  _ \\|  _ \\ / ___| |                               \n"
+                                            + //
+                                            "                \\___ \\| |_| | / _ \\ | |_) | |_) | |  _| |                               \n"
+                                            + //
+                                            "                 ___) |  _  |/ ___ \\|  _ <|  __/| |_| |_|                               \n"
+                                            + //
+                                            "                |____/|_| |_/_/   \\_|_| \\_|_|    \\____(_)       ");
+                            scanner.close();
+                            System.exit(0);
+                        } else if (combatBoss.getBattleResult()) {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EXIT;
+                        } else {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                        }
+                        System.out.println("\nWell done you've defeated the boss! You may now move to another area.");
+                    }
+                case 3:
+                    try {
+                        player.goEast();
+                        break;
+                    } catch (RuntimeException e) {
+                        System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                        System.out.println("You can't go any further in this direction! Try going another way!");
+                        System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                    }
+                    if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.ENEMY) {
+                        // combat loop
+                        Combat combatTest = new Combat();
+                        Enemy enemy = currentEnemy[(new Random()).nextInt(currentEnemy.length)];
+                        combatTest.combatLoop(player, enemy);
+                        if (combatTest.getBattleResult()) {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EMPTY;
+                        } else {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                        }
+
+                    }
+
+                    if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.ITEM) {
+                        System.out.println("Do you want to pick this item up?");
+                        // figure out scanner
+                    }
+
+                    if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.EXIT) {
+                        Combat combatBoss = new Combat();
+                        combatBoss.combatLoop(player, currentBoss);
+                        if (currentBoss == bossEnemies[3]) {
+                            System.out.println(
+                                    "\nYou have defeated the kraken and have found the crown!\nYou give the crown back to the kingdom! Well done adventurer.");
+                            System.out.println("Player Final Level: " + player.getLevel());
+                            System.out.println(
+                                    "  _____ _                 _          _____            ____  _             _             \n"
+                                            + //
+                                            " |_   _| |__   __ _ _ __ | | _____  |  ______  _ __  |  _ \\| | __ _ _   _(_)_ __   __ _ \n"
+                                            + //
+                                            "   | | | '_ \\ / _` | '_ \\| |/ / __| | |_ / _ \\| '__| | |_) | |/ _` | | | | | '_ \\ / _` |\n"
+                                            + //
+                                            "   | | | | | | (_| | | | |   <\\__ \\ |  _| (_) | |    |  __/| | (_| | |_| | | | | | (_| |\n"
+                                            + //
+                                            "   |_| |_| |_|\\__,_|_| |_|_|\\_|___/ |_|  \\___/|_|    |_|   |_|\\__,_|\\__, |_|_| |_|\\__, |\n"
+                                            + //
+                                            "                 ____  _   _    _    ____  ____   ____ _            |___/         |___/ \n"
+                                            + //
+                                            "                / ___|| | | |  / \\  |  _ \\|  _ \\ / ___| |                               \n"
+                                            + //
+                                            "                \\___ \\| |_| | / _ \\ | |_) | |_) | |  _| |                               \n"
+                                            + //
+                                            "                 ___) |  _  |/ ___ \\|  _ <|  __/| |_| |_|                               \n"
+                                            + //
+                                            "                |____/|_| |_/_/   \\_|_| \\_|_|    \\____(_)       ");
+                            scanner.close();
+                            System.exit(0);
+                        } else if (combatBoss.getBattleResult()) {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EXIT;
+                        } else {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                        }
+                        System.out.println("\nWell done you've defeated the boss! You may now move to another area.");
+                    }
+
+                case 4:
+                    try {
+                        player.goWest();
+                        break;
+                    } catch (RuntimeException e) {
+                        System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                        System.out.println("You can't go any further in this direction! Try going another way!");
+                        System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+                    }
+                    if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.ENEMY) {
+                        // combat loop
+                        Combat combatTest = new Combat();
+                        Enemy enemy = currentEnemy[(new Random()).nextInt(currentEnemy.length)];
+                        combatTest.combatLoop(player, enemy);
+                        if (combatTest.getBattleResult()) {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EMPTY;
+                        } else {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                        }
+
+                    }
+
+                    if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.ITEM) {
+                        System.out.println("Do you want to pick this item up?");
+                        // figure out scanner
+                    }
+
+                    if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.EXIT) {
+                        Combat combatBoss = new Combat();
+                        combatBoss.combatLoop(player, currentBoss);
+                        if (currentBoss == bossEnemies[3]) {
+                            System.out.println(
+                                    "\nYou have defeated the kraken and have found the crown!\nYou give the crown back to the kingdom! Well done adventurer.");
+                            System.out.println("Player Final Level: " + player.getLevel());
+                            System.out.println(
+                                    "  _____ _                 _          _____            ____  _             _             \n"
+                                            + //
+                                            " |_   _| |__   __ _ _ __ | | _____  |  ______  _ __  |  _ \\| | __ _ _   _(_)_ __   __ _ \n"
+                                            + //
+                                            "   | | | '_ \\ / _` | '_ \\| |/ / __| | |_ / _ \\| '__| | |_) | |/ _` | | | | | '_ \\ / _` |\n"
+                                            + //
+                                            "   | | | | | | (_| | | | |   <\\__ \\ |  _| (_) | |    |  __/| | (_| | |_| | | | | | (_| |\n"
+                                            + //
+                                            "   |_| |_| |_|\\__,_|_| |_|_|\\_|___/ |_|  \\___/|_|    |_|   |_|\\__,_|\\__, |_|_| |_|\\__, |\n"
+                                            + //
+                                            "                 ____  _   _    _    ____  ____   ____ _            |___/         |___/ \n"
+                                            + //
+                                            "                / ___|| | | |  / \\  |  _ \\|  _ \\ / ___| |                               \n"
+                                            + //
+                                            "                \\___ \\| |_| | / _ \\ | |_) | |_) | |  _| |                               \n"
+                                            + //
+                                            "                 ___) |  _  |/ ___ \\|  _ <|  __/| |_| |_|                               \n"
+                                            + //
+                                            "                |____/|_| |_/_/   \\_|_| \\_|_|    \\____(_)       ");
+                            scanner.close();
+                            System.exit(0);
+                        } else if (combatBoss.getBattleResult()) {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EXIT;
+                        } else {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                        }
+                        System.out.println("\nWell done you've defeated the boss! You may now move to another area.");
+                    }
+                case 5:
                     player.displayInventory();
                     break;
-                case 3:
-
+                case 6:
                     if (area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.EXIT) {
                         i++;
                         currentLocation = locations[i];
@@ -354,34 +509,45 @@ public class main {
                         System.out.println("You are not at an exit yet. Please explore more!");
                     }
                     break;
-                case 4:
-                    // System.out.println("Thanks for playing!"); // font: ivrit
-                    System.out.println(
-                            "  _____ _                 _          _____            ____  _             _             \n"
-                                    + //
-                                    " |_   _| |__   __ _ _ __ | | _____  |  ______  _ __  |  _ \\| | __ _ _   _(_)_ __   __ _ \n"
-                                    + //
-                                    "   | | | '_ \\ / _` | '_ \\| |/ / __| | |_ / _ \\| '__| | |_) | |/ _` | | | | | '_ \\ / _` |\n"
-                                    + //
-                                    "   | | | | | | (_| | | | |   <\\__ \\ |  _| (_) | |    |  __/| | (_| | |_| | | | | | (_| |\n"
-                                    + //
-                                    "   |_| |_| |_|\\__,_|_| |_|_|\\_|___/ |_|  \\___/|_|    |_|   |_|\\__,_|\\__, |_|_| |_|\\__, |\n"
-                                    + //
-                                    "                 ____  _   _    _    ____  ____   ____ _            |___/         |___/ \n"
-                                    + //
-                                    "                / ___|| | | |  / \\  |  _ \\|  _ \\ / ___| |                               \n"
-                                    + //
-                                    "                \\___ \\| |_| | / _ \\ | |_) | |_) | |  _| |                               \n"
-                                    + //
-                                    "                 ___) |  _  |/ ___ \\|  _ <|  __/| |_| |_|                               \n"
-                                    + //
-                                    "                |____/|_| |_/_/   \\_|_| \\_|_|    \\____(_)       ");
-                    System.out.println("Player Final Level: " + player.getLevel());
-                    scanner.close();
-                    System.exit(0);
+                case 7:
+                System.out.println("Are you sure you want to quit? (y/n)");
+                    while (true) {
+                        String input = scanner.nextLine().toLowerCase();
+                        if (input.equals("n")) {
+                            System.out.println("Okay, let's continue!");
+                            break;
+                        }
+                        else if (input.equals("y")) {
+                            System.out.println(
+                                    "  _____ _                 _          _____            ____  _             _             \n"
+                                            + //
+                                            " |_   _| |__   __ _ _ __ | | _____  |  ______  _ __  |  _ \\| | __ _ _   _(_)_ __   __ _ \n"
+                                            + //
+                                            "   | | | '_ \\ / _` | '_ \\| |/ / __| | |_ / _ \\| '__| | |_) | |/ _` | | | | | '_ \\ / _` |\n"
+                                            + //
+                                            "   | | | | | | (_| | | | |   <\\__ \\ |  _| (_) | |    |  __/| | (_| | |_| | | | | | (_| |\n"
+                                            + //
+                                            "   |_| |_| |_|\\__,_|_| |_|_|\\_|___/ |_|  \\___/|_|    |_|   |_|\\__,_|\\__, |_|_| |_|\\__, |\n"
+                                            + //
+                                            "                 ____  _   _    _    ____  ____   ____ _            |___/         |___/ \n"
+                                            + //
+                                            "                / ___|| | | |  / \\  |  _ \\|  _ \\ / ___| |                               \n"
+                                            + //
+                                            "                \\___ \\| |_| | / _ \\ | |_) | |_) | |  _| |                               \n"
+                                            + //
+                                            "                 ___) |  _  |/ ___ \\|  _ <|  __/| |_| |_|                               \n"
+                                            + //
+                                            "                |____/|_| |_/_/   \\_|_| \\_|_|    \\____(_)       ");
+                            System.out.println("\nPlayer Final Level: " + player.getLevel());
+                            scanner.close();
+                            System.exit(0);
+                        }
+                    }
+                    break;
                 default:
                     System.out.println("Invalid choice. Please choose again.");
             }
+
         }
     }
 }

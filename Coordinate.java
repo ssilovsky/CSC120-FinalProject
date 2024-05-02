@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Coordinate {
     private int x;
     private int y;
@@ -26,6 +28,7 @@ public class Coordinate {
         // add wall all around edges
     }
 
+ 
     public static void main(String[] args) {
         int width = 9;
         int height = 9;
@@ -45,6 +48,7 @@ enum Tile {
     ENTRANCE,
     WALL
 }
+
 
 
 
