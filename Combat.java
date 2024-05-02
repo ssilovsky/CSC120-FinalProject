@@ -182,6 +182,7 @@ public class Combat {
                     System.out.println(
                             "After swimming for your life, you take time to catch whatever breath a shark can have.");
                     player.healPlayer();
+                    foe.healEnemy();
                     this.battlewon = false;
                     break;
                 } else {
@@ -201,6 +202,7 @@ public class Combat {
             System.out.println("Current EXP: " + player.getExp());
             player.healPlayer();
             this.battlewon = true;
+            foe.healEnemy();
         }
         if (player.getCurrentHealth() <= 0) {
             System.out.println("Battle Lost!");

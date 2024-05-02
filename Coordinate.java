@@ -26,6 +26,10 @@ public class Coordinate {
         // add wall all around edges
     }
 
+    public void setTile(int x, int y, Tile tile) {
+        grid[x][y] = tile;
+    }
+
     public static void main(String[] args) {
         int width = 9;
         int height = 9;
@@ -43,7 +47,9 @@ enum Tile {
     ITEM,
     EXIT,
     ENTRANCE,
-    WALL
+    WALL,
+    CROWN,
+    NOTE
 }
 
 

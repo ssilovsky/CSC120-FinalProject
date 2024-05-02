@@ -67,6 +67,9 @@ public class Enemy {
         }
     }
   
+    public void healEnemy(){
+        this.hp = 4*this.level;
+    }
     // *** TEST *** //
     public static void main(String[] args) {
         Enemy e = new Enemy("Silly", 2);

@@ -25,5 +25,6 @@ enum ItemType {
     CROWN,
     SEAWEED,
     ROCK,
-    KEY
+    KEY,
+    NOTE
 }

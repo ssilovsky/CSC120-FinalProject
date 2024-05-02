@@ -16,7 +16,7 @@ public class main {
     public static Enemy[] bossEnemies = {new Enemy("Big Bad 1", 10), new Enemy("Big Bad 2", 20), new Enemy("Big Bad 3", 30), new Enemy("Big Bad 4", 50)};
     public static Enemy currentBoss = bossEnemies[0];
 
-    public static Location[] locations = { Location.START, Location.KELP, Location.THERMAL, Location.FINAL};
+    public static Location[] locations = {Location.START, Location.KELP, Location.THERMAL, Location.FINAL};
     public static Location currentLocation = locations[0];
 
     public static Coordinate start = new Coordinate(9, 9);
