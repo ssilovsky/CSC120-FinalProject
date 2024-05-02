@@ -283,8 +283,33 @@ public class main {
                         }
 
                         if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.ITEM) {
+                            String itemName = "useless seaweed";
+                            ItemType type = ItemType.SEAWEED;
+                            System.out.println("You found an item!");
                             System.out.println("Do you want to pick this item up?");
-                            // figure out scanner
+                            System.out.println("1. Yes");
+                            System.out.println("2. No");
+                            String choice2 = scanner.nextLine();
+                            if (choice2.equalsIgnoreCase("1")) {
+                                player.addToInventory(new Item(itemName, type));
+                                // Then update the tile to EMPTY since the item has been picked up
+                                area.setTile(player.getLocationX(), player.getLocationY(), Tile.EMPTY);
+                                System.out.println("You picked up " + itemName + "!");
+                            } else if (choice2.equals("2")) {
+                                System.out.println("You decided not to pick up " + itemName + "!");
+                            } else {
+                                System.out.println("Invalid response. Please enter '1' or '2'");
+                            }
+                        }
+
+                        if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.CROWN) {
+                            String itemName2 = "･ﾟ*･The Royal Crown✧･ﾟ";
+                            ItemType type2 = ItemType.CROWN;
+                            System.out.println("You found the crown!");
+                            player.addToInventory(new Item(itemName2, type2));
+                            // Then update the tile to EMPTY since the item has been picked up
+                            area.setTile(player.getLocationX(), player.getLocationY(), Tile.EMPTY);
+                            System.out.println("You picked up " + itemName2 + "!");
                         }
 
                         if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.EXIT) {
