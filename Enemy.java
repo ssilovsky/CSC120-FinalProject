@@ -52,6 +52,10 @@ public class Enemy {
         this.hp -= Math.round(dmg/this.defense + this.level*Math.random()); 
     }
 
+    public void healEnemy(){
+        this.hp = 4*this.level;
+    }
+    
     public void examine(){
         if (this.hp <1) {
             System.out.println("The " + this.type + " is dead!");

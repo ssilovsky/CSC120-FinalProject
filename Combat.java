@@ -8,7 +8,7 @@ public class Combat {
     // Scanner info + Initalization
     Scanner combatScanner = new Scanner(System.in);
     private String userInput = ""; // to store user input
-    private Boolean battlewon = null;
+    private Boolean battlewon = false;
     Random crit = new Random();
     private int rounds = 1;
 
@@ -137,6 +137,7 @@ public class Combat {
      * player or enemy HP accordingly
      */
     public void combatLoop(PlayableChar player, Enemy foe) {
+        this.battlewon = false;
         Random dice = new Random();
         clearConsole();
         System.out.println();
@@ -182,6 +183,7 @@ public class Combat {
                     System.out.println(
                             "After swimming for your life, you take time to catch whatever breath a shark can have.");
                     player.healPlayer();
+                    foe.healEnemy();
                     this.battlewon = false;
                     break;
                 } else {
@@ -201,6 +203,7 @@ public class Combat {
             System.out.println("Current EXP: " + player.getExp());
             player.healPlayer();
             this.battlewon = true;
+            foe.healEnemy();
         }
         if (player.getCurrentHealth() <= 0) {
             System.out.println("Battle Lost!");
