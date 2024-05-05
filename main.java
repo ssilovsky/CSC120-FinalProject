@@ -4,6 +4,10 @@ import java.util.Random;
 
 public class main {
 
+    // graphic
+    MinimapGraphic minimap = new MinimapGraphic();
+
+
     // enemy list instances for different areas
     public static Enemy[] area_1_encounters = { new Enemy("Minnow", 1), new Enemy("Remora", 2),
             new Enemy("Cuttlefish", 1), new Enemy("Rock crab", 2), new Enemy("Catfish", 2) };
@@ -216,8 +220,9 @@ public class main {
             System.out.println("3. Go East");
             System.out.println("4. Go West");
             System.out.println("5. Check inventory");
-            System.out.println("6. Move to another area");
-            System.out.println("7. Quit");
+            System.out.println("6. Look Around / Get Location");
+            System.out.println("7. Move to another area");
+            System.out.println("8. Quit");
 
             try {
                 choice = scanner.nextInt();
@@ -486,6 +491,18 @@ public class main {
                     player.displayInventory();
                     break;
                 case 6:
+                    System.out.println(areaDescription);
+                    System.out.println("\nYou are at (" + player.getLocationX() + ", " + player.getLocationY() + ")");
+                    if(area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.EMPTY){
+                        System.out.println("This tile is empty, no items or enemies :(");
+                    }
+                    else if(area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.ENTRANCE){
+                        System.out.println("You are at an entrance, you can move back an area here");
+                    }
+                    else if(area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.EXIT){
+                        System.out.println("You are at an exit, you can move to the next area!");
+                    }
+                case 7:
                     if (area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.EXIT) {
                         i++;
                         currentLocation = locations[i];
@@ -509,7 +526,7 @@ public class main {
                         System.out.println("You are not at an exit yet. Please explore more!");
                     }
                     break;
-                case 7:
+                case 8:
                 System.out.println("Are you sure you want to quit? (y/n)");
                     while (true) {
                         String input = scanner.nextLine().toLowerCase();

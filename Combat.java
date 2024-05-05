@@ -1,8 +1,5 @@
-
-// import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-import javax.swing.*;
 
 public class Combat {
     // Scanner info + Initalization
@@ -11,7 +8,8 @@ public class Combat {
     private Boolean battlewon = false;
     Random crit = new Random();
     private int rounds = 1;
-    JFrame combatframe = new JFrame(); // making a frame for combat
+    CombatFrame combatframe = new CombatFrame(); // making a frame for combat
+
 
 
 
@@ -143,30 +141,12 @@ public class Combat {
 
     }
 
-    // public void combatGraphic() {
-    //     JFrame combatframe = new JFrame(); // making a frame for combat
-    //     combatframe.setVisible(true); // make it visible
-    //     combatframe.setSize(800, 600); // set the size of frame
-    //     combatframe.setTitle("COMBAT!");
-    //     combatframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // prevent closing window while we have combat open
-    //     combatframe.setResizable(false); // keep size constant
-    //     }
-
-
     /**
      * Combat loop that detects for specific user input and changes the values for
      * player or enemy HP accordingly
      */
     public void combatLoop(PlayableChar player, Enemy foe) {
         this.battlewon = false;
-
-        // JFrame Initialization
-        combatframe.setVisible(true); // make it visible
-        combatframe.setSize(800, 600); // set the size of frame
-        combatframe.setTitle("COMBAT!");
-        combatframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // prevent closing window while we have combat open
-        combatframe.setResizable(false); // keep size constant
-
         Random dice = new Random();
         clearConsole();
         System.out.println();
