@@ -1,11 +1,17 @@
+import java.awt.Color;
+import java.awt.Label;
+import java.awt.Panel;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import javax.swing.JPanel;
+
 import java.util.Random;
 
 public class main {
 
     // graphic
-    MinimapGraphic minimap = new MinimapGraphic();
+    public static MinimapGraphic minimap = new MinimapGraphic();
 
 
     // enemy list instances for different areas
@@ -72,9 +78,11 @@ public class main {
     }
 
     private static void startGame(Scanner scanner) {
+        
         System.out.println("Enter your name:");
         String name = scanner.nextLine();
         PlayableChar player = new PlayableChar(name, 10, 5);
+
 
         // build all the areas to have enemies
         start.build();
@@ -94,7 +102,7 @@ public class main {
         start.getGrid()[7][3] = Tile.ENEMY;
         start.getGrid()[7][4] = Tile.ENEMY;
         start.getGrid()[7][5] = Tile.ENEMY;
-        start.getGrid()[8][3] = Tile.ENEMY; // messes up
+        start.getGrid()[8][3] = Tile.ENEMY; 
         start.getGrid()[8][5] = Tile.ENEMY;
         start.getGrid()[8][4] = Tile.EXIT;
 
@@ -212,6 +220,20 @@ public class main {
         int choice;
 
         while (true) {
+   
+            if(currentLocation == Location.START){
+                minimap.getContentPane().setBackground(Color.BLUE);
+            }
+            else if(currentLocation == Location.KELP){
+                minimap.getContentPane().setBackground(Color.RED);
+            }
+            else if(currentLocation == Location.THERMAL){
+                minimap.getContentPane().setBackground(Color.GREEN);
+            }
+            else if(currentLocation == Location.FINAL){
+                minimap.getContentPane().setBackground(Color.BLACK);
+            }
+            
 
             // add edge case
             System.out.println();
@@ -222,7 +244,8 @@ public class main {
             System.out.println("5. Check inventory");
             System.out.println("6. Look Around / Get Location");
             System.out.println("7. Move to another area");
-            System.out.println("8. Quit");
+            System.out.println("8. Help");
+            System.out.println("9. Quit");
 
             try {
                 choice = scanner.nextInt();
@@ -236,7 +259,6 @@ public class main {
                 case 1:
                     try {
                         player.goNorth();
-                        break;
                     } catch (RuntimeException e) {
                         System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
                         System.out.println("You can't go any further in this direction! Try going another way!");
@@ -296,11 +318,10 @@ public class main {
                         }
                         System.out.println("\nWell done you've defeated the boss! You may now move to another area.");
                     }
-
+                    break;
                 case 2:
                     try {
                         player.goSouth();
-                        break;
                     } catch (RuntimeException e) {
                         System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
                         System.out.println("You can't go any further in this direction! Try going another way!");
@@ -360,10 +381,10 @@ public class main {
                         }
                         System.out.println("\nWell done you've defeated the boss! You may now move to another area.");
                     }
+                    break;
                 case 3:
                     try {
                         player.goEast();
-                        break;
                     } catch (RuntimeException e) {
                         System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
                         System.out.println("You can't go any further in this direction! Try going another way!");
@@ -423,11 +444,11 @@ public class main {
                         }
                         System.out.println("\nWell done you've defeated the boss! You may now move to another area.");
                     }
+                    break;
 
                 case 4:
                     try {
                         player.goWest();
-                        break;
                     } catch (RuntimeException e) {
                         System.out.println("-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
                         System.out.println("You can't go any further in this direction! Try going another way!");
@@ -487,6 +508,7 @@ public class main {
                         }
                         System.out.println("\nWell done you've defeated the boss! You may now move to another area.");
                     }
+                    break;
                 case 5:
                     player.displayInventory();
                     break;
@@ -494,14 +516,15 @@ public class main {
                     System.out.println(areaDescription);
                     System.out.println("\nYou are at (" + player.getLocationX() + ", " + player.getLocationY() + ")");
                     if(area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.EMPTY){
-                        System.out.println("This tile is empty, no items or enemies :(");
+                        System.out.println("This tile is empty, look around on the map for any areas of interest!");
                     }
                     else if(area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.ENTRANCE){
-                        System.out.println("You are at an entrance, you can move back an area here");
+                        System.out.println("You are at an entrance, you can move back to a previous area from here!");
                     }
                     else if(area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.EXIT){
-                        System.out.println("You are at an exit, you can move to the next area!");
+                        System.out.println("You are at an exit, you can move to the next area from here!");
                     }
+                    break;
                 case 7:
                     if (area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.EXIT) {
                         i++;
@@ -526,7 +549,10 @@ public class main {
                         System.out.println("You are not at an exit yet. Please explore more!");
                     }
                     break;
-                case 8:
+                case 8: 
+                    System.out.println("Help menu here");
+                    break;
+                case 9:
                 System.out.println("Are you sure you want to quit? (y/n)");
                     while (true) {
                         String input = scanner.nextLine().toLowerCase();
