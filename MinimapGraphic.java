@@ -15,7 +15,7 @@ public class MinimapGraphic extends JFrame {
      
         // this.setLayout(new GridLayout(9,9));
       
-        ImageIcon icon = new ImageIcon("snarkshark.jpeg"); 
+        ImageIcon icon = new ImageIcon("Images/snarkshark.jpeg"); 
         JLabel snark = new JLabel("Hi");
         snark.setIcon(icon);
 

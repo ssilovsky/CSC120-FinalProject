@@ -1,6 +1,8 @@
 import java.util.Random;
 import java.util.Scanner;
 
+import javax.swing.JLabel;
+
 public class Combat {
     // Scanner info + Initalization
     Scanner combatScanner = new Scanner(System.in);
@@ -8,9 +10,10 @@ public class Combat {
     private Boolean battlewon = false;
     Random crit = new Random();
     private int rounds = 1;
+
+
     CombatFrame combatframe = new CombatFrame(); // making a frame for combat
-
-
+    JLabel jlab = new JLabel();
 
 
     // constructor for Combat class
@@ -151,6 +154,7 @@ public class Combat {
         clearConsole();
         System.out.println();
         System.out.println("You enter battle with " + foe.getType() + "!");
+        combatframe.changeEnemy(jlab, foe);
         while (player.getCurrentHealth() > 0 && foe.getCurrentHealth() > 0) {
             System.out.println("\nROUND " + this.rounds);
             this.rounds++;
@@ -226,7 +230,7 @@ public class Combat {
     public static void main(String[] args) {
         PlayableChar joe = new PlayableChar("Joe", 25, 11);
         joe.level = 4;
-        Enemy eviljoe = new Enemy("Evil Joe", joe.level);
+        Enemy eviljoe = new Enemy("Minnew", joe.level);
         Combat combatTest = new Combat();
         combatTest.combatLoop(joe, eviljoe);
     }
