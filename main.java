@@ -177,7 +177,7 @@ public class main {
         last.getGrid()[4][8] = Tile.ENEMY;
         last.getGrid()[5][1] = Tile.ENEMY;
         last.getGrid()[5][3] = Tile.ENEMY;
-        last.getGrid()[5][5] = Tile.ENEMY;
+        last.getGrid()[5][5] = Tile.CROWN;
         last.getGrid()[5][7] = Tile.ENEMY;
         last.getGrid()[6][0] = Tile.ENEMY;
         last.getGrid()[6][2] = Tile.ENEMY;
