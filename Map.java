@@ -21,9 +21,7 @@ public class Map extends JFrame {
 
     public void draw2(Graphics g) {
         g.setColor(Color.MAGENTA);
-        this.x++;
-        this.y++;
-        g.fillOval((40 * this.x), (40 * this.y), 30, 30);
+        g.fillOval((45 + (40 * this.x)), (45 + (40 * this.y)), 30, 30);
         
 
     }
@@ -36,6 +34,9 @@ public class Map extends JFrame {
 
     public static void main(String args[]) {
         PlayableChar p = new PlayableChar("null", 10, 10);
+        p.goEast();
+        p.goSouth();
+        p.goEast();
         Map application = new Map(p.getLocationX(), p.getLocationY());
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
