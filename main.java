@@ -1,8 +1,9 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
+import java.awt.Label;
+import java.awt.Panel;
 import javax.swing.JFrame;
-
+import java.awt.Color;
 import java.util.Random;
 
 public class main {
@@ -43,6 +44,9 @@ public class main {
     public static String areaDescription = descriptions[0];
 
     public static int i = 0;
+
+    public static Color[] colors = {Color.BLUE, Color.GREEN, Color.ORANGE, Color.DARK_GRAY};
+    public static Color bgColor = colors[0];
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -212,6 +216,7 @@ public class main {
 
         while (true) {
             Map application = new Map(player.getLocationX(), player.getLocationY());
+            application.getContentPane().setBackground(bgColor);
             application.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
             // add edge case
@@ -343,6 +348,7 @@ public class main {
                         areaDescription = descriptions[i];
                         currentEnemy = enemyGroupings[i];
                         currentBoss = bossEnemies[i];
+                        bgColor = colors[i];
                         player.setLocationX(0);
                         player.setLocationY(0);
                         System.out.println(areaDescription);
@@ -354,6 +360,7 @@ public class main {
                         areaDescription = descriptions[i];
                         currentEnemy = enemyGroupings[i];
                         currentBoss = bossEnemies[i];
+                        bgColor = colors[i];
                         System.out.println(areaDescription);
                     } else {
                         System.out.println("You are not at an exit yet. Please explore more!");

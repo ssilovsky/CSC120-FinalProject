@@ -38,6 +38,7 @@ public class Map extends JFrame {
         p.goSouth();
         p.goEast();
         Map application = new Map(p.getLocationX(), p.getLocationY());
+        application.getContentPane().setBackground(Color.DARK_GRAY);
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
