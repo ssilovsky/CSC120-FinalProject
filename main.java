@@ -1,5 +1,8 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import javax.swing.JFrame;
+
 import java.util.Random;
 
 public class main {
@@ -90,7 +93,7 @@ public class main {
         start.getGrid()[7][3] = Tile.ENEMY;
         start.getGrid()[7][4] = Tile.ENEMY;
         start.getGrid()[7][5] = Tile.ENEMY;
-        start.getGrid()[8][3] = Tile.ENEMY; // messes up
+        start.getGrid()[8][3] = Tile.ENEMY;
         start.getGrid()[8][5] = Tile.ENEMY;
         start.getGrid()[8][4] = Tile.EXIT;
 
@@ -208,6 +211,8 @@ public class main {
         int choice;
 
         while (true) {
+            Map application = new Map(player.getLocationX(), player.getLocationY());
+            application.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
             // add edge case
             System.out.println();
@@ -382,6 +387,7 @@ public class main {
                 default:
                     System.out.println("Invalid choice. Please choose again.");
             }
+        application.dispose();
         }
     }
 }
