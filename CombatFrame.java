@@ -11,10 +11,10 @@ public class CombatFrame extends JFrame {
         this.setResizable(false); // keep size constant
         this.getContentPane().setBackground(new Color(0, 50, 70));
    
-        // ImageIcon sharky = new ImageIcon("Images/sharky.jpg");
-        // JLabel background = new JLabel();
-        // background.setIcon(sharky);
-        // this.add(background);
+        ImageIcon sharky = new ImageIcon("Images/Minnow.jpg");
+        JLabel background = new JLabel();
+        background.setIcon(sharky);
+        this.add(background);
 
         
     }
@@ -27,9 +27,11 @@ public class CombatFrame extends JFrame {
     public void changeEnemy(JLabel label, Enemy foe){
        
         //starting area images
-        ImageIcon minnow = new ImageIcon("Images/snarkshark.jpeg");
-        ImageIcon remora = new ImageIcon("Images/remora.png");
-        ImageIcon cuttlefish = new ImageIcon("Images/cuttlefish.png");
+        ImageIcon minnow = new ImageIcon("Images/Minnow.jpg");
+        ImageIcon remora = new ImageIcon("Images/Remora.jpg");
+        ImageIcon cuttlefish = new ImageIcon("Images/Cuttlefish.jpg");
+        ImageIcon rockcrab = new ImageIcon("Images/Rock Crab.jpg");
+        ImageIcon orca = new ImageIcon("Images/Orca.jpg");
 
         //kelp forest images
 
@@ -41,6 +43,7 @@ public class CombatFrame extends JFrame {
         if(foe.getType() == "Minnow"){
             label.setIcon(minnow);
             this.add(label);
+            label.repaint();
         }
         else if(foe.getType() == "Remora"){
             label.setIcon(remora);
@@ -54,9 +57,9 @@ public class CombatFrame extends JFrame {
 
     public static void main(String[] args) {
         CombatFrame c = new CombatFrame();
-        Enemy min = new Enemy("Minnow", 1);
-        JLabel jlab = new JLabel();
-        c.changeEnemy(jlab, min);
+        // Enemy min = new Enemy("Minnow", 1);
+        // JLabel jlab = new JLabel();
+        // c.changeEnemy(jlab, min);
 
 }
 }

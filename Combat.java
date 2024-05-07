@@ -230,7 +230,7 @@ public class Combat {
     public static void main(String[] args) {
         PlayableChar joe = new PlayableChar("Joe", 25, 11);
         joe.level = 4;
-        Enemy eviljoe = new Enemy("Minnew", joe.level);
+        Enemy eviljoe = new Enemy("Minnow", joe.level);
         Combat combatTest = new Combat();
         combatTest.combatLoop(joe, eviljoe);
     }

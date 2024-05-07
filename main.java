@@ -11,8 +11,7 @@ import java.util.Random;
 public class main {
 
     // graphic
-    public static MinimapGraphic minimap = new MinimapGraphic();
-
+    // public static MinimapGraphic minimap = new MinimapGraphic();
 
     // enemy list instances for different areas
     public static Enemy[] area_1_encounters = { new Enemy("Minnow", 1), new Enemy("Remora", 2),
@@ -54,6 +53,22 @@ public class main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("\n-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
+        System.out.println(
+                "We reccomend playing SHARPG in windowed mode, instead of full screen,\n            as there are pop-ups for the map and combat!");
+        System.out.println("\n                 Thank you, and we hope you enjoy!");
+        System.out.println("\n-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
+
+        // have a quick pause before game starts so that the player can read the above suggestion on window mode
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            System.out.println("Wuh oh");
+            e.printStackTrace();
+        }
+
+        
+        // game start (getting player name)
         System.out.println("˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹");
         System.out.println("˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹");
         System.out.println("˚ִִ໋𓍢ִ✧˖𓍢ִִ໋Welcome to the kingdom of Aquamaris!˖𓍢ִִִ໋˚⊹");
@@ -77,12 +92,13 @@ public class main {
         }
     }
 
+
+    // main game loop
     private static void startGame(Scanner scanner) {
-        
+
         System.out.println("Enter your name:");
         String name = scanner.nextLine();
         PlayableChar player = new PlayableChar(name, 10, 5);
-
 
         // build all the areas to have enemies
         start.build();
@@ -102,7 +118,7 @@ public class main {
         start.getGrid()[7][3] = Tile.ENEMY;
         start.getGrid()[7][4] = Tile.ENEMY;
         start.getGrid()[7][5] = Tile.ENEMY;
-        start.getGrid()[8][3] = Tile.ENEMY; 
+        start.getGrid()[8][3] = Tile.ENEMY;
         start.getGrid()[8][5] = Tile.ENEMY;
         start.getGrid()[8][4] = Tile.EXIT;
 
@@ -220,20 +236,19 @@ public class main {
         int choice;
 
         while (true) {
-   
-            if(currentLocation == Location.START){
-                minimap.getContentPane().setBackground(Color.BLUE);
-            }
-            else if(currentLocation == Location.KELP){
-                minimap.getContentPane().setBackground(Color.RED);
-            }
-            else if(currentLocation == Location.THERMAL){
-                minimap.getContentPane().setBackground(Color.GREEN);
-            }
-            else if(currentLocation == Location.FINAL){
-                minimap.getContentPane().setBackground(Color.BLACK);
-            }
-            
+
+            // if(currentLocation == Location.START){
+            // minimap.getContentPane().setBackground(Color.BLUE);
+            // }
+            // else if(currentLocation == Location.KELP){
+            // minimap.getContentPane().setBackground(Color.RED);
+            // }
+            // else if(currentLocation == Location.THERMAL){
+            // minimap.getContentPane().setBackground(Color.GREEN);
+            // }
+            // else if(currentLocation == Location.FINAL){
+            // minimap.getContentPane().setBackground(Color.BLACK);
+            // }
 
             // add edge case
             System.out.println();
@@ -515,13 +530,11 @@ public class main {
                 case 6:
                     System.out.println(areaDescription);
                     System.out.println("\nYou are at (" + player.getLocationX() + ", " + player.getLocationY() + ")");
-                    if(area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.EMPTY){
+                    if (area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.EMPTY) {
                         System.out.println("This tile is empty, look around on the map for any areas of interest!");
-                    }
-                    else if(area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.ENTRANCE){
+                    } else if (area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.ENTRANCE) {
                         System.out.println("You are at an entrance, you can move back to a previous area from here!");
-                    }
-                    else if(area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.EXIT){
+                    } else if (area.getGrid()[player.getLocationX()][player.getLocationY()] == Tile.EXIT) {
                         System.out.println("You are at an exit, you can move to the next area from here!");
                     }
                     break;
@@ -549,18 +562,17 @@ public class main {
                         System.out.println("You are not at an exit yet. Please explore more!");
                     }
                     break;
-                case 8: 
+                case 8:
                     System.out.println("Help menu here");
                     break;
                 case 9:
-                System.out.println("Are you sure you want to quit? (y/n)");
+                    System.out.println("Are you sure you want to quit? (y/n)");
                     while (true) {
                         String input = scanner.nextLine().toLowerCase();
                         if (input.equals("n")) {
                             System.out.println("Okay, let's continue!");
                             break;
-                        }
-                        else if (input.equals("y")) {
+                        } else if (input.equals("y")) {
                             System.out.println(
                                     "  _____ _                 _          _____            ____  _             _             \n"
                                             + //
