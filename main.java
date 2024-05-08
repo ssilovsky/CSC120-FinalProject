@@ -9,13 +9,9 @@ import javax.swing.JPanel;
 import java.util.Random;
 
 public class main {
-
-    // graphic
-    public static MinimapGraphic minimap = new MinimapGraphic();
-
     // enemy list instances for different areas
     public static Enemy[] area_1_encounters = { new Enemy("Minnow", 1), new Enemy("Remora", 2),
-            new Enemy("Cuttlefish", 1), new Enemy("Rock crab", 2), new Enemy("Catfish", 2) };
+            new Enemy("Cuttlefish", 1), new Enemy("Rock Crab", 2), new Enemy("Catfish", 2) };
     public static Enemy[] area_2_encounters = { new Enemy("Bubbler Seahorse", 5), new Enemy("Jellyfish", 6),
             new Enemy("Siren Snapper", 6), new Enemy("Kelp Golem", 5), new Enemy("Weed Wraiths", 6) };
     public static Enemy[] area_3_encounters = { new Enemy("Vent Vipers", 10), new Enemy("Steam Spitters", 11),
@@ -237,18 +233,18 @@ public class main {
 
         while (true) {
 
-            if(currentLocation == Location.START){
-            minimap.getContentPane().setBackground(Color.BLUE);
-            }
-            else if(currentLocation == Location.KELP){
-            minimap.getContentPane().setBackground(Color.RED);
-            }
-            else if(currentLocation == Location.THERMAL){
-            minimap.getContentPane().setBackground(Color.GREEN);
-            }
-            else if(currentLocation == Location.FINAL){
-            minimap.getContentPane().setBackground(Color.BLACK);
-            }
+        //     if(currentLocation == Location.START){
+        //     minimap.getContentPane().setBackground(Color.BLUE);
+        //     }
+        //     else if(currentLocation == Location.KELP){
+        //     minimap.getContentPane().setBackground(Color.RED);
+        //     }
+        //     else if(currentLocation == Location.THERMAL){
+        //     minimap.getContentPane().setBackground(Color.GREEN);
+        //     }
+        //     else if(currentLocation == Location.FINAL){
+        //     minimap.getContentPane().setBackground(Color.BLACK);
+        //     }
 
             // add edge case
             System.out.println();
