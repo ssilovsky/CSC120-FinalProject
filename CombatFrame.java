@@ -10,11 +10,17 @@ public class CombatFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // prevent closing window while we have combat open
         this.setResizable(false); // keep size constant
         this.getContentPane().setBackground(new Color(0, 50, 70));
-   
-        ImageIcon sharky = new ImageIcon("Images/Minnow.jpg");
-        JLabel background = new JLabel();
-        background.setIcon(sharky);
-        this.add(background);
+        // this.setLayout(new OverlayLayout(this));
+
+        
+        // ImageIcon sharky = new ImageIcon("Images/Minnow.jpg");
+        // JLabel background = new JLabel();
+        // background.setIcon(sharky);
+        // this.add(background);
+
+        JLabel text = new JLabel("Text");
+        this.add(text);
+
 
         
     }
@@ -43,11 +49,11 @@ public class CombatFrame extends JFrame {
         if(foe.getType() == "Minnow"){
             label.setIcon(minnow);
             this.add(label);
-            label.repaint();
         }
         else if(foe.getType() == "Remora"){
             label.setIcon(remora);
             this.add(label);
+            
         }
         else if(foe.getType() == "Cuttlefish"){
             label.setIcon(cuttlefish);
@@ -57,9 +63,9 @@ public class CombatFrame extends JFrame {
 
     public static void main(String[] args) {
         CombatFrame c = new CombatFrame();
-        // Enemy min = new Enemy("Minnow", 1);
-        // JLabel jlab = new JLabel();
-        // c.changeEnemy(jlab, min);
+        Enemy min = new Enemy("Minnow", 1);
+        JLabel jlab = new JLabel();
+        c.changeEnemy(jlab, min);
 
 }
 }

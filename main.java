@@ -11,7 +11,7 @@ import java.util.Random;
 public class main {
 
     // graphic
-    // public static MinimapGraphic minimap = new MinimapGraphic();
+    public static MinimapGraphic minimap = new MinimapGraphic();
 
     // enemy list instances for different areas
     public static Enemy[] area_1_encounters = { new Enemy("Minnow", 1), new Enemy("Remora", 2),
@@ -63,7 +63,7 @@ public class main {
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
-            System.out.println("Wuh oh");
+            System.out.println("Something went wrong!"); // there shouldn't be anything to interrupt the thread.sleep since just quick pause
             e.printStackTrace();
         }
 
@@ -227,7 +227,7 @@ public class main {
         last.getGrid()[8][7] = Tile.ENEMY;
         last.getGrid()[8][8] = Tile.EXIT;
 
-        System.out.println("Hello " + name
+        System.out.println("\nHello " + name
                 + "! The royal crown has been taken from the \nkingdom. It's up to you to retrieve the crown before \nit is used for evil!");
         System.out.println(areaDescription);
         System.out.println("What do you want to do?");
@@ -237,18 +237,18 @@ public class main {
 
         while (true) {
 
-            // if(currentLocation == Location.START){
-            // minimap.getContentPane().setBackground(Color.BLUE);
-            // }
-            // else if(currentLocation == Location.KELP){
-            // minimap.getContentPane().setBackground(Color.RED);
-            // }
-            // else if(currentLocation == Location.THERMAL){
-            // minimap.getContentPane().setBackground(Color.GREEN);
-            // }
-            // else if(currentLocation == Location.FINAL){
-            // minimap.getContentPane().setBackground(Color.BLACK);
-            // }
+            if(currentLocation == Location.START){
+            minimap.getContentPane().setBackground(Color.BLUE);
+            }
+            else if(currentLocation == Location.KELP){
+            minimap.getContentPane().setBackground(Color.RED);
+            }
+            else if(currentLocation == Location.THERMAL){
+            minimap.getContentPane().setBackground(Color.GREEN);
+            }
+            else if(currentLocation == Location.FINAL){
+            minimap.getContentPane().setBackground(Color.BLACK);
+            }
 
             // add edge case
             System.out.println();

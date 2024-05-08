@@ -8,7 +8,7 @@ public class PlayableChar {
     private int maxHp;
     private int hp;
     private int exp;
-    public int level;
+    private int level;
     private int attack;
     private int defense;
     private ArrayList<Item> inventory;

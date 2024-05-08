@@ -211,6 +211,8 @@ public class Combat {
             }
         }
         if (foe.getCurrentHealth() <= 0) {
+            combatframe.setVisible(false);
+            combatframe.dispose();
             System.out.println("Battle Won!");
             System.out.println("You Earned " + foe.getExp() + " EXP!");
             player.addExp(foe.getExp());
@@ -218,8 +220,6 @@ public class Combat {
             player.healPlayer();
             this.battlewon = true;
             foe.healEnemy();
-            combatframe.setVisible(false);
-            combatframe.dispose();
         }
         if (player.getCurrentHealth() <= 0) {
             System.out.println("Battle Lost!");
@@ -229,8 +229,7 @@ public class Combat {
 
     public static void main(String[] args) {
         PlayableChar joe = new PlayableChar("Joe", 25, 11);
-        joe.level = 4;
-        Enemy eviljoe = new Enemy("Minnow", joe.level);
+        Enemy eviljoe = new Enemy("Minnow", 4);
         Combat combatTest = new Combat();
         combatTest.combatLoop(joe, eviljoe);
     }
