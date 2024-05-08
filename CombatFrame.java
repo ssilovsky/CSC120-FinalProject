@@ -8,7 +8,8 @@ public class CombatFrame extends JFrame {
         this.setSize(750, 500); // set the size of frame
         this.setTitle("COMBAT!");
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // prevent closing window while we have combat open
-        this.setResizable(false); // keep size constant
+        this.setResizable(true); // can be resized
+        this.setMaximumSize(new Dimension(750, 500)); // resizable within certain bounds
         this.getContentPane().setBackground(new Color(0, 50, 70));
     }
 
@@ -20,16 +21,8 @@ public class CombatFrame extends JFrame {
      */
     public void changeEnemy(JLabel label, Enemy foe) {
 
-        // starting area images
-
-
-        // kelp forest images
-
-        // thermal vent images
-
-        // final area images
-
-        // set the images based on enemy
+        // set the images based on enemy (only making new instances seem to work, as
+        // otherwise they are seeming to get overridden, sadly)
         foe.getType();
         if (foe.getType() == "Minnow") {
             ImageIcon minnow = new ImageIcon("Images/Minnow.jpg");
@@ -56,7 +49,7 @@ public class CombatFrame extends JFrame {
             label.repaint();
         }
         if (foe.getType() == "Catfish") {
-            ImageIcon catfish = new ImageIcon("Images/Catfish");
+            ImageIcon catfish = new ImageIcon("Images/Catfish.jpg");
             label.setIcon(catfish);
             this.add(label);
             label.repaint();
@@ -67,16 +60,49 @@ public class CombatFrame extends JFrame {
             this.add(label);
             label.repaint();
         }
-
+        if (foe.getType() == "Bubbler Seahorse") {
+            ImageIcon bubble = new ImageIcon("Images/Bubbler Seahorse.jpg");
+            label.setIcon(bubble);
+            this.add(label);
+            label.repaint();
+        }
+        if (foe.getType() == "Jellyfish") {
+            ImageIcon jellyfish = new ImageIcon("Images/Jellyfish.jpg");
+            label.setIcon(jellyfish);
+            this.add(label);
+            label.repaint();
+        }
+        if (foe.getType() == "Siren Snapper") {
+            ImageIcon siren = new ImageIcon("Images/Siren Snapper.jpg");
+            label.setIcon(siren);
+            this.add(label);
+            label.repaint();
+        }
+        if (foe.getType() == "Kelp Golem") {
+            ImageIcon kelp = new ImageIcon("Images/Kelp Golem.jpg");
+            label.setIcon(kelp);
+            this.add(label);
+            label.repaint();
+        }
+        if (foe.getType() == "Weed Wraiths") {
+            ImageIcon weed = new ImageIcon("Images/Weed Wraiths.jpg");
+            label.setIcon(weed);
+            this.add(label);
+            label.repaint();
+        }
+        if (foe.getType() == "Manta Ray") {
+            ImageIcon manta = new ImageIcon("Images/Manta.jpg");
+            label.setIcon(manta);
+            this.add(label);
+            label.repaint();
+        }
     }
 
     public static void main(String[] args) {
         CombatFrame c = new CombatFrame();
         JLabel jlab = new JLabel();
-        Enemy min = new Enemy("Minnow", 1);
-        Enemy rem = new Enemy("Orca", 1);
-        Enemy cut = new Enemy("Cuttlefish", 1);
-        c.changeEnemy(jlab, rem);
+        Enemy cut = new Enemy("Siren Snapper", 1);
+        c.changeEnemy(jlab, cut);
 
     }
 }

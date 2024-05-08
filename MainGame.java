@@ -1,14 +1,8 @@
-import java.awt.Color;
-import java.awt.Label;
-import java.awt.Panel;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import javax.swing.JPanel;
-
 import java.util.Random;
 
-public class main {
+public class MainGame {
     // enemy list instances for different areas
     public static Enemy[] area_1_encounters = { new Enemy("Minnow", 1), new Enemy("Remora", 2),
             new Enemy("Cuttlefish", 1), new Enemy("Rock Crab", 2), new Enemy("Catfish", 2) };
