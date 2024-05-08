@@ -10,19 +10,7 @@ public class CombatFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE); // prevent closing window while we have combat open
         this.setResizable(false); // keep size constant
         this.getContentPane().setBackground(new Color(0, 50, 70));
-        // this.setLayout(new OverlayLayout(this));
-
-        
-        // ImageIcon sharky = new ImageIcon("Images/Minnow.jpg");
-        // JLabel background = new JLabel();
-        // background.setIcon(sharky);
-        // this.add(background);
-
-        JLabel text = new JLabel("Text");
-        this.add(text);
-
-
-        
+        // this.setLayout(new OverlayLayout(this));        
     }
 
     /**
