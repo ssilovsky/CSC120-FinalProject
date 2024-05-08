@@ -96,13 +96,46 @@ public class CombatFrame extends JFrame {
             this.add(label);
             label.repaint();
         }
+        if (foe.getType() == "Vent Vipers"){
+
+        }
+        if (foe.getType() == "Steam Spitters"){
+
+        }
+        if (foe.getType() == "Lava Leeches"){
+
+        }
+        if (foe.getType() == "Yeti Crab"){
+
+        }
+        if (foe.getType() == "Bigfin Squid"){
+
+        }
+        if (foe.getType() == "Sunfish"){
+
+        }
+        if (foe.getType() == "Marlin"){
+
+        }
+        if (foe.getType() == "Sailfish"){
+
+        }
+        if (foe.getType() == "Dolphin"){
+
+        }
+        if (foe.getType() == "Tuna"){
+
+        }
+        if (foe.getType() == "Kraken"){
+
+        }
+        label.repaint();
     }
 
     public static void main(String[] args) {
         CombatFrame c = new CombatFrame();
         JLabel jlab = new JLabel();
-        Enemy cut = new Enemy("Siren Snapper", 1);
+        Enemy cut = new Enemy("Kelp Golem", 1);
         c.changeEnemy(jlab, cut);
-
     }
 }

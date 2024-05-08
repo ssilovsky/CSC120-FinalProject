@@ -11,11 +11,6 @@ public class Combat {
     Random crit = new Random();
     private int rounds = 1;
 
-
-    CombatFrame combatframe = new CombatFrame(); // making a frame for combat
-    JLabel jlab = new JLabel();
-
-
     // constructor for Combat class
     public Combat() {
         // this.rounds = rounds;
@@ -149,6 +144,9 @@ public class Combat {
      * player or enemy HP accordingly
      */
     public void combatLoop(PlayableChar player, Enemy foe) {
+        CombatFrame combatframe = new CombatFrame(); // making a frame for combat
+        JLabel jlab = new JLabel();
+        combatframe.add(jlab);
         this.battlewon = false;
         Random dice = new Random();
         clearConsole();
@@ -188,21 +186,25 @@ public class Combat {
                 }
             } else if (userInput.equals("RUN") || userInput.equals("4")) {
                 clearConsole();
-                int ran = dice.nextInt(6) + 1; // roll the diee!
-                System.out.println("You rolled a " + ran + " with the Mystic Dice of Fate");
-                if (ran >= 5) {
-                    System.out.println("Ran from battle!");
-                    System.out.println(
-                            "After swimming for your life, you take time to catch whatever breath a shark can have.");
-                    player.healPlayer();
-                    foe.healEnemy();
-                    this.battlewon = false;
-                    combatframe.setVisible(false);
-                    combatframe.dispose();
-                    break;
+                if (foe.getType() == "Orca" || foe.getType() == "Manta Ray" || foe.getType() == "Bigfin Squid" || foe.getType() == "Kraken") {
+                    System.out.println("You can't even try to run from a boss battle!");
                 } else {
-                    System.out.println("You weren't able to escape!");
-                    enemyAttack(player, player.getAttack());
+                    int ran = dice.nextInt(6) + 1; // roll the diee!
+                    System.out.println("You rolled a " + ran + " with the Mystic Dice of Fate");
+                    if (ran >= 5) {
+                        System.out.println("Ran from battle!");
+                        System.out.println(
+                                "After swimming for your life, you take time to catch whatever breath a shark can have.");
+                        player.healPlayer();
+                        foe.healEnemy();
+                        this.battlewon = false;
+                        combatframe.setVisible(false);
+                        combatframe.dispose();
+                        break;
+                    } else {
+                        System.out.println("You weren't able to escape!");
+                        enemyAttack(player, player.getAttack());
+                    }
                 }
             } else {
                 System.out.println("Input a valid command!");
@@ -229,7 +231,7 @@ public class Combat {
 
     public static void main(String[] args) {
         PlayableChar joe = new PlayableChar("Joe", 25, 11);
-        Enemy eviljoe = new Enemy("Minnow", 4);
+        Enemy eviljoe = new Enemy("Kraken", 4);
         Combat combatTest = new Combat();
         combatTest.combatLoop(joe, eviljoe);
     }

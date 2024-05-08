@@ -16,21 +16,26 @@ public class MainGame {
             area_4_encounters };
     public static Enemy[] currentEnemy = enemyGroupings[0];
 
+    // bosses
     public static Enemy[] bossEnemies = { new Enemy("Orca", 5), new Enemy("Manta Ray", 15),
             new Enemy("Bigfin Squid", 20), new Enemy("Kraken", 25) };
     public static Enemy currentBoss = bossEnemies[0];
 
+    // locations
     public static Location[] locations = { Location.START, Location.KELP, Location.THERMAL, Location.FINAL };
     public static Location currentLocation = locations[0];
 
+    // creating coordinate grids for each zone
     public static Coordinate start = new Coordinate(9, 9);
     public static Coordinate kelp = new Coordinate(9, 9);
     public static Coordinate thermal = new Coordinate(9, 9);
     public static Coordinate last = new Coordinate(9, 9);
 
+    // list of the areas
     public static Coordinate[] areas = { start, kelp, thermal, last };
     public static Coordinate area = areas[0];
 
+    // descriptions of each area
     public static String[] descriptions = {
             "\nWelcome to the Kingdom of Aquamaris, a realm veiled \nin mystery and danger, where the ocean's vast expanse meets \nthe ancient majesty of royal rule. Here, beneath \nthe shimmering waves, lies the seat of power \nfor the oceanic monarchy, now thrown into chaos \nafter the theft of the royal crown.",
             "\nWelcome to the Kelp Forest, a tranquil yet perilous sanctuary \nnestled within the depths of the ocean. Here, \ntowering kelp forests sway gently with the ebb and flow of the currents, \ncreating a mesmerizing underwater landscape teeming with life. \nHowever, danger lurks in unexpected places, testing the courage \nof even the most seasoned adventurers.",
@@ -38,6 +43,7 @@ public class MainGame {
             "\nWelcome to the Kraken's Abyss, the sinister domain where \nthe evil sea monster holds sway over the darkest depths \nof the ocean. The cries of lost souls and ancient \ncurses echo throughout the lair of the creature with \nunimaginable power and malevolence. \nAs you descend into the murky depths, \nyou see the Kraken’s massive form coiled in the shadows, \nready to unleash its wrath upon any who dare to \nchallenge its supremacy. A faint hue of gold peeks through \nthe tight grasp of its tentacles, could it be the very \ncrown you’ve been searching for?" };
     public static String areaDescription = descriptions[0];
 
+    // used to move the areas forward
     public static int i = 0;
 
     public static void main(String[] args) {
@@ -49,15 +55,16 @@ public class MainGame {
         System.out.println("\n                 Thank you, and we hope you enjoy!");
         System.out.println("\n-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 
-        // have a quick pause before game starts so that the player can read the above suggestion on window mode
+        // have a quick pause before game starts so that the player can read the above
+        // suggestion on window mode
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
-            System.out.println("Something went wrong!"); // there shouldn't be anything to interrupt the thread.sleep since just quick pause
+            System.out.println("Something went wrong!"); // there shouldn't be anything to interrupt the thread.sleep
+                                                         // since just quick pause
             e.printStackTrace();
         }
 
-        
         // game start (getting player name)
         System.out.println("˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹");
         System.out.println("˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ✧˚.₊⊹˖𓍢ִ˚˖𓍢ִִ໋˚˖𓍢ִ✧˚.₊⊹");
@@ -82,6 +89,50 @@ public class MainGame {
         }
     }
 
+    /**
+     * Special Thanks! (Printing out final level and thanks for playing :)
+     * 
+     * @param player
+     */
+    private static void specialThanks(PlayableChar player) {
+        System.out.println(
+                "  _____ _                 _          _____            ____  _             _             \n"
+                        + //
+                        " |_   _| |__   __ _ _ __ | | _____  |  ______  _ __  |  _ \\| | __ _ _   _(_)_ __   __ _ \n"
+                        + //
+                        "   | | | '_ \\ / _` | '_ \\| |/ / __| | |_ / _ \\| '__| | |_) | |/ _` | | | | | '_ \\ / _` |\n"
+                        + //
+                        "   | | | | | | (_| | | | |   <\\__ \\ |  _| (_) | |    |  __/| | (_| | |_| | | | | | (_| |\n"
+                        + //
+                        "   |_| |_| |_|\\__,_|_| |_|_|\\_|___/ |_|  \\___/|_|    |_|   |_|\\__,_|\\__, |_|_| |_|\\__, |\n"
+                        + //
+                        "                 ____  _   _    _    ____  ____   ____ _            |___/         |___/ \n"
+                        + //
+                        "                / ___|| | | |  / \\  |  _ \\|  _ \\ / ___| |                               \n"
+                        + //
+                        "                \\___ \\| |_| | / _ \\ | |_) | |_) | |  _| |                               \n"
+                        + //
+                        "                 ___) |  _  |/ ___ \\|  _ <|  __/| |_| |_|                               \n"
+                        + //
+                        "                |____/|_| |_/_/   \\_|_| \\_|_|    \\____(_)       ");
+        System.out.println("\nPlayer Final Level: " + player.getLevel());
+
+        System.out.println("\n-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+        System.out.println("\n ___              _      _   _____ _              _       \n" + //
+                " / __|_ __  ___ __(_)__ _| | |_   _| |_  __ _ _ _ | |__ ___\n" + //
+                " \\__ \\ '_ \\/ -_) _| / _` | |   | | | ' \\/ _` | ' \\| / /(_-<\n" + //
+                " |___/ .__/\\___\\__|_\\__,_|_|   |_| |_||_\\__,_|_||_|_\\_\\/__/\n" + //
+                "     |_|                                                   \n" + //
+                "\n" + //
+                "                    ☆☆ Professor Jordan ☆☆\n" + //
+                "                    ☆☆ Professor Johanna ☆☆\n" + //
+                "                     ☆☆ Our Classmates ☆☆\n" + //
+                "                  ☆☆ Bobi and the other TAs ☆☆\n" + //
+                "\n" + //
+                "                 Thank you for a great semester!\n" + //
+                "\n                   --Megan, Sophia, and Lucy ☺");
+        System.out.println("\n-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
+    }
 
     // main game loop
     private static void startGame(Scanner scanner) {
@@ -227,19 +278,6 @@ public class MainGame {
 
         while (true) {
 
-        //     if(currentLocation == Location.START){
-        //     minimap.getContentPane().setBackground(Color.BLUE);
-        //     }
-        //     else if(currentLocation == Location.KELP){
-        //     minimap.getContentPane().setBackground(Color.RED);
-        //     }
-        //     else if(currentLocation == Location.THERMAL){
-        //     minimap.getContentPane().setBackground(Color.GREEN);
-        //     }
-        //     else if(currentLocation == Location.FINAL){
-        //     minimap.getContentPane().setBackground(Color.BLACK);
-        //     }
-
             // add edge case
             System.out.println();
             System.out.println("1. Go North");
@@ -293,35 +331,16 @@ public class MainGame {
                         if (currentBoss == bossEnemies[3]) {
                             System.out.println(
                                     "\nYou have defeated the kraken and have found the crown!\nYou give the crown back to the kingdom! Well done adventurer.");
-                            System.out.println("Player Final Level: " + player.getLevel());
-                            System.out.println(
-                                    "  _____ _                 _          _____            ____  _             _             \n"
-                                            + //
-                                            " |_   _| |__   __ _ _ __ | | _____  |  ______  _ __  |  _ \\| | __ _ _   _(_)_ __   __ _ \n"
-                                            + //
-                                            "   | | | '_ \\ / _` | '_ \\| |/ / __| | |_ / _ \\| '__| | |_) | |/ _` | | | | | '_ \\ / _` |\n"
-                                            + //
-                                            "   | | | | | | (_| | | | |   <\\__ \\ |  _| (_) | |    |  __/| | (_| | |_| | | | | | (_| |\n"
-                                            + //
-                                            "   |_| |_| |_|\\__,_|_| |_|_|\\_|___/ |_|  \\___/|_|    |_|   |_|\\__,_|\\__, |_|_| |_|\\__, |\n"
-                                            + //
-                                            "                 ____  _   _    _    ____  ____   ____ _            |___/         |___/ \n"
-                                            + //
-                                            "                / ___|| | | |  / \\  |  _ \\|  _ \\ / ___| |                               \n"
-                                            + //
-                                            "                \\___ \\| |_| | / _ \\ | |_) | |_) | |  _| |                               \n"
-                                            + //
-                                            "                 ___) |  _  |/ ___ \\|  _ <|  __/| |_| |_|                               \n"
-                                            + //
-                                            "                |____/|_| |_/_/   \\_|_| \\_|_|    \\____(_)       ");
+                            specialThanks(player);
                             scanner.close();
                             System.exit(0);
                         } else if (combatBoss.getBattleResult()) {
                             area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EXIT;
+                            System.out.println(
+                                    "\nWell done you've defeated the boss! You may now move to another area. But be careful! The mysterious creature that has stolen the crown can use its power to draw a new boss to the area, so make haste before another one returns!");
                         } else {
-                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EXIT;
                         }
-                        System.out.println("\nWell done you've defeated the boss! You may now move to another area.");
                     }
                     break;
                 case 2:
@@ -356,35 +375,16 @@ public class MainGame {
                         if (currentBoss == bossEnemies[3]) {
                             System.out.println(
                                     "\nYou have defeated the kraken and have found the crown!\nYou give the crown back to the kingdom! Well done adventurer.");
-                            System.out.println("Player Final Level: " + player.getLevel());
-                            System.out.println(
-                                    "  _____ _                 _          _____            ____  _             _             \n"
-                                            + //
-                                            " |_   _| |__   __ _ _ __ | | _____  |  ______  _ __  |  _ \\| | __ _ _   _(_)_ __   __ _ \n"
-                                            + //
-                                            "   | | | '_ \\ / _` | '_ \\| |/ / __| | |_ / _ \\| '__| | |_) | |/ _` | | | | | '_ \\ / _` |\n"
-                                            + //
-                                            "   | | | | | | (_| | | | |   <\\__ \\ |  _| (_) | |    |  __/| | (_| | |_| | | | | | (_| |\n"
-                                            + //
-                                            "   |_| |_| |_|\\__,_|_| |_|_|\\_|___/ |_|  \\___/|_|    |_|   |_|\\__,_|\\__, |_|_| |_|\\__, |\n"
-                                            + //
-                                            "                 ____  _   _    _    ____  ____   ____ _            |___/         |___/ \n"
-                                            + //
-                                            "                / ___|| | | |  / \\  |  _ \\|  _ \\ / ___| |                               \n"
-                                            + //
-                                            "                \\___ \\| |_| | / _ \\ | |_) | |_) | |  _| |                               \n"
-                                            + //
-                                            "                 ___) |  _  |/ ___ \\|  _ <|  __/| |_| |_|                               \n"
-                                            + //
-                                            "                |____/|_| |_/_/   \\_|_| \\_|_|    \\____(_)       ");
+                            specialThanks(player);
                             scanner.close();
                             System.exit(0);
                         } else if (combatBoss.getBattleResult()) {
                             area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EXIT;
+                            System.out.println(
+                                    "\nWell done you've defeated the boss! You may now move to another area. But be careful! The mysterious creature that has stolen the crown can use its power to draw a new boss to the area, so make haste before another one returns!");
                         } else {
-                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EXIT;
                         }
-                        System.out.println("\nWell done you've defeated the boss! You may now move to another area.");
                     }
                     break;
                 case 3:
@@ -419,35 +419,16 @@ public class MainGame {
                         if (currentBoss == bossEnemies[3]) {
                             System.out.println(
                                     "\nYou have defeated the kraken and have found the crown!\nYou give the crown back to the kingdom! Well done adventurer.");
-                            System.out.println("Player Final Level: " + player.getLevel());
-                            System.out.println(
-                                    "  _____ _                 _          _____            ____  _             _             \n"
-                                            + //
-                                            " |_   _| |__   __ _ _ __ | | _____  |  ______  _ __  |  _ \\| | __ _ _   _(_)_ __   __ _ \n"
-                                            + //
-                                            "   | | | '_ \\ / _` | '_ \\| |/ / __| | |_ / _ \\| '__| | |_) | |/ _` | | | | | '_ \\ / _` |\n"
-                                            + //
-                                            "   | | | | | | (_| | | | |   <\\__ \\ |  _| (_) | |    |  __/| | (_| | |_| | | | | | (_| |\n"
-                                            + //
-                                            "   |_| |_| |_|\\__,_|_| |_|_|\\_|___/ |_|  \\___/|_|    |_|   |_|\\__,_|\\__, |_|_| |_|\\__, |\n"
-                                            + //
-                                            "                 ____  _   _    _    ____  ____   ____ _            |___/         |___/ \n"
-                                            + //
-                                            "                / ___|| | | |  / \\  |  _ \\|  _ \\ / ___| |                               \n"
-                                            + //
-                                            "                \\___ \\| |_| | / _ \\ | |_) | |_) | |  _| |                               \n"
-                                            + //
-                                            "                 ___) |  _  |/ ___ \\|  _ <|  __/| |_| |_|                               \n"
-                                            + //
-                                            "                |____/|_| |_/_/   \\_|_| \\_|_|    \\____(_)       ");
+                            specialThanks(player);
                             scanner.close();
                             System.exit(0);
                         } else if (combatBoss.getBattleResult()) {
                             area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EXIT;
+                            System.out.println(
+                                    "\nWell done you've defeated the boss! You may now move to another area. But be careful! The mysterious creature that has stolen the crown can use its power to draw a new boss to the area, so make haste before another one returns!");
                         } else {
-                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EXIT;
                         }
-                        System.out.println("\nWell done you've defeated the boss! You may now move to another area.");
                     }
                     break;
 
@@ -483,35 +464,16 @@ public class MainGame {
                         if (currentBoss == bossEnemies[3]) {
                             System.out.println(
                                     "\nYou have defeated the kraken and have found the crown!\nYou give the crown back to the kingdom! Well done adventurer.");
-                            System.out.println("Player Final Level: " + player.getLevel());
-                            System.out.println(
-                                    "  _____ _                 _          _____            ____  _             _             \n"
-                                            + //
-                                            " |_   _| |__   __ _ _ __ | | _____  |  ______  _ __  |  _ \\| | __ _ _   _(_)_ __   __ _ \n"
-                                            + //
-                                            "   | | | '_ \\ / _` | '_ \\| |/ / __| | |_ / _ \\| '__| | |_) | |/ _` | | | | | '_ \\ / _` |\n"
-                                            + //
-                                            "   | | | | | | (_| | | | |   <\\__ \\ |  _| (_) | |    |  __/| | (_| | |_| | | | | | (_| |\n"
-                                            + //
-                                            "   |_| |_| |_|\\__,_|_| |_|_|\\_|___/ |_|  \\___/|_|    |_|   |_|\\__,_|\\__, |_|_| |_|\\__, |\n"
-                                            + //
-                                            "                 ____  _   _    _    ____  ____   ____ _            |___/         |___/ \n"
-                                            + //
-                                            "                / ___|| | | |  / \\  |  _ \\|  _ \\ / ___| |                               \n"
-                                            + //
-                                            "                \\___ \\| |_| | / _ \\ | |_) | |_) | |  _| |                               \n"
-                                            + //
-                                            "                 ___) |  _  |/ ___ \\|  _ <|  __/| |_| |_|                               \n"
-                                            + //
-                                            "                |____/|_| |_/_/   \\_|_| \\_|_|    \\____(_)       ");
+                            specialThanks(player);
                             scanner.close();
                             System.exit(0);
                         } else if (combatBoss.getBattleResult()) {
                             area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EXIT;
+                            System.out.println(
+                                    "\nWell done you've defeated the boss! You may now move to another area. But be careful! The mysterious creature that has stolen the crown can use its power to draw a new boss to the area, so make haste before another one returns!");
                         } else {
-                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EXIT;
                         }
-                        System.out.println("\nWell done you've defeated the boss! You may now move to another area.");
                     }
                     break;
                 case 5:
@@ -563,27 +525,7 @@ public class MainGame {
                             System.out.println("Okay, let's continue!");
                             break;
                         } else if (input.equals("y")) {
-                            System.out.println(
-                                    "  _____ _                 _          _____            ____  _             _             \n"
-                                            + //
-                                            " |_   _| |__   __ _ _ __ | | _____  |  ______  _ __  |  _ \\| | __ _ _   _(_)_ __   __ _ \n"
-                                            + //
-                                            "   | | | '_ \\ / _` | '_ \\| |/ / __| | |_ / _ \\| '__| | |_) | |/ _` | | | | | '_ \\ / _` |\n"
-                                            + //
-                                            "   | | | | | | (_| | | | |   <\\__ \\ |  _| (_) | |    |  __/| | (_| | |_| | | | | | (_| |\n"
-                                            + //
-                                            "   |_| |_| |_|\\__,_|_| |_|_|\\_|___/ |_|  \\___/|_|    |_|   |_|\\__,_|\\__, |_|_| |_|\\__, |\n"
-                                            + //
-                                            "                 ____  _   _    _    ____  ____   ____ _            |___/         |___/ \n"
-                                            + //
-                                            "                / ___|| | | |  / \\  |  _ \\|  _ \\ / ___| |                               \n"
-                                            + //
-                                            "                \\___ \\| |_| | / _ \\ | |_) | |_) | |  _| |                               \n"
-                                            + //
-                                            "                 ___) |  _  |/ ___ \\|  _ <|  __/| |_| |_|                               \n"
-                                            + //
-                                            "                |____/|_| |_/_/   \\_|_| \\_|_|    \\____(_)       ");
-                            System.out.println("\nPlayer Final Level: " + player.getLevel());
+                            specialThanks(player);
                             scanner.close();
                             System.exit(0);
                         }
@@ -596,10 +538,3 @@ public class MainGame {
         }
     }
 }
-// System.out.println("Hello " + name + "! The royal crown has been taken from
-// the kingdom of Aquamaris. It's your job to retrieve the crown before it is
-// used for evil! Explore ");
-// "You have died. Game Over!"
-// "Restart?"
-// Checkpoint system?
-// ""
