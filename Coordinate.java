@@ -23,7 +23,6 @@ public class Coordinate {
                 this.grid[this.x][this.y] = Tile.EMPTY;
             }
         }
-        // add wall all around edges
     }
 
     public void setTile(int x, int y, Tile tile) {

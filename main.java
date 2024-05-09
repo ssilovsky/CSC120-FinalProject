@@ -1,45 +1,55 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import javax.swing.JFrame;
+import java.awt.Color;
 import java.util.Random;
 
 public class main {
 
-    // enemy list instances for different areas
-    public static Enemy[] area_1_encounters = { new Enemy("Minnow", 1), new Enemy("Remora", 2),
+    // enemy array instances for different areas
+    private static Enemy[] area_1_encounters = { new Enemy("Minnow", 1), new Enemy("Remora", 2),
             new Enemy("Cuttlefish", 1), new Enemy("Rock crab", 2), new Enemy("Catfish", 2) };
-    public static Enemy[] area_2_encounters = { new Enemy("Bubbler Seahorse", 5), new Enemy("Jellyfish", 6),
+    private static Enemy[] area_2_encounters = { new Enemy("Bubbler Seahorse", 5), new Enemy("Jellyfish", 6),
             new Enemy("Siren Snapper", 6), new Enemy("Kelp Golem", 5), new Enemy("Weed Wraiths", 6) };
-    public static Enemy[] area_3_encounters = { new Enemy("Vent Vipers", 10), new Enemy("Steam Spitters", 11),
+    private static Enemy[] area_3_encounters = { new Enemy("Vent Vipers", 10), new Enemy("Steam Spitters", 11),
             new Enemy("Lava Leeches", 10), new Enemy("Yeti Crab", 11) };
-    public static Enemy[] area_4_encounters = { new Enemy("Sunfish", 16), new Enemy("Marlin", 16),
+    private static Enemy[] area_4_encounters = { new Enemy("Sunfish", 16), new Enemy("Marlin", 16),
             new Enemy("Sailfish", 15), new Enemy("Dolphin", 15), new Enemy("Tuna", 16) };
-    public static Enemy[][] enemyGroupings = { area_1_encounters, area_2_encounters, area_3_encounters,
+    private static Enemy[][] enemyGroupings = { area_1_encounters, area_2_encounters, area_3_encounters,
             area_4_encounters };
-    public static Enemy[] currentEnemy = enemyGroupings[0];
+    private static Enemy[] currentEnemy = enemyGroupings[0];
 
-    public static Enemy[] bossEnemies = { new Enemy("Orca", 5), new Enemy("Manta Ray", 15),
+    // boss enemy array
+    private static Enemy[] bossEnemies = { new Enemy("Orca", 5), new Enemy("Manta Ray", 15),
             new Enemy("Bigfin Squid", 20), new Enemy("Kraken", 25) };
-    public static Enemy currentBoss = bossEnemies[0];
+    private static Enemy currentBoss = bossEnemies[0];
 
-    public static Location[] locations = { Location.START, Location.KELP, Location.THERMAL, Location.FINAL };
-    public static Location currentLocation = locations[0];
+    // location array
+    private static Location[] locations = { Location.START, Location.KELP, Location.THERMAL, Location.FINAL };
+    private static Location currentLocation = locations[0];
 
-    public static Coordinate start = new Coordinate(9, 9);
-    public static Coordinate kelp = new Coordinate(9, 9);
-    public static Coordinate thermal = new Coordinate(9, 9);
-    public static Coordinate last = new Coordinate(9, 9);
+    // Coordinate grid instances and array
+    private static Coordinate start = new Coordinate(9, 9);
+    private static Coordinate kelp = new Coordinate(9, 9);
+    private static Coordinate thermal = new Coordinate(9, 9);
+    private static Coordinate last = new Coordinate(9, 9);
+    private static Coordinate[] areas = { start, kelp, thermal, last };
+    private static Coordinate area = areas[0];
 
-    public static Coordinate[] areas = { start, kelp, thermal, last };
-    public static Coordinate area = areas[0];
-
-    public static String[] descriptions = {
+    // descriptions array
+    private static String[] descriptions = {
             "\nWelcome to the Kingdom of Aquamaris, a realm veiled \nin mystery and danger, where the ocean's vast expanse meets \nthe ancient majesty of royal rule. Here, beneath \nthe shimmering waves, lies the seat of power \nfor the oceanic monarchy, now thrown into chaos \nafter the theft of the royal crown.",
             "\nWelcome to the Kelp Forest, a tranquil yet perilous sanctuary \nnestled within the depths of the ocean. Here, \ntowering kelp forests sway gently with the ebb and flow of the currents, \ncreating a mesmerizing underwater landscape teeming with life. \nHowever, danger lurks in unexpected places, testing the courage \nof even the most seasoned adventurers.",
             "\nWelcome to the Hydrothermal Abyss, a realm of searing \nheat and primordial energy hidden beneath the \nocean's depths. Here, towering chimneys of mineral-rich \nwater erupt from the seafloor, creating otherworldly landscapes \nteeming with life adapted to the extremes. \nBut amidst the swirling currents and turbulent \ngeothermal activity, danger lurks for those who dare to \nventure into this fiery abyss.",
             "\nWelcome to the Kraken's Abyss, the sinister domain where \nthe evil sea monster holds sway over the darkest depths \nof the ocean. The cries of lost souls and ancient \ncurses echo throughout the lair of the creature with \nunimaginable power and malevolence. \nAs you descend into the murky depths, \nyou see the Kraken’s massive form coiled in the shadows, \nready to unleash its wrath upon any who dare to \nchallenge its supremacy. A faint hue of gold peeks through \nthe tight grasp of its tentacles, could it be the very \ncrown you’ve been searching for?" };
-    public static String areaDescription = descriptions[0];
+    private static String areaDescription = descriptions[0];
 
-    public static int i = 0;
+    // i to aid in increasing the arrays
+    private static int i = 0;
+
+    // Color array for the background
+    private static Color[] colors = {Color.BLUE, Color.GREEN, Color.ORANGE, Color.DARK_GRAY};
+    private static Color bgColor = colors[0];
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -90,7 +100,7 @@ public class main {
         start.getGrid()[7][3] = Tile.ENEMY;
         start.getGrid()[7][4] = Tile.ENEMY;
         start.getGrid()[7][5] = Tile.ENEMY;
-        start.getGrid()[8][3] = Tile.ENEMY; // messes up
+        start.getGrid()[8][3] = Tile.ENEMY;
         start.getGrid()[8][5] = Tile.ENEMY;
         start.getGrid()[8][4] = Tile.EXIT;
 
@@ -203,11 +213,13 @@ public class main {
                 + "! The royal crown has been taken from the \nkingdom. It's up to you to retrieve the crown before \nit is used for evil!");
         System.out.println(areaDescription);
         System.out.println("What do you want to do?");
-        // player.addExp(100);
 
         int choice;
 
         while (true) {
+            Map application = new Map(player.getLocationX(), player.getLocationY());
+            application.getContentPane().setBackground(bgColor);
+            application.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
             // add edge case
             System.out.println();
@@ -370,6 +382,7 @@ public class main {
                         areaDescription = descriptions[i];
                         currentEnemy = enemyGroupings[i];
                         currentBoss = bossEnemies[i];
+                        bgColor = colors[i];
                         player.setLocationX(0);
                         player.setLocationY(0);
                         System.out.println(areaDescription);
@@ -381,6 +394,7 @@ public class main {
                         areaDescription = descriptions[i];
                         currentEnemy = enemyGroupings[i];
                         currentBoss = bossEnemies[i];
+                        bgColor = colors[i];
                         System.out.println(areaDescription);
                     } else {
                         System.out.println("You are not at an exit yet. Please explore more!");
@@ -415,6 +429,7 @@ public class main {
                 default:
                     System.out.println("Invalid choice. Please choose again.");
             }
+        application.dispose();
         }
     }
 }
