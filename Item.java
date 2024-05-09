@@ -26,7 +26,5 @@ public class Item {
 
 // Enum to represent different types of items
 enum ItemType {
-    STARFISH,
-    CROWN,
-    NOTE
+    STARFISH
 }

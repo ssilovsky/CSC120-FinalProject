@@ -1,11 +1,9 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class Map extends JFrame {
+public class Map extends JFrame{
     private int x;
     private int y;
-
-
     /**
      * 
      * Map class constructor
@@ -16,11 +14,15 @@ public class Map extends JFrame {
      */
 
     public Map(int x, int y) {
-        setBounds(300, 500, 430, 430);
+        getContentPane().setBackground(new Color(0, 200, 200));
+        setSize(430,430);
         setVisible(true);
         this.x = x;
         this.y = y;
-
+        setTitle("SHARPG MAP");
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // prevent closing window while we have combat open
+        setResizable(false); // keep size constant
     }
   
     /**
@@ -65,7 +67,6 @@ public class Map extends JFrame {
 
     public static void main(String args[]) {
         PlayableChar p = new PlayableChar("null", 10, 10);
-
         p.goEast();
         p.goSouth();
         p.goEast();
@@ -73,5 +74,7 @@ public class Map extends JFrame {
         application.getContentPane().setBackground(Color.DARK_GRAY);
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-}
+    }
+    
+
 

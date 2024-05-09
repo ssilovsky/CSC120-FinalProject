@@ -49,8 +49,7 @@ enum Tile {
     STARFISH,
     EXIT,
     ENTRANCE,
-    WALL,
-    CROWN
+    WALL
 }
 
 
