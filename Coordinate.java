@@ -25,6 +25,10 @@ public class Coordinate {
         }
     }
 
+    public void setTile(int x, int y, Tile tile) {
+        grid[x][y] = tile;
+    }
+
     public static void main(String[] args) {
         int width = 9;
         int height = 9;
@@ -39,10 +43,11 @@ public class Coordinate {
 enum Tile {
     EMPTY,
     ENEMY,
-    ITEM,
+    STARFISH,
     EXIT,
     ENTRANCE,
-    WALL
+    WALL,
+    CROWN
 }
 
 

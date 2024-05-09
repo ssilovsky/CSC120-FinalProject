@@ -5,6 +5,7 @@ public class Map extends JFrame {
     private int x;
     private int y;
 
+
     /**
      * 
      * Map class constructor
@@ -13,6 +14,7 @@ public class Map extends JFrame {
      * @param y int, x coordinate for the player circle
      * 
      */
+
     public Map(int x, int y) {
         setBounds(300, 500, 430, 430);
         setVisible(true);
@@ -20,7 +22,7 @@ public class Map extends JFrame {
         this.y = y;
 
     }
-
+  
     /**
      * 
      * Draws the grid of the map
@@ -33,6 +35,7 @@ public class Map extends JFrame {
             for (int y = 40; y <= 360; y += 40)
                 g.drawRect(x, y, 40, 40);
     }
+
 
     /**
      * 
@@ -62,6 +65,7 @@ public class Map extends JFrame {
 
     public static void main(String args[]) {
         PlayableChar p = new PlayableChar("null", 10, 10);
+
         p.goEast();
         p.goSouth();
         p.goEast();
@@ -70,3 +74,4 @@ public class Map extends JFrame {
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
+
