@@ -1,23 +1,21 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 import javax.swing.JFrame;
-
 import java.util.Random;
 import java.awt.Color;
 
 public class MainGame {
     // enemy list instances for different areas
-    public static Enemy[] area_1_encounters = { new Enemy("Minnow", 1), new Enemy("Remora", 2),
+    public static Enemy[] area1Encounters = { new Enemy("Minnow", 1), new Enemy("Remora", 2),
             new Enemy("Cuttlefish", 1), new Enemy("Rock Crab", 2), new Enemy("Catfish", 2) };
-    public static Enemy[] area_2_encounters = { new Enemy("Bubbler Seahorse", 5), new Enemy("Jellyfish", 6),
+    public static Enemy[] area2Encounters = { new Enemy("Bubbler Seahorse", 5), new Enemy("Jellyfish", 6),
             new Enemy("Siren Snapper", 6), new Enemy("Kelp Golem", 5), new Enemy("Weed Wraiths", 6) };
-    public static Enemy[] area_3_encounters = { new Enemy("Vent Vipers", 10), new Enemy("Steam Spitter", 11),
-            new Enemy("Lava Leech", 10), new Enemy("Yeti Crab", 11) };
-    public static Enemy[] area_4_encounters = { new Enemy("Sunfish", 16), new Enemy("Marlin", 16),
+    public static Enemy[] area3Encounters = { new Enemy("Vent Vipers", 10), new Enemy("Steam Spitters", 11),
+            new Enemy("Lava Leeches", 10), new Enemy("Yeti Crab", 11) };
+    public static Enemy[] area4Encounters = { new Enemy("Sunfish", 16), new Enemy("Marlin", 16),
             new Enemy("Sailfish", 15), new Enemy("Dolphin", 15), new Enemy("Tuna", 16) };
-    public static Enemy[][] enemyGroupings = { area_1_encounters, area_2_encounters, area_3_encounters,
-            area_4_encounters };
+    public static Enemy[][] enemyGroupings = { area1Encounters, area2Encounters, area3Encounters,
+            area4Encounters };
     public static Enemy[] currentEnemy = enemyGroupings[0];
 
     // bosses
@@ -50,13 +48,17 @@ public class MainGame {
     // used to move the areas forward
     public static int i = 0;
 
+    // Color array for the background
+    private static Color[] colors = { Color.BLUE, Color.GREEN, Color.ORANGE, Color.DARK_GRAY };
+    private static Color bgColor = colors[0];
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
         System.out.println(
-                "We reccomend playing SHARPG in (large) windowed mode, instead of full screen,\n            as there are pop-ups for the map and combat!");
+                "We recommend playing SHARPG in (large) windowed mode, instead of full screen,\n            as there are pop-ups for the map and combat!");
+
         System.out.println("\n                 Thank you, and we hope you enjoy!");
         System.out.println("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 
@@ -95,6 +97,80 @@ public class MainGame {
     }
 
     /**
+     * Bad Ending...
+     * @param player
+     */
+    private static void badEnding(){
+        System.out.println("\n" + //
+                        "   ▄▄▄▄    ▄▄▄      ▓█████▄    ▓█████  ███▄    █ ▓█████▄  ██▓ ███▄    █   ▄████ \n" + //
+                        "  ▓█████▄ ▒████▄    ▒██▀ ██▌   ▓█   ▀  ██ ▀█   █ ▒██▀ ██▌▓██▒ ██ ▀█   █  ██▒ ▀█▒\n" + //
+                        "  ▒██▒ ▄██▒██  ▀█▄  ░██   █▌   ▒███   ▓██  ▀█ ██▒░██   █▌▒██▒▓██  ▀█ ██▒▒██░▄▄▄░\n" + //
+                        "  ▒██░█▀  ░██▄▄▄▄██ ░▓█▄   ▌   ▒▓█  ▄ ▓██▒  ▐▌██▒░▓█▄   ▌░██░▓██▒  ▐▌██▒░▓█  ██▓\n" + //
+                        "  ░▓█  ▀█▓ ▓█   ▓██▒░▒████▓    ░▒████▒▒██░   ▓██░░▒████▓ ░██░▒██░   ▓██░░▒▓███▀▒\n" + //
+                        "  ░▒▓███▀▒ ▒▒   ▓▒█░ ▒▒▓  ▒    ░░ ▒░ ░░ ▒░   ▒ ▒  ▒▒▓  ▒ ░▓  ░ ▒░   ▒ ▒  ░▒   ▒ \n" + //
+                        "  ▒░▒   ░   ▒   ▒▒ ░ ░ ▒  ▒     ░ ░  ░░ ░░   ░ ▒░ ░ ▒  ▒  ▒ ░░ ░░   ░ ▒░  ░   ░ \n" + //
+                        "   ░    ░   ░   ▒    ░ ░  ░       ░      ░   ░ ░  ░ ░  ░  ▒ ░   ░   ░ ░ ░ ░   ░ \n" + //
+                        "   ░            ░  ░   ░          ░  ░         ░    ░     ░           ░       ░ \n" + //
+                        "        ░            ░                            ░                             \n" + //
+                        "");
+        System.out.println("You have chosen to hand over the royal crown to the figure. \n" + // 
+                        "");
+        System.out.println("When the figure disappears into the shadows with the crown, you realize the grave \n" + //
+                        "mistake you've made. A wave of nausea and dread sweeps over you and your surroundings\n" + //
+                        "fall into darkness. Someone (?) catches you before you sink into the deeper wells of\n" + //
+                        "the sea. \n" + //
+                        "You wake up surrounded by the eerie glow of the bioluminescent flora. Hushed whispers \n" + //
+                        "can be heard echoing from all corners of the vast cave you see yourself in. Where is\n" + //
+                        "that sound coming from? \n" + //
+                        "You gather all your energy to crawl and peer over the nearest ledge where you see the \n" + //
+                        "cultists adorned with the same hood as the figure from before. They surround the crown.\n" + //
+                        "You try to shout for them to stop but to no avail. Where did your voice go?\n" + //
+                        "You watch the golden glow of the crown slowly loses its light. As the cult finalizes its\n" + //
+                        "ritual, a sinister energy envelops the dying crown, replaced by a sickly gloom of crimson. \n" + //
+                        "In the hands of the cultists, the crown becomes a beacon of malevolence, radiating\n" + //
+                        "an aura of corruption.\n" + //
+                        "Without the power of the crown, the kingdom will fall into darkness.\n" + //
+                        "You failed to save the kingdom and the oceanic realm plunged into chaos.");
+    }
+
+     
+    /**
+     * Good Ending
+     * @param player
+     */
+    private static void goodEnding(){
+        System.out.println("\n" + //
+                        "          ▄██████▄   ▄██████▄   ▄██████▄  ████████▄             \n" + //
+                        "         ███    ███ ███    ███ ███    ███ ███   ▀███            \n" + //
+                        "         ███    █▀  ███    ███ ███    ███ ███    ███            \n" + //
+                        "        ▄███        ███    ███ ███    ███ ███    ███            \n" + //
+                        "       ▀▀███ ████▄  ███    ███ ███    ███ ███    ███            \n" + //
+                        "         ███    ███ ███    ███ ███    ███ ███    ███            \n" + //
+                        "         ███    ███ ███    ███ ███    ███ ███   ▄███            \n" + //
+                        "         ████████▀   ▀██████▀   ▀██████▀  ████████▀             \n" + //
+                        "                                                                \n" + //
+                        "     ▄████████ ███▄▄▄▄   ████████▄   ▄█  ███▄▄▄▄      ▄██████▄  \n" + //
+                        "    ███    ███ ███▀▀▀██▄ ███   ▀███ ███  ███▀▀▀██▄   ███    ███ \n" + //
+                        "    ███    █▀  ███   ███ ███    ███ ███▌ ███   ███   ███    █▀  \n" + //
+                        "   ▄███▄▄▄     ███   ███ ███    ███ ███▌ ███   ███  ▄███        \n" + //
+                        "  ▀▀███▀▀▀     ███   ███ ███    ███ ███▌ ███   ███ ▀▀███ ████▄  \n" + //
+                        "    ███    █▄  ███   ███ ███    ███ ███  ███   ███   ███    ███ \n" + //
+                        "    ███    ███ ███   ███ ███   ▄███ ███  ███   ███   ███    ███ \n" + //
+                        "    ██████████  ▀█   █▀  ████████▀  █▀    ▀█   █▀    ████████▀  \n" + //
+                        "                                                                \n" + //
+                        "");
+        System.out.println("You have chosen to refuse the cult's offer.\n" + //
+        "");
+        System.out.println("The figure sneers at your decision, attempting to attack, but the \n" + //
+                        "trials and tribulations of your journey have made you stronger and \n" + //
+                        "much more agile.\n" + //
+                        "You manage to quickly swim away from the danger and safely back\n" + //
+                        "to the kingdom. As you place the crown back on the rightful throne, \n" + //
+                        "the kingdom rejoices in your victory. Peace is restored to the oceanic \n" + //
+                        "realm, and your bravery is celebrated for generations to come!\n" + //
+                        "Congratulations, adventurer!");
+    }
+    /**
      * Special Thanks! (Printing out final level and thanks for playing :)
      * 
      * @param player
@@ -121,7 +197,7 @@ public class MainGame {
                         + //
                         "                |____/|_| |_/_/   \\_|_| \\_|_|    \\____(_)       ");
         System.out.println("\nPlayer Final Level: " + player.getLevel());
-
+        player.printStarfishCount();
         System.out.println("\n-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
         System.out.println("\n ___              _      _   _____ _              _       \n" + //
                 " / __|_ __  ___ __(_)__ _| | |_   _| |_  __ _ _ _ | |__ ___\n" + //
@@ -141,6 +217,7 @@ public class MainGame {
 
     // main game loop
     private static void startGame(Scanner scanner) {
+
 
         System.out.println("\nFirst of all...");
         try {
@@ -219,6 +296,7 @@ public class MainGame {
         start.getGrid()[7][5] = Tile.ENEMY;
         start.getGrid()[8][3] = Tile.ENEMY;
         start.getGrid()[8][5] = Tile.ENEMY;
+        start.getGrid()[4][4] = Tile.STARFISH;
         start.getGrid()[8][4] = Tile.EXIT;
 
         kelp.build();
@@ -245,6 +323,7 @@ public class MainGame {
         kelp.getGrid()[8][4] = Tile.ENEMY;
         kelp.getGrid()[8][6] = Tile.ENEMY;
         kelp.getGrid()[8][8] = Tile.ENEMY;
+        kelp.getGrid()[3][3] = Tile.STARFISH;
         kelp.getGrid()[8][4] = Tile.EXIT;
 
         thermal.build();
@@ -279,6 +358,7 @@ public class MainGame {
         thermal.getGrid()[8][3] = Tile.ENEMY;
         thermal.getGrid()[8][5] = Tile.ENEMY;
         thermal.getGrid()[8][8] = Tile.ENEMY;
+        thermal.getGrid()[6][3] = Tile.STARFISH;
         thermal.getGrid()[8][4] = Tile.EXIT;
 
         last.build();
@@ -324,6 +404,7 @@ public class MainGame {
         last.getGrid()[8][4] = Tile.ENEMY;
         last.getGrid()[8][6] = Tile.ENEMY;
         last.getGrid()[8][7] = Tile.ENEMY;
+        last.getGrid()[5][4] = Tile.STARFISH;
         last.getGrid()[8][8] = Tile.EXIT;
 
         System.out.println("\nHello " + name
@@ -336,9 +417,7 @@ public class MainGame {
 
         while (true) {
 
-            Map application = new Map(player.getLocationX(), player.getLocationY());
-            // application.getContentPane().setBackground(bgColor);
-            application.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            Map application = new Map(player.getLocationX(), player.getLocationY(), bgColor);
 
             // add edge case
             System.out.println();
@@ -404,23 +483,25 @@ public class MainGame {
                         }
                     }
 
-                    if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.CROWN) {
-                        String itemName2 = "･ﾟ*･The Royal Crown✧･ﾟ";
-                        ItemType type2 = ItemType.CROWN;
-                        int quantity = 1;
-                        System.out.println("You found the crown!");
-                        player.addToInventory(new Item(itemName2, type2, quantity));
-                        // Then update the tile to EMPTY since the item has been picked up
-                        area.setTile(player.getLocationX(), player.getLocationY(), Tile.EMPTY);
-                        System.out.println("You picked up " + itemName2 + "!");
-                    }
-
                     if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.EXIT) {
                         Combat combatBoss = new Combat();
                         combatBoss.combatLoop(player, currentBoss);
                         if (currentBoss == bossEnemies[3]) {
+                            String choice3;
                             System.out.println(
-                                    "\nYou have defeated the kraken and have found the crown!\nYou give the crown back to the kingdom! Well done adventurer.");
+                                    "\nYou have defeated the kraken and have found the crown!\n Congra- What is that behind you?");
+                            System.out.println("A mysterious, hooded figure emerges from the shadows, offering you a choice: Will you hand over the royal crown to them?");
+                            System.out.println("Are you willing to give up the crown?");
+                            System.out.println("1. Yes");
+                            System.out.println("2. No");
+                            choice3 = scanner.next();
+                            if (choice3.equalsIgnoreCase("1")) {
+                                badEnding();
+                            } else if (choice3.equals("2")) {
+                                goodEnding();
+                            } else {
+                                System.out.println("Invalid response. Please enter '1' or '2'");
+                            }
                             specialThanks(player);
                             scanner.close();
                             System.exit(0);
@@ -476,23 +557,26 @@ public class MainGame {
                         }
                     }
 
-                    if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.CROWN) {
-                        String itemName2 = "･ﾟ*･The Royal Crown✧･ﾟ";
-                        ItemType type2 = ItemType.CROWN;
-                        int quantity = 1;
-                        System.out.println("You found the crown!");
-                        player.addToInventory(new Item(itemName2, type2, quantity));
-                        // Then update the tile to EMPTY since the item has been picked up
-                        area.setTile(player.getLocationX(), player.getLocationY(), Tile.EMPTY);
-                        System.out.println("You picked up " + itemName2 + "!");
-                    }
 
                     if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.EXIT) {
                         Combat combatBoss = new Combat();
                         combatBoss.combatLoop(player, currentBoss);
                         if (currentBoss == bossEnemies[3]) {
+                            String choice3;
                             System.out.println(
-                                    "\nYou have defeated the kraken and have found the crown!\nYou give the crown back to the kingdom! Well done adventurer.");
+                                    "\nYou have defeated the kraken and have found the crown!\n Congra- What is that behind you?\n");
+                            System.out.println("A mysterious, hooded figure emerges from the shadows, offering you a choice: Will you hand over the royal crown to them?");
+                            System.out.println("Are you willing to give up the crown?");
+                            System.out.println("1. Yes");
+                            System.out.println("2. No");
+                            choice3 = scanner.next();
+                            if (choice3.equalsIgnoreCase("1")) {
+                                badEnding();
+                            } else if (choice3.equals("2")) {
+                                goodEnding();
+                            } else {
+                                System.out.println("Invalid response. Please enter '1' or '2'");
+                            }
                             specialThanks(player);
                             scanner.close();
                             System.exit(0);
@@ -548,23 +632,25 @@ public class MainGame {
                         }
                     }
 
-                    if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.CROWN) {
-                        String itemName2 = "･ﾟ*･The Royal Crown✧･ﾟ";
-                        ItemType type2 = ItemType.CROWN;
-                        int quantity = 1;
-                        System.out.println("You found the crown!");
-                        player.addToInventory(new Item(itemName2, type2, quantity));
-                        // Then update the tile to EMPTY since the item has been picked up
-                        area.setTile(player.getLocationX(), player.getLocationY(), Tile.EMPTY);
-                        System.out.println("You picked up " + itemName2 + "!");
-                    }
-
                     if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.EXIT) {
                         Combat combatBoss = new Combat();
                         combatBoss.combatLoop(player, currentBoss);
                         if (currentBoss == bossEnemies[3]) {
+                            String choice3;
                             System.out.println(
-                                    "\nYou have defeated the kraken and have found the crown!\nYou give the crown back to the kingdom! Well done adventurer.");
+                                    "\nYou have defeated the kraken and have found the crown!\n Congra- What is that behind you?\n");
+                            System.out.println("A mysterious, hooded figure emerges from the shadows, offering you a choice: Will you hand over the royal crown to them?");
+                            System.out.println("Are you willing to give up the crown?");
+                            System.out.println("1. Yes");
+                            System.out.println("2. No");
+                            choice3 = scanner.next();
+                            if (choice3.equalsIgnoreCase("1")) {
+                                badEnding();
+                            } else if (choice3.equals("2")) {
+                                goodEnding();
+                            } else {
+                                System.out.println("Invalid response. Please enter '1' or '2'");
+                            }
                             specialThanks(player);
                             scanner.close();
                             System.exit(0);
@@ -621,23 +707,25 @@ public class MainGame {
                         }
                     }
 
-                    if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.CROWN) {
-                        String itemName2 = "･ﾟ*･The Royal Crown✧･ﾟ";
-                        ItemType type2 = ItemType.CROWN;
-                        int quantity = 1;
-                        System.out.println("You found the crown!");
-                        player.addToInventory(new Item(itemName2, type2, quantity));
-                        // Then update the tile to EMPTY since the item has been picked up
-                        area.setTile(player.getLocationX(), player.getLocationY(), Tile.EMPTY);
-                        System.out.println("You picked up " + itemName2 + "!");
-                    }
-
                     if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.EXIT) {
                         Combat combatBoss = new Combat();
                         combatBoss.combatLoop(player, currentBoss);
                         if (currentBoss == bossEnemies[3]) {
+                            String choice3;
                             System.out.println(
-                                    "\nYou have defeated the kraken and have found the crown!\nYou give the crown back to the kingdom! Well done adventurer.");
+                                    "\nYou have defeated the kraken and have found the crown!\n Congra- What is that behind you?\n");
+                            System.out.println("A mysterious, hooded figure emerges from the shadows, offering you a choice: Will you hand over the royal crown to them?");
+                            System.out.println("Are you willing to give up the crown?");
+                            System.out.println("1. Yes");
+                            System.out.println("2. No");
+                            choice3 = scanner.next();
+                            if (choice3.equalsIgnoreCase("1")) {
+                                badEnding();
+                            } else if (choice3.equals("2")) {
+                                goodEnding();
+                            } else {
+                                System.out.println("Invalid response. Please enter '1' or '2'");
+                            }
                             specialThanks(player);
                             scanner.close();
                             System.exit(0);
