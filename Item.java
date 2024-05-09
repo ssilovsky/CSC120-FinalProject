@@ -9,6 +9,12 @@ public class Item {
     private ItemType type;
     private int quantity;
 
+    /**
+     * Item Constructor
+     * @param name
+     * @param type
+     * @param quantity
+     */
     public Item(String name, ItemType type, int quantity) {
         this.name = name;
         this.type = type;

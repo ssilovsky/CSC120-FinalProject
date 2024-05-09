@@ -9,6 +9,9 @@ import javax.swing.*;
 
 public class CombatFrame extends JFrame {
 
+    /**
+     * CombatFrame Constructor
+     */
     CombatFrame() {
         this.setVisible(true); // make it visible
         this.setSize(750, 500); // set the size of frame
@@ -153,6 +156,10 @@ public class CombatFrame extends JFrame {
         label.repaint();
     }
 
+    /**
+     * Tester
+     * @param args
+     */
     public static void main(String[] args) {
         CombatFrame c = new CombatFrame();
         JLabel jlab = new JLabel();
