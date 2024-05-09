@@ -1,3 +1,9 @@
+/**
+* This is the enemy class.
+* @author  Lucy Auger, Megan Li, Sophia Silovsky
+* @version 1.0
+* @since   2024-05-09
+*/
 public class Enemy {
     private String type;
     private int hp;

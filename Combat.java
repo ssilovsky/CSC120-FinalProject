@@ -1,3 +1,9 @@
+/**
+* This is the combat loop and all of its included methods.
+* @author  Lucy Auger, Megan Li, Sophia Silovsky
+* @version 1.0
+* @since   2024-05-09
+*/
 import java.util.Random;
 import java.util.Scanner;
 
@@ -30,6 +36,9 @@ public class Combat {
         System.out.print("Input an option: ");
     }
 
+    /**
+     * Prints the Help menu
+     */
     public void combatHelp() {
         System.out.println();
         System.out.println(
@@ -142,6 +151,8 @@ public class Combat {
     /**
      * Combat loop that detects for specific user input and changes the values for
      * player or enemy HP accordingly
+     * @param player PlayableChar
+     * @param foe Enemy
      */
     public void combatLoop(PlayableChar player, Enemy foe) {
         CombatFrame combatframe = new CombatFrame(); // making a frame for combat

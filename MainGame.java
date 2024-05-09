@@ -1,3 +1,9 @@
+/**
+* This is the main game loop. Run this to play the game.
+* @author  Lucy Auger, Megan Li, Sophia Silovsky
+* @version 1.0
+* @since   2024-05-09
+*/
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Random;
@@ -209,7 +215,10 @@ public class MainGame {
         System.out.println("\n-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
     }
 
-    // main game loop
+    /**
+     * The main game loop
+     * @param scanner
+     */
     private static void startGame(Scanner scanner) {
 
 

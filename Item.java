@@ -1,3 +1,9 @@
+/**
+* This is the item class for the starfish collectable. 
+* @author  Lucy Auger, Megan Li, Sophia Silovsky
+* @version 1.0
+* @since   2024-05-09
+*/
 public class Item {
     private String name;
     private ItemType type;

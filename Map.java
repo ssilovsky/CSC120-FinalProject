@@ -1,3 +1,9 @@
+/**
+* This is the grid map for the player to understand where they are.
+* @author  Lucy Auger, Megan Li, Sophia Silovsky
+* @version 1.0
+* @since   2024-05-09
+*/
 import java.awt.*;
 import javax.swing.*;
 

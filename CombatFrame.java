@@ -1,3 +1,9 @@
+/**
+* This is the images of the enemies that appear in combat.
+* @author  Lucy Auger, Megan Li, Sophia Silovsky
+* @version 1.0
+* @since   2024-05-09
+*/
 import java.awt.*;
 import javax.swing.*;
 

@@ -1,3 +1,9 @@
+/**
+* This is the 2D array maps of all the areas.
+* @author  Lucy Auger, Megan Li, Sophia Silovsky
+* @version 1.0
+* @since   2024-05-09
+*/
 public class Coordinate {
     private int x;
     private int y;
