@@ -16,6 +16,7 @@ public class Map extends JFrame {
      */
 
     public Map(int x, int y) {
+        this.setTitle("Map");
         setBounds(300, 500, 430, 430);
         setVisible(true);
         this.x = x;
@@ -65,7 +66,6 @@ public class Map extends JFrame {
 
     public static void main(String args[]) {
         PlayableChar p = new PlayableChar("null", 10, 10);
-
         p.goEast();
         p.goSouth();
         p.goEast();

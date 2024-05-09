@@ -16,7 +16,7 @@ public class PlayableChar {
     // Combat battleAction;
 
     /**
-     * 
+     * Constuctor for PlayableChar
      * @param name
      * @param maxHP
      * @param attack
@@ -36,6 +36,11 @@ public class PlayableChar {
     }
 
     // *** NAVIGATION *** //
+
+    /**
+     * Throws exception if player is at top of map
+     * Otherwise, the player's Y location is decreased by 1
+     */
     public void goNorth() {
         if (this.locationY == 0) {
             this.locationY = 0;
@@ -46,6 +51,10 @@ public class PlayableChar {
 
     }
 
+    /**
+     * Throws exception if player is at bottom of map
+     * Otherwise, the player's Y location is increased by 1
+     */
     public void goSouth() {
         if (this.locationY == 8) {
             throw new RuntimeException();
@@ -55,6 +64,10 @@ public class PlayableChar {
 
     }
 
+    /**
+     * Throws exception if player is at far East of map
+     * Otherwise, the player's X location is increased by 1
+     */
     public void goEast() {
         if (this.locationX == 8) {
             throw new RuntimeException();
@@ -64,6 +77,10 @@ public class PlayableChar {
 
     }
 
+    /**
+     * Throws exception if player is at far West of map
+     * Otherwise, the player's X location is decreased by 1
+     */
     public void goWest() {
         if (this.locationX == 0) {
             throw new RuntimeException();
@@ -72,55 +89,95 @@ public class PlayableChar {
         }
     }
 
+     // *** MANIPULATORS *** //
     /**
-     * Setter for Location
-     * 
+     * Setter for location X
+     * @param i
      */
-
     public void setLocationX(int i){
         this.locationX = i;
     }
 
+    /**
+     * Setter for location Y
+     * @param i
+     */
     public void setLocationY(int i){
         this.locationY = i;
     }
 
-    /**
-     * Getter methods
-     */
 
+
+     // *** ACCESSORS *** //
+
+    /**
+     * Getter for location X
+     * @return locationX, int
+     */
     public int getLocationX() {
         return this.locationX;
     }
 
+    /**
+     * Getter for location Y
+     * @return location Y, int
+     */
     public int getLocationY() {
         return this.locationY;
     }
 
+    /**
+     * Getter for name
+     * @return name, String
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Getter for level
+     * @return level, int
+     */
     public int getLevel() {
         return this.level;
     }
 
+    /**
+     * Getter for max health
+     * @return maxHp, int
+     */
     public int getMaxHealth() {
         return this.maxHp;
     }
 
+    /**
+     * Getter for current health
+     * @return hp, int
+     */
     public int getCurrentHealth() {
         return this.hp;
     }
 
+    /**
+     * Getter for attack
+     * @return attack, int
+     */
     public int getAttack() {
         return this.attack;
     }
 
+    /**
+     * Getter for defense
+     * @return defense, int
+     */
     public int getDefense() {
         return this.defense;
     }
 
+    /**
+     * Getter for exp
+     * @return exp, int
+     */
     public int getExp() {
         return this.exp;
 
@@ -129,13 +186,13 @@ public class PlayableChar {
     // ***EXPERIENCE POINTS + LEVELING UP*** //
 
     /**
-     * Method to add experience points
+     * Method to add experience points, and check for leveling up
+     * @param exp
      */
     public void addExp(int exp) {
-        this.exp += exp;
+        this.exp += exp; // add exp
         // Check if the shark should level up
         while(true){
-
         if (this.exp >= 10 * this.level) {
             levelUp();
         }
@@ -146,7 +203,7 @@ public class PlayableChar {
     }
 
     /**
-     * Method to level up the player
+     * Method to level up the player and change stats accordingly
      */
     private void levelUp() {
         this.level++;
@@ -177,10 +234,17 @@ public class PlayableChar {
         this.inventory.remove(item);
     }
 
+    /**
+     * Getter for inventory
+     * @return inventory, List<Item>
+     */
     public List<Item> getInventory() {
         return this.inventory;
     }
 
+    /**
+     * Prints the starfish 
+     */
     public void printStarfishCount(){
         if (this.hasCrown()) {
             System.out.println("You collected a total of " + (this.inventory.size() - 1) + " Starfish!");

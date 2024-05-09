@@ -1,6 +1,10 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import javax.swing.JFrame;
+
 import java.util.Random;
+import java.awt.Color;
 
 public class MainGame {
     // enemy list instances for different areas
@@ -8,8 +12,8 @@ public class MainGame {
             new Enemy("Cuttlefish", 1), new Enemy("Rock Crab", 2), new Enemy("Catfish", 2) };
     public static Enemy[] area_2_encounters = { new Enemy("Bubbler Seahorse", 5), new Enemy("Jellyfish", 6),
             new Enemy("Siren Snapper", 6), new Enemy("Kelp Golem", 5), new Enemy("Weed Wraiths", 6) };
-    public static Enemy[] area_3_encounters = { new Enemy("Vent Vipers", 10), new Enemy("Steam Spitters", 11),
-            new Enemy("Lava Leeches", 10), new Enemy("Yeti Crab", 11) };
+    public static Enemy[] area_3_encounters = { new Enemy("Vent Vipers", 10), new Enemy("Steam Spitter", 11),
+            new Enemy("Lava Leech", 10), new Enemy("Yeti Crab", 11) };
     public static Enemy[] area_4_encounters = { new Enemy("Sunfish", 16), new Enemy("Marlin", 16),
             new Enemy("Sailfish", 15), new Enemy("Dolphin", 15), new Enemy("Tuna", 16) };
     public static Enemy[][] enemyGroupings = { area_1_encounters, area_2_encounters, area_3_encounters,
@@ -46,14 +50,15 @@ public class MainGame {
     // used to move the areas forward
     public static int i = 0;
 
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\n-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
+        System.out.println("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
         System.out.println(
-                "We reccomend playing SHARPG in windowed mode, instead of full screen,\n            as there are pop-ups for the map and combat!");
+                "We reccomend playing SHARPG in (large) windowed mode, instead of full screen,\n            as there are pop-ups for the map and combat!");
         System.out.println("\n                 Thank you, and we hope you enjoy!");
-        System.out.println("\n-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
+        System.out.println("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 
         // have a quick pause before game starts so that the player can read the above
         // suggestion on window mode
@@ -136,6 +141,59 @@ public class MainGame {
 
     // main game loop
     private static void startGame(Scanner scanner) {
+
+        System.out.println("\nFirst of all...");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            System.out.println("Oops, somehow something went wrong when waiting for the next line");
+            e.printStackTrace();
+        }
+        System.out.println("      ████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████      \n" + //
+                        "     ████                                                                                                                          ████     \n" + //
+                        "     ███                                                                                                                            ███     \n" + //
+                        "     ███                                    ██████                                 ██████████   ██████████   █████████              ███     \n" + //
+                        "     ███                                   ██   ███████                           ███       ██ ██       ██████       ███            ███     \n" + //
+                        "     ███                                   ████    ███████                        ██        ██ ██       ██████       ███            ███     \n" + //
+                        "     ███                                    ███        ██████                           ██████      ███████      ███████            ███     \n" + //
+                        "     ███                                    ███             ██████                    ████         ████        ████                 ███     \n" + //
+                        "     ███                                    ███               ██████                  ███          ██          ███                  ███     \n" + //
+                        "     ███                                    ███                   ███                                                               ███     \n" + //
+                        "     ███                                      ██                    ███               ████         ████        ████     █████       ███     \n" + //
+                        "     ███                                      ███                    ██████           ████         ████        ████        ███      ███     \n" + //
+                        "     ███                                       ███                     ██████████████████                                   ████    ███     \n" + //
+                        "     ███                                       ███               ███████                █████                                ███    ███     \n" + //
+                        "     ███                                       ███████████████████                          ████████                         ███    ███     \n" + //
+                        "     ███                                    ██████████████                                      ███████                      ███    ███     \n" + //
+                        "     ███                                 ████████                                                   ██████           ███    ███     ███     \n" + //
+                        "     ███                              █████                                                             █████      ██████████       ███     \n" + //
+                        "     ███                            █████                                                                  ████   ██████████        ███     \n" + //
+                        "     ███                         █████                                                                       ████   ████            ███     \n" + //
+                        "     ███                      ████                                                                             ████                 ███     \n" + //
+                        "     ███                    ███                                                                                  ██                 ███     \n" + //
+                        "     ███    ████         █████                                                                                   ██                 ███     \n" + //
+                        "     ███   ██  █████   ███                                                                                       ██                 ███     \n" + //
+                        "     ███   ██      █████                           ███                        █████                           ████                  ███     \n" + //
+                        "     ███   ██   █████                              ███                        █████                        █████                    ███     \n" + //
+                        "     ███   ██  █████                           ███ ███                        █████                     ███████                     ███     \n" + //
+                        "     ███   █████                             █ ████████                                            ███████                          ███     \n" + //
+                        "     ███ ████                               ███ ███  ████                                       ███████                             ███     \n" + //
+                        "     ███████                                ████ ███  ████                                ██████████                                ███     \n" + //
+                        "     ████                                     ███  ████                        █████████████                                        ███     \n" + //
+                        "     ███                                       ████     ██                    ███████                                               ███     \n" + //
+                        "     ███                                         ███  ████                  ████                                                    ███     \n" + //
+                        "     ███                                              ███                  ███                                                      ███     \n" + //
+                        "     ███                                █████████████████                 ████                                                      ███     \n" + //
+                        "     ███                          █████████████████████                 ████                                                        ███     \n" + //
+                        "     ███                      ███████████          ████                ███                                                          ███     \n" + //
+                        "     ██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████     \n" + //
+                        "      ████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████ ");
+        System.out.println(                                                         
+           "\n                                                   . . .|                                               ,---."+
+           "\n                                                   | | ||---.,---.    ,---.,---.,---.    ,   .,---..   .  ,-'"+
+           "\n                                                   | | ||   ||   |    ,---||    |---'    |   ||   ||   |  |"+  
+            "\n                                                   `-'-'`   '`---'    `---^`    `---'    `---|`---'`---'  o"+  
+             "\n                                                                                        `---'               ");
 
         System.out.println("Enter your name:");
         String name = scanner.nextLine();
@@ -277,6 +335,10 @@ public class MainGame {
         int choice;
 
         while (true) {
+
+            Map application = new Map(player.getLocationX(), player.getLocationY());
+            // application.getContentPane().setBackground(bgColor);
+            application.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
             // add edge case
             System.out.println();
@@ -654,7 +716,9 @@ public class MainGame {
                 default:
                     System.out.println("Invalid choice. Please choose again.");
             }
-
+            application.dispose();
         }
+        
     }
+
 }
