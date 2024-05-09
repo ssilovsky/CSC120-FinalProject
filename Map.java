@@ -15,7 +15,6 @@ public class Map extends JFrame{
      * 
      */
 
-
     public Map(int x, int y, Color c) {
         this.setSize(430, 430);
         this.setVisible(true);

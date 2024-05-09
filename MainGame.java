@@ -1,9 +1,8 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import java.awt.Color;
-
+import javax.swing.JFrame;
 import java.util.Random;
+import java.awt.Color;
 
 public class MainGame {
     // enemy list instances for different areas
@@ -53,15 +52,15 @@ public class MainGame {
     private static Color[] colors = { Color.BLUE, Color.GREEN, Color.ORANGE, Color.DARK_GRAY };
     private static Color bgColor = colors[0];
 
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("\n-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
+        System.out.println("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
         System.out.println(
-                "We recommend playing SHARPG in windowed mode, instead of full screen,\n            as there are pop-ups for the map and combat!");
+                "We recommend playing SHARPG in (large) windowed mode, instead of full screen,\n            as there are pop-ups for the map and combat!");
+
         System.out.println("\n                 Thank you, and we hope you enjoy!");
-        System.out.println("\n-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
+        System.out.println("\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*\n");
 
         // have a quick pause before game starts so that the player can read the above
         // suggestion on window mode
@@ -218,6 +217,61 @@ public class MainGame {
 
     // main game loop
     private static void startGame(Scanner scanner) {
+
+
+        System.out.println("\nFirst of all...");
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            System.out.println("Oops, somehow something went wrong when waiting for the next line");
+            e.printStackTrace();
+        }
+        System.out.println("      ████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████      \n" + //
+                        "     ████                                                                                                                          ████     \n" + //
+                        "     ███                                                                                                                            ███     \n" + //
+                        "     ███                                    ██████                                 ██████████   ██████████   █████████              ███     \n" + //
+                        "     ███                                   ██   ███████                           ███       ██ ██       ██████       ███            ███     \n" + //
+                        "     ███                                   ████    ███████                        ██        ██ ██       ██████       ███            ███     \n" + //
+                        "     ███                                    ███        ██████                           ██████      ███████      ███████            ███     \n" + //
+                        "     ███                                    ███             ██████                    ████         ████        ████                 ███     \n" + //
+                        "     ███                                    ███               ██████                  ███          ██          ███                  ███     \n" + //
+                        "     ███                                    ███                   ███                                                               ███     \n" + //
+                        "     ███                                      ██                    ███               ████         ████        ████     █████       ███     \n" + //
+                        "     ███                                      ███                    ██████           ████         ████        ████        ███      ███     \n" + //
+                        "     ███                                       ███                     ██████████████████                                   ████    ███     \n" + //
+                        "     ███                                       ███               ███████                █████                                ███    ███     \n" + //
+                        "     ███                                       ███████████████████                          ████████                         ███    ███     \n" + //
+                        "     ███                                    ██████████████                                      ███████                      ███    ███     \n" + //
+                        "     ███                                 ████████                                                   ██████           ███    ███     ███     \n" + //
+                        "     ███                              █████                                                             █████      ██████████       ███     \n" + //
+                        "     ███                            █████                                                                  ████   ██████████        ███     \n" + //
+                        "     ███                         █████                                                                       ████   ████            ███     \n" + //
+                        "     ███                      ████                                                                             ████                 ███     \n" + //
+                        "     ███                    ███                                                                                  ██                 ███     \n" + //
+                        "     ███    ████         █████                                                                                   ██                 ███     \n" + //
+                        "     ███   ██  █████   ███                                                                                       ██                 ███     \n" + //
+                        "     ███   ██      █████                           ███                        █████                           ████                  ███     \n" + //
+                        "     ███   ██   █████                              ███                        █████                        █████                    ███     \n" + //
+                        "     ███   ██  █████                           ███ ███                        █████                     ███████                     ███     \n" + //
+                        "     ███   █████                             █ ████████                                            ███████                          ███     \n" + //
+                        "     ███ ████                               ███ ███  ████                                       ███████                             ███     \n" + //
+                        "     ███████                                ████ ███  ████                                ██████████                                ███     \n" + //
+                        "     ████                                     ███  ████                        █████████████                                        ███     \n" + //
+                        "     ███                                       ████     ██                    ███████                                               ███     \n" + //
+                        "     ███                                         ███  ████                  ████                                                    ███     \n" + //
+                        "     ███                                              ███                  ███                                                      ███     \n" + //
+                        "     ███                                █████████████████                 ████                                                      ███     \n" + //
+                        "     ███                          █████████████████████                 ████                                                        ███     \n" + //
+                        "     ███                      ███████████          ████                ███                                                          ███     \n" + //
+                        "     ██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████     \n" + //
+                        "      ████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████ ");
+        System.out.println(                                                         
+           "\n                                                   . . .|                                               ,---."+
+           "\n                                                   | | ||---.,---.    ,---.,---.,---.    ,   .,---..   .  ,-'"+
+           "\n                                                   | | ||   ||   |    ,---||    |---'    |   ||   ||   |  |"+  
+            "\n                                                   `-'-'`   '`---'    `---^`    `---'    `---|`---'`---'  o"+  
+             "\n                                                                                        `---'               ");
+
         System.out.println("Enter your name:");
         String name = scanner.nextLine();
         PlayableChar player = new PlayableChar(name, 10, 5);
@@ -723,7 +777,15 @@ public class MainGame {
                     }
                     break;
                 case 8:
-                    System.out.println("Help menu here");
+                    System.out.println();
+                    System.out.println(
+                          "----------------------------------------------------------*Help*-----------------------------------------------------------" +
+                         "\n--Use the 1,2,3,4 keys to move around the map and use 6 (look around) or look at the minimap to get your location" +
+                         "\n--When you go into combat with an enemy, you can type 'help' to get combat specific help" +
+                         "\n--Your goal is to get to the exit of each area, fighting enemies to level up as you go! Each exit will contain a boss\nstronger than a usual enemy" +
+                         "\n--Get to the end to retrieve the crown!" + 
+                         "\n--Good Luck, " + player.getName()+ "!" +
+                            "\n---------------------------------------------------------------------------------------------------------------------------");
                     break;
                 case 9:
                     System.out.println("Are you sure you want to quit? (y/n)");
@@ -744,5 +806,7 @@ public class MainGame {
             }
             application.dispose();
         }
+        
     }
+
 }
