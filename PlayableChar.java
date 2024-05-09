@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 import javax.management.RuntimeErrorException;
 
@@ -182,6 +183,14 @@ public class PlayableChar {
         return this.inventory;
     }
 
+    public void printStarfishCount(){
+        if (this.hasCrown()) {
+            System.out.println("You collected a total of " + (this.inventory.size() - 1) + " Starfish!");
+        } else {
+            System.out.println("You collected a total of " + this.inventory.size() + " Starfish!");
+        }
+    }
+
     public void displayInventory() {
         System.out.println("Inventory of " + name + ":");
         if (inventory.isEmpty()) {
@@ -191,6 +200,15 @@ public class PlayableChar {
                 System.out.println("- " + item.getName());
             }
         }
+    }
+
+    public boolean hasCrown() {
+        for (Item item : this.getInventory()) {
+            if (item.getName().equals("CROWN")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // ***COMBAT*** //

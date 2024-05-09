@@ -185,7 +185,7 @@ public class main {
         last.getGrid()[6][0] = Tile.ENEMY;
         last.getGrid()[6][2] = Tile.ENEMY;
         last.getGrid()[6][4] = Tile.ENEMY;
-        last.getGrid()[6][6] = Tile.ENEMY;
+        last.getGrid()[6][6] = Tile.CROWN;
         last.getGrid()[6][8] = Tile.ENEMY;
         last.getGrid()[7][1] = Tile.ENEMY;
         last.getGrid()[7][3] = Tile.ENEMY;
@@ -280,52 +280,84 @@ public class main {
 
                         }
 
-                        if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.ITEM) {
+                        if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.STARFISH) {
+                            String choice2;
+                            String itemName = "Starfish";
+                            ItemType type = ItemType.STARFISH;
+                            int quantity = 1;
+                            System.out.println("You found an item!");
                             System.out.println("Do you want to pick this item up?");
-                            // figure out scanner
+                            System.out.println("1. Yes");
+                            System.out.println("2. No");
+                            choice2 = scanner.next();
+                            if (choice2.equalsIgnoreCase("1")) {
+                                player.addToInventory(new Item(itemName, type, quantity));
+                                // Then update the tile to EMPTY since the item has been picked up
+                                area.setTile(player.getLocationX(), player.getLocationY(), Tile.EMPTY);
+                                System.out.println("You picked up " + itemName + "!");
+                            } else if (choice2.equals("2")) {
+                                System.out.println("You decided not to pick up " + itemName + "!");
+                            } else {
+                                System.out.println("Invalid response. Please enter '1' or '2'");
+                            }
+                        }
+
+                        if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.CROWN) {
+                            String itemName2 = "･ﾟ*･The Royal Crown✧･ﾟ";
+                            ItemType type2 = ItemType.CROWN;
+                            int quantity = 1;
+                            System.out.println("You found the crown!");
+                            player.addToInventory(new Item(itemName2, type2, quantity));
+                            // Then update the tile to EMPTY since the item has been picked up
+                            area.setTile(player.getLocationX(), player.getLocationY(), Tile.EMPTY);
+                            System.out.println("You picked up " + itemName2 + "!");
                         }
 
                         if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.EXIT) {
                             Combat combatBoss = new Combat();
                             combatBoss.combatLoop(player, currentBoss);
-                            if (currentBoss == bossEnemies[3]) {
+                            if (currentBoss == bossEnemies[3] && player.hasCrown()) {
                                 System.out.println(
                                         "\nYou have defeated the kraken and have found the crown!\nYou give the crown back to the kingdom! Well done adventurer.");
-                                System.out.println("Player Final Level: " + player.getLevel());
+                            } else if (currentBoss == bossEnemies[3] && !player.hasCrown()) {
+                                System.out.println("\nYou have defeated the kraken, now where is the crown?");
+                            } else if (currentBoss != bossEnemies[3] && player.hasCrown()) {
                                 System.out.println(
-                                        "  _____ _                 _          _____            ____  _             _             \n"
-                                                + //
-                                                " |_   _| |__   __ _ _ __ | | _____  |  ______  _ __  |  _ \\| | __ _ _   _(_)_ __   __ _ \n"
-                                                + //
-                                                "   | | | '_ \\ / _` | '_ \\| |/ / __| | |_ / _ \\| '__| | |_) | |/ _` | | | | | '_ \\ / _` |\n"
-                                                + //
-                                                "   | | | | | | (_| | | | |   <\\__ \\ |  _| (_) | |    |  __/| | (_| | |_| | | | | | (_| |\n"
-                                                + //
-                                                "   |_| |_| |_|\\__,_|_| |_|_|\\_|___/ |_|  \\___/|_|    |_|   |_|\\__,_|\\__, |_|_| |_|\\__, |\n"
-                                                + //
-                                                "                 ____  _   _    _    ____  ____   ____ _            |___/         |___/ \n"
-                                                + //
-                                                "                / ___|| | | |  / \\  |  _ \\|  _ \\ / ___| |                               \n"
-                                                + //
-                                                "                \\___ \\| |_| | / _ \\ | |_) | |_) | |  _| |                               \n"
-                                                + //
-                                                "                 ___) |  _  |/ ___ \\|  _ <|  __/| |_| |_|                               \n"
-                                                + //
-                                                "                |____/|_| |_/_/   \\_|_| \\_|_|    \\____(_)       ");
-                                scanner.close();
-                                System.exit(0);
-                            } else if (combatBoss.getBattleResult()) {
-                                area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EXIT;
-                            } else {
-                                area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
-                            }
-                            System.out.println("\nWell done you've defeated the boss! You may now move to another area.");
-                        }
+                                        "\nYou have found the crown! \nThe shadow of the kraken looms over you, where is it creeping? \nDefeat the kraken to get rid of the evil that terrorizes Aquamaris once and for all!");
+                            
 
-                        break;
+                            System.out.println("Player Final Level: " + player.getLevel());
+                            System.out.println(
+                                    "  _____ _                 _          _____            ____  _             _             \n"
+                                            + //
+                                            " |_   _| |__   __ _ _ __ | | _____  |  ______  _ __  |  _ \\| | __ _ _   _(_)_ __   __ _ \n"
+                                            + //
+                                            "   | | | '_ \\ / _` | '_ \\| |/ / __| | |_ / _ \\| '__| | |_) | |/ _` | | | | | '_ \\ / _` |\n"
+                                            + //
+                                            "   | | | | | | (_| | | | |   <\\__ \\ |  _| (_) | |    |  __/| | (_| | |_| | | | | | (_| |\n"
+                                            + //
+                                            "   |_| |_| |_|\\__,_|_| |_|_|\\_|___/ |_|  \\___/|_|    |_|   |_|\\__,_|\\__, |_|_| |_|\\__, |\n"
+                                            + //
+                                            "                 ____  _   _    _    ____  ____   ____ _            |___/         |___/ \n"
+                                            + //
+                                            "                / ___|| | | |  / \\  |  _ \\|  _ \\ / ___| |                               \n"
+                                            + //
+                                            "                \\___ \\| |_| | / _ \\ | |_) | |_) | |  _| |                               \n"
+                                            + //
+                                            "                 ___) |  _  |/ ___ \\|  _ <|  __/| |_| |_|                               \n"
+                                            + //
+                                            "                |____/|_| |_/_/   \\_|_| \\_|_|    \\____(_)       ");
+                            scanner.close();
+                            System.exit(0);
+                        } else if (combatBoss.getBattleResult()) {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.EXIT;
+                        } else {
+                            area.getGrid()[player.getLocationX()][player.getLocationY()] = Tile.ENEMY;
+                        }
+                        System.out.println("\nWell done you've defeated the boss! You may now move to another area.");
                     }
                     break;
-
+                }
                 case 2:
                     player.displayInventory();
                     break;
@@ -377,6 +409,7 @@ public class main {
                                     + //
                                     "                |____/|_| |_/_/   \\_|_| \\_|_|    \\____(_)       ");
                     System.out.println("Player Final Level: " + player.getLevel());
+                    player.printStarfishCount();
                     scanner.close();
                     System.exit(0);
                 default:
@@ -385,6 +418,7 @@ public class main {
         }
     }
 }
+
 // System.out.println("Hello " + name + "! The royal crown has been taken from
 // the kingdom of Aquamaris. It's your job to retrieve the crown before it is
 // used for evil! Explore ");
