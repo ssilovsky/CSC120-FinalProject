@@ -150,7 +150,7 @@ public class CombatFrame extends JFrame {
     public static void main(String[] args) {
         CombatFrame c = new CombatFrame();
         JLabel jlab = new JLabel();
-        Enemy cut = new Enemy("Lava Leech", 1);
+        Enemy cut = new Enemy("Bigfin Squid", 1);
         c.changeEnemy(jlab, cut);
     }
 }
