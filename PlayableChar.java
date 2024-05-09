@@ -259,6 +259,9 @@ public class PlayableChar {
         }
     }
 
+    /**
+     * Displays item in inventory
+     */
     public void displayInventory() {
         System.out.println("Inventory of " + name + ":");
         if (inventory.isEmpty()) {
@@ -270,6 +273,10 @@ public class PlayableChar {
         }
     }
 
+    /**
+     * whether user has crown in inventory
+     * @return boolean
+     */
     public boolean hasCrown() {
         for (Item item : this.getInventory()) {
             if (item.getName().equals("CROWN")) {
@@ -294,6 +301,7 @@ public class PlayableChar {
 
     /**
      * Method for player to take damage
+     * @param dmg, int
      */
     public void takeDamage(int dmg) {
         if (dmg / this.defense < 1) {

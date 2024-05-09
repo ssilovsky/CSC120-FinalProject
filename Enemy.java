@@ -30,32 +30,61 @@ public class Enemy {
     /**
      * Getter methods
      */
+
+    /**
+     * Get type of enemy
+     * @return type, String
+     */
     public String getType() {
         return this.type;
     }
 
+    /**
+     * Get level of the enemy
+     * @return level, int
+     */
     public int getLevel() {
         return this.level;
     }
 
+    /**
+     * Get the current enemy hp
+     * @return hp, int
+     */
     public int getCurrentHealth() {
         return this.hp;
     }
   
+    /**
+     * Get the enemy attack
+     * @return attack, int
+     */
     public int getAttack(){
         return this.attack;
     }
 
+    /**
+     * Get enemy defense
+     * @return defense, int
+     */
     public int getDefense() {
         return this.defense;
     }
 
+    /**
+     * Get the enemy exp
+     * @return exp, int
+     */
     public int getExp(){
         return this.exp;
     }
 
   
     // *** COMBAT *** //
+    /**
+     * Enemy take damage and decrease that much health
+     * @param dmg int
+     */
     public void takeDamage(int dmg){
         if (dmg/this.defense < 1) {
             this.hp -= 1;
@@ -63,10 +92,16 @@ public class Enemy {
         this.hp -= Math.round(dmg/this.defense + this.level*Math.random()); 
     }
 
+    /**
+     * Heals enemy so it can appear in another tile
+     */
     public void healEnemy(){
         this.hp = 4*this.level;
     }
     
+    /**
+     * Allows the player to examine how close to death the enemy is
+     */
     public void examine(){
         if (this.hp <1) {
             System.out.println("The " + this.type + " is dead!");

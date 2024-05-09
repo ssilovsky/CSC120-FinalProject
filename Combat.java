@@ -24,6 +24,9 @@ public class Combat {
     }
 
     // Methods
+    /**
+     * Prints Combat menu for every loop
+     */
     public void printCombatMenu() {
         System.out.println();
         System.out.println("---Combat Options---");
