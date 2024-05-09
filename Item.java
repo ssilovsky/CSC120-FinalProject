@@ -1,10 +1,12 @@
 public class Item {
     private String name;
     private ItemType type;
+    private int quantity;
 
-    public Item(String name, ItemType type) {
+    public Item(String name, ItemType type, int quantity) {
         this.name = name;
         this.type = type;
+        this.quantity = quantity;
     }
 
     // Getter methods
@@ -15,15 +17,16 @@ public class Item {
     public ItemType getType() {
         return type;
     }
+
+    public int getQuantity() {
+        return quantity;
+    }
 }
+
 
 // Enum to represent different types of items
 enum ItemType {
-    WEAPON,
-    ARMOR,
-    CONSUMABLE,
+    STARFISH,
     CROWN,
-    SEAWEED,
-    ROCK,
-    KEY
+    NOTE
 }
