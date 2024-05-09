@@ -168,6 +168,7 @@ public class MainGame {
         start.getGrid()[7][5] = Tile.ENEMY;
         start.getGrid()[8][3] = Tile.ENEMY;
         start.getGrid()[8][5] = Tile.ENEMY;
+        start.getGrid()[4][4] = Tile.STARFISH;
         start.getGrid()[8][4] = Tile.EXIT;
 
         kelp.build();
@@ -194,6 +195,7 @@ public class MainGame {
         kelp.getGrid()[8][4] = Tile.ENEMY;
         kelp.getGrid()[8][6] = Tile.ENEMY;
         kelp.getGrid()[8][8] = Tile.ENEMY;
+        kelp.getGrid()[3][3] = Tile.STARFISH;
         kelp.getGrid()[8][4] = Tile.EXIT;
 
         thermal.build();
@@ -228,6 +230,7 @@ public class MainGame {
         thermal.getGrid()[8][3] = Tile.ENEMY;
         thermal.getGrid()[8][5] = Tile.ENEMY;
         thermal.getGrid()[8][8] = Tile.ENEMY;
+        thermal.getGrid()[6][3] = Tile.STARFISH;
         thermal.getGrid()[8][4] = Tile.EXIT;
 
         last.build();
@@ -273,6 +276,7 @@ public class MainGame {
         last.getGrid()[8][4] = Tile.ENEMY;
         last.getGrid()[8][6] = Tile.ENEMY;
         last.getGrid()[8][7] = Tile.ENEMY;
+        last.getGrid()[5][4] = Tile.STARFISH;
         last.getGrid()[8][8] = Tile.EXIT;
 
         System.out.println("\nHello " + name

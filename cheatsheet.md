@@ -7,10 +7,14 @@ Note:  It's a good idea to also make this list available inside the game, in res
 If your game includes challenges that must be overcome to win, also list them below.
 
 # Basic Commands
-
+- Use the 1,2,3,4 keys to move around the map and use 6 (look around) or look at the minimap to get your location
+- Your goal is to get to the exit of each area, fighting enemies to level up as you go! Each exit will contain a boss stronger than a usual enemy
 
 # Combat Commands
-
+- Battle Stance: a risk-reward attack in which you will deal massive damage, but let the enemy get multiple hits off first
+- Attack: basic attack against enemy
+- Examine: examine the enemy to try to discern how much health they have left. If level is too high, you cannot get exact number
+- Run: attempt to run from the battle. Won't always work, best for the only dire circumstances.
 
 # Maps
 
@@ -26,7 +30,7 @@ If your game includes challenges that must be overcome to win, also list them be
 +---+-------+-------+-------+-------+-------+-------+-------+-------+-------+
 | 3 |       | enemy |       | enemy |       |       | enemy | enemy | enemy |
 +---+-------+-------+-------+-------+-------+-------+-------+-------+-------+
-| 4 |       |       |       |       |       |       |       | enemy | exit  |
+| 4 |       |       |       |       |  star |       |       | enemy | exit  |
 +---+-------+-------+-------+-------+-------+-------+-------+-------+-------+
 | 5 | enemy |       |       | enemy |       |       |       | enemy | enemy |
 +---+-------+-------+-------+-------+-------+-------+-------+-------+-------+
@@ -47,7 +51,7 @@ If your game includes challenges that must be overcome to win, also list them be
 +---+----------+-------+-------+-------+-------+-------+-------+-------+-------+
 | 2 | enemy    |       | enemy |       |       |       | enemy |       |       |
 +---+----------+-------+-------+-------+-------+-------+-------+-------+-------+
-| 3 |          | enemy |       |       | enemy |       |       | enemy |       |
+| 3 |          | enemy |       |  star | enemy |       |       | enemy |       |
 +---+----------+-------+-------+-------+-------+-------+-------+-------+-------+
 | 4 |          |       |       | enemy |       |       |       |       | enemy |
 +---+----------+-------+-------+-------+-------+-------+-------+-------+-------+
@@ -70,7 +74,7 @@ If your game includes challenges that must be overcome to win, also list them be
 +---+----------+-------+-------+-------+-------+-------+-------+-------+-------+
 | 2 | enemy    |       |       |       |       | enemy |       | enemy | exit  |
 +---+----------+-------+-------+-------+-------+-------+-------+-------+-------+
-| 3 | enemy    | enemy |       | enemy | enemy |       |       | enemy | enemy |
+| 3 | enemy    | enemy |       | enemy | enemy |       |  star | enemy | enemy |
 +---+----------+-------+-------+-------+-------+-------+-------+-------+-------+
 | 4 |          |       |       |       |       |       | enemy |       |       |
 +---+----------+-------+-------+-------+-------+-------+-------+-------+-------+
@@ -95,7 +99,7 @@ If your game includes challenges that must be overcome to win, also list them be
 +---+----------+-------+-------+-------+-------+-------+-------+-------+-------+
 | 3 |          | enemy |       | enemy |       | enemy |       | enemy |       |
 +---+----------+-------+-------+-------+-------+-------+-------+-------+-------+
-| 4 | enemy    |       | enemy |       | enemy |       | enemy |       | enemy |
+| 4 | enemy    |       | enemy |       | enemy |  star | enemy |       | enemy |
 +---+----------+-------+-------+-------+-------+-------+-------+-------+-------+
 | 5 |          | enemy |       | enemy |       | enemy |       | enemy |       |
 +---+----------+-------+-------+-------+-------+-------+-------+-------+-------+
