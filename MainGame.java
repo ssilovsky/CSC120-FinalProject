@@ -341,7 +341,7 @@ public class MainGame {
                             System.out.println("Invalid response. Please enter '1' or '2'");
                         }
                     }
-                    
+
                     if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.CROWN) {
                         String itemName2 = "･ﾟ*･The Royal Crown✧･ﾟ";
                         ItemType type2 = ItemType.CROWN;
@@ -627,7 +627,15 @@ public class MainGame {
                     }
                     break;
                 case 8:
-                    System.out.println("Help menu here");
+                    System.out.println();
+                    System.out.println(
+                          "----------------------------------------------------------*Help*-----------------------------------------------------------" +
+                         "\n--Use the 1,2,3,4 keys to move around the map and use 6 (look around) or look at the minimap to get your location" +
+                         "\n--When you go into combat with an enemy, you can type 'help' to get combat specific help" +
+                         "\n--Your goal is to get to the exit of each area, fighting enemies to level up as you go! Each exit will contain a boss\nstronger than a usual enemy" +
+                         "\n--Get to the end to retrieve the crown!" + 
+                         "\n--Good Luck, " + player.getName()+ "!" +
+                            "\n---------------------------------------------------------------------------------------------------------------------------");
                     break;
                 case 9:
                     System.out.println("Are you sure you want to quit? (y/n)");
