@@ -1,8 +1,7 @@
-
-// import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
-import javax.swing.*;
+
+import javax.swing.JLabel;
 
 public class Combat {
     // Scanner info + Initalization
@@ -15,6 +14,7 @@ public class Combat {
     // constructor for Combat class
     public Combat() {
         // this.rounds = rounds;
+
     }
 
     // Methods
@@ -25,18 +25,25 @@ public class Combat {
         System.out.println("2. Attack");
         System.out.println("3. Examine");
         System.out.println("4. Run");
+        System.out.println("Type 'help' at anytime for tips");
         System.out.println("-----------------");
         System.out.print("Input an option: ");
     }
 
     public void combatHelp() {
         System.out.println();
-        System.out.println("----------------------------------------------------------*Combat Help*-----------------------------------------------------------");
-        System.out.println("1. Battle Stance: a risk-reward attack in which you will deal massive damage, but let the enemy get multiple hits off first");
+        System.out.println(
+                "----------------------------------------------------------*Combat Help*-----------------------------------------------------------");
+        System.out.println(
+                "1. Battle Stance: a risk-reward attack in which you will deal massive damage, but let the enemy get multiple hits off first");
         System.out.println("2. Attack: basic attack against enemy");
-        System.out.println("3. Examine: examine the enemy to try to discern how much health they have left. If level is too high, you cannot get exact number");
-        System.out.println("4. Run: attempt to run from the battle. Won't always work, best for the only dire circumstances.");
-        System.out.println("----------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println(
+                "3. Examine: examine the enemy to try to discern how much health they have left. If level is too high, you cannot get exact number");
+        System.out.println(
+                "4. Run: attempt to run from the battle. Won't always work, best for the only dire circumstances.");
+        System.out.println("-'help': prints this menu");
+        System.out.println(
+                "----------------------------------------------------------------------------------------------------------------------------------");
     }
 
     /**
@@ -137,11 +144,15 @@ public class Combat {
      * player or enemy HP accordingly
      */
     public void combatLoop(PlayableChar player, Enemy foe) {
+        CombatFrame combatframe = new CombatFrame(); // making a frame for combat
+        JLabel jlab = new JLabel();
+        combatframe.add(jlab);
         this.battlewon = false;
         Random dice = new Random();
         clearConsole();
         System.out.println();
         System.out.println("You enter battle with " + foe.getType() + "!");
+        combatframe.changeEnemy(jlab, foe);
         while (player.getCurrentHealth() > 0 && foe.getCurrentHealth() > 0) {
             System.out.println("\nROUND " + this.rounds);
             this.rounds++;
@@ -150,10 +161,9 @@ public class Combat {
             printCombatMenu();
             userInput = combatScanner.nextLine().toUpperCase();
             System.out.println();
-            if (userInput.equals("HELP")){
+            if (userInput.equals("HELP")) {
                 combatHelp();
-            }
-            else if (userInput.equals("BATTLE STANCE") || userInput.equals("1")) {
+            } else if (userInput.equals("BATTLE STANCE") || userInput.equals("1")) {
                 System.out.println("\nYou ready yourself for a powerful blow!\n");
                 enemyAttack(player, foe.getAttack());
                 // System.out.println("\nThe enemy continues to strike as you ready yourself!");
@@ -176,19 +186,25 @@ public class Combat {
                 }
             } else if (userInput.equals("RUN") || userInput.equals("4")) {
                 clearConsole();
-                int ran = dice.nextInt(6) + 1; // roll the diee!
-                System.out.println("You rolled a " + ran + " with the Mystic Dice of Fate");
-                if (ran >= 5) {
-                    System.out.println("Ran from battle!");
-                    System.out.println(
-                            "After swimming for your life, you take time to catch whatever breath a shark can have.");
-                    player.healPlayer();
-                    foe.healEnemy();
-                    this.battlewon = false;
-                    break;
+                if (foe.getType() == "Orca" || foe.getType() == "Manta Ray" || foe.getType() == "Bigfin Squid" || foe.getType() == "Kraken") {
+                    System.out.println("You can't even try to run from a boss battle!");
                 } else {
-                    System.out.println("You weren't able to escape!");
-                    enemyAttack(player, player.getAttack());
+                    int ran = dice.nextInt(6) + 1; // roll the diee!
+                    System.out.println("You rolled a " + ran + " with the Mystic Dice of Fate");
+                    if (ran >= 5) {
+                        System.out.println("Ran from battle!");
+                        System.out.println(
+                                "After swimming for your life, you take time to catch whatever breath a shark can have.");
+                        player.healPlayer();
+                        foe.healEnemy();
+                        this.battlewon = false;
+                        combatframe.setVisible(false);
+                        combatframe.dispose();
+                        break;
+                    } else {
+                        System.out.println("You weren't able to escape!");
+                        enemyAttack(player, player.getAttack());
+                    }
                 }
             } else {
                 System.out.println("Input a valid command!");
@@ -197,6 +213,8 @@ public class Combat {
             }
         }
         if (foe.getCurrentHealth() <= 0) {
+            combatframe.setVisible(false);
+            combatframe.dispose();
             System.out.println("Battle Won!");
             System.out.println("You Earned " + foe.getExp() + " EXP!");
             player.addExp(foe.getExp());
@@ -213,8 +231,7 @@ public class Combat {
 
     public static void main(String[] args) {
         PlayableChar joe = new PlayableChar("Joe", 25, 11);
-        joe.level = 4;
-        Enemy eviljoe = new Enemy("Evil Joe", joe.level);
+        Enemy eviljoe = new Enemy("Kraken", 4);
         Combat combatTest = new Combat();
         combatTest.combatLoop(joe, eviljoe);
     }

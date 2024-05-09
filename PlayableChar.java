@@ -2,14 +2,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
-import javax.management.RuntimeErrorException;
 
 public class PlayableChar {
     private final String name;
     private int maxHp;
     private int hp;
     private int exp;
-    public int level;
+    private int level;
     private int attack;
     private int defense;
     private ArrayList<Item> inventory;
@@ -41,7 +40,8 @@ public class PlayableChar {
     // *** NAVIGATION *** //
     public void goNorth() {
         if (this.locationY == 0) {
-            throw new RuntimeException("You can't go further this way!");
+            this.locationY = 0;
+            throw new RuntimeException();
         } else {
             this.locationY -= 1;
         }
@@ -50,7 +50,7 @@ public class PlayableChar {
 
     public void goSouth() {
         if (this.locationY == 8) {
-            throw new RuntimeException("You can't go further this way!");
+            throw new RuntimeException();
         } else {
             this.locationY += 1;
         }
@@ -59,7 +59,7 @@ public class PlayableChar {
 
     public void goEast() {
         if (this.locationX == 8) {
-            throw new RuntimeException("You can't go further this way!");
+            throw new RuntimeException();
         } else {
             this.locationX += 1;
         }
@@ -68,7 +68,7 @@ public class PlayableChar {
 
     public void goWest() {
         if (this.locationX == 0) {
-            throw new RuntimeException("You can't go further this way!");
+            throw new RuntimeException();
         } else {
             this.locationX -= 1;
         }
