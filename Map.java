@@ -15,7 +15,7 @@ public class Map extends JFrame{
      * 
      */
 
-    public Map(int x, int y, Color c) {
+    public Map(int x, int y) {
         this.setSize(430, 430);
         this.setVisible(true);
         this.setResizable(false);
@@ -24,7 +24,6 @@ public class Map extends JFrame{
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Map");
         this.setLocationRelativeTo(null);
-        this.getContentPane().setBackground(c);
     }
   
     /**
@@ -72,7 +71,7 @@ public class Map extends JFrame{
         p.goEast();
         p.goSouth();
         p.goEast();
-        Map application = new Map(p.getLocationX(), p.getLocationY(), Color.DARK_GRAY);
+        Map application = new Map(p.getLocationX(), p.getLocationY());
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     }

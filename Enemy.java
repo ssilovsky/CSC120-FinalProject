@@ -6,6 +6,11 @@ public class Enemy {
     private int level;
     private int exp; 
 
+    /**
+     * Enemy Constructor 
+     * @param type
+     * @param level
+     */
     public Enemy(String type, int level){
         this.type = type;
         this.level = level;

@@ -48,10 +48,6 @@ public class MainGame {
     // used to move the areas forward
     public static int i = 0;
 
-    // Color array for the background
-    private static Color[] colors = { Color.BLUE, Color.GREEN, Color.ORANGE, Color.DARK_GRAY };
-    private static Color bgColor = colors[0];
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -411,13 +407,12 @@ public class MainGame {
                 + "! The royal crown has been taken from the \nkingdom. It's up to you to retrieve the crown before \nit is used for evil!");
         System.out.println(areaDescription);
         System.out.println("What do you want to do?");
-        // player.addExp(100);
 
         int choice;
 
         while (true) {
 
-            Map application = new Map(player.getLocationX(), player.getLocationY(), bgColor);
+            Map application = new Map(player.getLocationX(), player.getLocationY());
 
             // add edge case
             System.out.println();
