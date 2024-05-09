@@ -3,17 +3,17 @@ public class Enemy {
     private int hp;
     private int attack;
     private int defense;
-    
     private int level;
     private int exp; 
 
     public Enemy(String type, int level){
         this.type = type;
         this.level = level;
-        this.defense = level * 2;
-        this.attack = level * 5;
-        this.hp = level * 4;
-        this.exp = level * 2;
+        // scaling formula modified from http://yanfly.moe/tools/enemylevelcalculator/ 
+        this.defense = (4 * (1 + (level - 1) * (5/100)) + (4 * (level - 1)));
+        this.attack = (5 * (1 + (level - 1) * (5/100)) + (5 * (level - 1)));
+        this.hp = (4 * (1 + (level - 1) * (15/100)) + (4 * (level - 1)));
+        this.exp = (2 * (1 + (level - 1) * (5/100)) + (2 * (level - 1)));
     }
 
     /**

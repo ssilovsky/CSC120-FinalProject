@@ -5,21 +5,26 @@ public class Map extends JFrame {
     private int x;
     private int y;
 
-
     /**
      * 
      * Map class constructor
      * 
      * @param x int, x coordinate for the player circle
      * @param y int, x coordinate for the player circle
+     * @param c Color
      * 
      */
 
-    public Map(int x, int y) {
-        setBounds(300, 500, 430, 430);
-        setVisible(true);
+    public Map(int x, int y, Color c) {
+        this.setSize(430, 430);
+        this.setVisible(true);
+        this.setResizable(false);
         this.x = x;
         this.y = y;
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setTitle("Map");
+        this.setLocationRelativeTo(null);
+        this.getContentPane().setBackground(c);
 
     }
   
@@ -69,8 +74,7 @@ public class Map extends JFrame {
         p.goEast();
         p.goSouth();
         p.goEast();
-        Map application = new Map(p.getLocationX(), p.getLocationY());
-        application.getContentPane().setBackground(Color.DARK_GRAY);
+        Map application = new Map(p.getLocationX(), p.getLocationY(), Color.DARK_GRAY);
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
