@@ -1,8 +1,6 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import javax.swing.JFrame;
 import java.util.Random;
-import java.awt.Color;
 
 public class MainGame {
     // enemy list instances for different areas
