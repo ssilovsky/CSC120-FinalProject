@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 
-public class Map extends JFrame {
+public class Map extends JFrame{
     private int x;
     private int y;
 
@@ -15,6 +15,7 @@ public class Map extends JFrame {
      * 
      */
 
+
     public Map(int x, int y, Color c) {
         this.setSize(430, 430);
         this.setVisible(true);
@@ -25,7 +26,6 @@ public class Map extends JFrame {
         this.setTitle("Map");
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(c);
-
     }
   
     /**
@@ -70,12 +70,13 @@ public class Map extends JFrame {
 
     public static void main(String args[]) {
         PlayableChar p = new PlayableChar("null", 10, 10);
-
         p.goEast();
         p.goSouth();
         p.goEast();
         Map application = new Map(p.getLocationX(), p.getLocationY(), Color.DARK_GRAY);
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
-}
+    }
+    
+
 

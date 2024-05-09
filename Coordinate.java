@@ -73,3 +73,4 @@ public class Coordinate {
         System.out.println(map.grid[2][2]);
     }
 }
+
