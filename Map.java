@@ -11,6 +11,7 @@ public class Map extends JFrame {
      * 
      * @param x int, x coordinate for the player circle
      * @param y int, x coordinate for the player circle
+     * @param c Color
      * 
      */
 

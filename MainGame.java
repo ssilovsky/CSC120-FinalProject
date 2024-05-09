@@ -7,16 +7,16 @@ import java.util.Random;
 
 public class MainGame {
     // enemy list instances for different areas
-    public static Enemy[] area_1_encounters = { new Enemy("Minnow", 1), new Enemy("Remora", 2),
+    public static Enemy[] area1Encounters = { new Enemy("Minnow", 1), new Enemy("Remora", 2),
             new Enemy("Cuttlefish", 1), new Enemy("Rock Crab", 2), new Enemy("Catfish", 2) };
-    public static Enemy[] area_2_encounters = { new Enemy("Bubbler Seahorse", 5), new Enemy("Jellyfish", 6),
+    public static Enemy[] area2Encounters = { new Enemy("Bubbler Seahorse", 5), new Enemy("Jellyfish", 6),
             new Enemy("Siren Snapper", 6), new Enemy("Kelp Golem", 5), new Enemy("Weed Wraiths", 6) };
-    public static Enemy[] area_3_encounters = { new Enemy("Vent Vipers", 10), new Enemy("Steam Spitters", 11),
+    public static Enemy[] area3Encounters = { new Enemy("Vent Vipers", 10), new Enemy("Steam Spitters", 11),
             new Enemy("Lava Leeches", 10), new Enemy("Yeti Crab", 11) };
-    public static Enemy[] area_4_encounters = { new Enemy("Sunfish", 16), new Enemy("Marlin", 16),
+    public static Enemy[] area4Encounters = { new Enemy("Sunfish", 16), new Enemy("Marlin", 16),
             new Enemy("Sailfish", 15), new Enemy("Dolphin", 15), new Enemy("Tuna", 16) };
-    public static Enemy[][] enemyGroupings = { area_1_encounters, area_2_encounters, area_3_encounters,
-            area_4_encounters };
+    public static Enemy[][] enemyGroupings = { area1Encounters, area2Encounters, area3Encounters,
+            area4Encounters };
     public static Enemy[] currentEnemy = enemyGroupings[0];
 
     // bosses
@@ -49,8 +49,8 @@ public class MainGame {
     // used to move the areas forward
     public static int i = 0;
 
-     // Color array for the background
-    private static Color[] colors = {Color.BLUE, Color.GREEN, Color.ORANGE, Color.DARK_GRAY};
+    // Color array for the background
+    private static Color[] colors = { Color.BLUE, Color.GREEN, Color.ORANGE, Color.DARK_GRAY };
     private static Color bgColor = colors[0];
 
     public static void main(String[] args) {
@@ -349,7 +349,7 @@ public class MainGame {
                             System.out.println("Invalid response. Please enter '1' or '2'");
                         }
                     }
-                    
+
                     if (area.getTile(player.getLocationX(), player.getLocationY()) == Tile.CROWN) {
                         String itemName2 = "･ﾟ*･The Royal Crown✧･ﾟ";
                         ItemType type2 = ItemType.CROWN;
