@@ -72,6 +72,10 @@ public class Map extends JFrame{
         drawPlayer(g);
     }
 
+    /**
+     * Tester for Map.java
+     * @param args
+     */
     public static void main(String args[]) {
         PlayableChar p = new PlayableChar("null", 10, 10);
         p.goEast();

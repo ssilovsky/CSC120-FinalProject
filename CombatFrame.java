@@ -157,7 +157,7 @@ public class CombatFrame extends JFrame {
     }
 
     /**
-     * Tester
+     * Tester for CombatFrame.java
      * @param args
      */
     public static void main(String[] args) {

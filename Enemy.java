@@ -117,7 +117,10 @@ public class Enemy {
         }
     }
   
-    // *** TEST *** //
+    /**
+     * Tester for Enemy.java
+     * @param args
+     */
     public static void main(String[] args) {
         Enemy e = new Enemy("Silly", 2);
         System.out.println(e.hp);

@@ -21,15 +21,26 @@ public class Item {
         this.quantity = quantity;
     }
 
-    // Getter methods
+    /**
+     * Get name of Item
+     * @return
+     */
     public String getName() {
         return name;
     }
-
+    
+    /**
+     * Get type of Item
+     * @return
+     */
     public ItemType getType() {
         return type;
     }
 
+    /**
+     * Get quantity of Item
+     * @return
+     */
     public int getQuantity() {
         return quantity;
     }

@@ -243,6 +243,10 @@ public class Combat {
         }
     }
 
+    /**
+     * Tester for Combat.java
+     * @param args
+     */
     public static void main(String[] args) {
         PlayableChar joe = new PlayableChar("Joe", 25, 11);
         Enemy eviljoe = new Enemy("Kraken", 4);
