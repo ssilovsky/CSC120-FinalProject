@@ -17,6 +17,7 @@ If your game includes challenges that must be overcome to win, also list them be
 - Run: attempt to run from the battle. Won't always work, best for the only dire circumstances.
 
 # Maps
+- The *star* on the map indicates a starfish. There is one in every area and it is a collectable that has no effect on the actual gameplay. 
 
 ## Area 1: Start
 +---+-------+-------+-------+-------+-------+-------+-------+-------+-------+
