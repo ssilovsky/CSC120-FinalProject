@@ -15,12 +15,14 @@ public class Map extends JFrame {
      */
 
     public Map(int x, int y, Color c) {
-        this.setBounds(300, 500, 430, 430);
+        this.setSize(430, 430);
         this.setVisible(true);
+        this.setResizable(false);
         this.x = x;
         this.y = y;
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Map");
+        this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(c);
 
     }
