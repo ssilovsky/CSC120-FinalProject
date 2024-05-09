@@ -1,5 +1,8 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import java.awt.Color;
+
 import java.util.Random;
 
 public class MainGame {
@@ -45,6 +48,10 @@ public class MainGame {
 
     // used to move the areas forward
     public static int i = 0;
+
+     // Color array for the background
+    private static Color[] colors = {Color.BLUE, Color.GREEN, Color.ORANGE, Color.DARK_GRAY};
+    private static Color bgColor = colors[0];
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -278,6 +285,7 @@ public class MainGame {
 
         while (true) {
 
+            Map application = new Map(player.getLocationX(), player.getLocationY(), bgColor);
             // add edge case
             System.out.println();
             System.out.println("1. Go North");
@@ -646,6 +654,8 @@ public class MainGame {
                 default:
                     System.out.println("Invalid choice. Please choose again.");
             }
+
+            application.dispose();
 
         }
     }
