@@ -136,22 +136,40 @@ public class CombatFrame extends JFrame {
             label.repaint();
         }
         if (foe.getType() == "Sunfish"){
-
+            ImageIcon sunfish = new ImageIcon("Images/Sunfish.jpg");
+            label.setIcon(sunfish);
+            this.add(label);
+            label.repaint();
         }
         if (foe.getType() == "Marlin"){
-
+            ImageIcon marlin = new ImageIcon("Images/Marlin.jpg");
+            label.setIcon(marlin);
+            this.add(label);
+            label.repaint();
         }
         if (foe.getType() == "Sailfish"){
-
+            ImageIcon sail = new ImageIcon("Images/Sailfish.jpg");
+            label.setIcon(sail);
+            this.add(label);
+            label.repaint();
         }
         if (foe.getType() == "Dolphin"){
-
+            ImageIcon dolphin = new ImageIcon("Images/Dolphin.jpg");
+            label.setIcon(dolphin);
+            this.add(label);
+            label.repaint();
         }
         if (foe.getType() == "Tuna"){
-
+            ImageIcon tuna = new ImageIcon("Images/Tuna.jpg");
+            label.setIcon(tuna);
+            this.add(label);
+            label.repaint();
         }
         if (foe.getType() == "Kraken"){
-
+            ImageIcon kraken = new ImageIcon("Images/Kraken.gif");
+            label.setIcon(kraken);
+            this.add(label);
+            label.repaint();
         }
         label.repaint();
     }
@@ -163,7 +181,7 @@ public class CombatFrame extends JFrame {
     public static void main(String[] args) {
         CombatFrame c = new CombatFrame();
         JLabel jlab = new JLabel();
-        Enemy cut = new Enemy("Bigfin Squid", 1);
+        Enemy cut = new Enemy("Sunfish", 1);
         c.changeEnemy(jlab, cut);
     }
 }

@@ -170,8 +170,8 @@ public class Combat {
         while (player.getCurrentHealth() > 0 && foe.getCurrentHealth() > 0) {
             System.out.println("\nROUND " + this.rounds);
             this.rounds++;
-            System.out.println("\n>> 🦈 Player health: " + player.getCurrentHealth() + " 🦈 <<");
-            System.out.println("\n>> 👹 Enemy health: " + foe.getCurrentHealth() + " 👹 <<");
+            System.out.println("\n>> 🦈 Player HP: " + player.getCurrentHealth() + " 🦈 <<");
+            System.out.println("\n>> 👹 Enemy HP: " + "???" + " 👹 <<");
             printCombatMenu();
             userInput = combatScanner.nextLine().toUpperCase();
             System.out.println();
@@ -249,7 +249,7 @@ public class Combat {
      */
     public static void main(String[] args) {
         PlayableChar joe = new PlayableChar("Joe", 25, 11);
-        Enemy eviljoe = new Enemy("Kraken", 4);
+        Enemy eviljoe = new Enemy("Kraken", 1);
         Combat combatTest = new Combat();
         combatTest.combatLoop(joe, eviljoe);
     }
