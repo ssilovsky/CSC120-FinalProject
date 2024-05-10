@@ -27,7 +27,7 @@ ___2__ 2 pts: Submission includes an **architecture diagram** describing the rel
 
 
 ## General Items (10 pts):
-___2__ 4 pts: Program compiles without errors or warnings.
+___4__ 4 pts: Program compiles without errors or warnings.
 
 ___2__ 2 pts: Executes fully & consistently without crashing (exception/freeze).
 
