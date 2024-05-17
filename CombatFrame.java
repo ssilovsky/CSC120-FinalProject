@@ -111,13 +111,13 @@ public class CombatFrame extends JFrame {
             this.add(label);
             label.repaint();
         }
-        if (foe.getType() == "Steam Spitter"){
-            ImageIcon steam = new ImageIcon("Images/Steam Spitter.jpg");
+        if (foe.getType() == "Steam Spitters"){
+            ImageIcon steam = new ImageIcon("Images/Steam Spitters.jpg");
             label.setIcon(steam);
             this.add(label);
             label.repaint();
         }
-        if (foe.getType() == "Lava Leech"){
+        if (foe.getType() == "Lava Leeches"){
             ImageIcon manta = new ImageIcon("Images/Lava Leech.jpg");
             label.setIcon(manta);
             this.add(label);
@@ -181,7 +181,7 @@ public class CombatFrame extends JFrame {
     public static void main(String[] args) {
         CombatFrame c = new CombatFrame();
         JLabel jlab = new JLabel();
-        Enemy cut = new Enemy("Sunfish", 1);
+        Enemy cut = new Enemy("Steam Spitters", 1);
         c.changeEnemy(jlab, cut);
     }
 }
